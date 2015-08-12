@@ -1,0 +1,149 @@
+----item----
+version: 1
+id: {B82A139B-50A6-4BAB-8384-4825D9A80D6A}
+database: core
+path: /sitecore/content/Applications/Security Reporting
+parent: {C74AC643-53C8-4F1E-9508-840CDC72AACA}
+name: Security Reporting
+master: {1F0770EA-8B77-4110-91AA-CC00DEE102DD}
+template: {EB06CEC0-5E2D-4DC4-875B-01ADCC577D13}
+templatekey: Application
+
+----field----
+field: {F9814588-762B-4D57-932D-2D6DE100A59A}
+name: Application
+key: application
+content-length: 143
+
+<link text="MoneYou User Info" linktype="external" url="/sitecore modules/Shell/Security-Rights-Reporting/UserInfo.aspx" anchor="" target="" />
+----field----
+field: {FC2B18B3-1631-4C3F-9E47-51DF05030026}
+name: Icon
+key: icon
+content-length: 35
+
+people/32x32/users3_preferences.png
+----field----
+field: {C687AA26-A85D-4C42-B32E-11E5FAECDF05}
+name: Chrome
+key: chrome
+content-length: 0
+
+
+----field----
+field: {094829C2-D7A7-4C38-B025-B99FF2001B56}
+name: Disable close
+key: disable close
+content-length: 0
+
+
+----field----
+field: {B4E951EE-906F-4249-B2C6-68E31C82E118}
+name: Disable maximize
+key: disable maximize
+content-length: 0
+
+
+----field----
+field: {F54C1557-F8CE-4130-90A7-B89575C4CDBE}
+name: Disable minimize
+key: disable minimize
+content-length: 0
+
+
+----field----
+field: {2B3ECBBC-432A-4CEA-BB75-CE481B644FF8}
+name: Disable resize
+key: disable resize
+content-length: 0
+
+
+----field----
+field: {7C90BFDE-F50C-4CDA-94CA-CE712C9675C6}
+name: Window Mode
+key: window mode
+content-length: 9
+
+Maximized
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 35
+
+People/32x32/users3_preferences.png
+----field----
+field: {BA3F86A2-4A1C-4D78-B63D-91C2779C1B5E}
+name: __Sortorder
+key: __sortorder
+content-length: 1
+
+0
+----field----
+field: {F6D8A61C-2F84-4401-BD24-52D2068172BC}
+name: __Originator
+key: __originator
+content-length: 0
+
+
+----version----
+language: en
+version: 1
+revision: 9d6fb8d4-f621-412d-85d3-cc54afa680bc
+
+----field----
+field: {67B6378B-C9F1-47C7-9CAC-BFA79B0727D9}
+name: Display name
+key: display name
+content-length: 18
+
+Security Reporting
+----field----
+field: {14DCA483-AAC7-4D87-AE27-3163D21798B7}
+name: Tool tip
+key: tool tip
+content-length: 16
+
+MoneYou userinfo
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20150806T150945
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+9d6fb8d4-f621-412d-85d3-cc54afa680bc
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20150812T221715:635750146351952265
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
