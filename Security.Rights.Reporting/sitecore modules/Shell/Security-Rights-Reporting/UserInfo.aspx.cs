@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sitecore.Data;
 using Sitecore.Data.Items;
 
@@ -42,7 +43,7 @@ namespace Security.Rights.Reporting.Shell
         private void DisplayAccountRight(Database db, string account)
         {
             userrights.Text += string.Format("<h2>Item Rights set on account {0} on {1} Database</h2>", System.Web.HttpUtility.HtmlEncode(account), db.Name);
-            string query = "fast://sitecore//*[@__Security != '' ]";
+            const string query = "fast://sitecore//*[@__Security != '' ]";
 
             var itemList = new List<Item>(db.SelectItems(query));
             var count = 0;
@@ -96,14 +97,25 @@ namespace Security.Rights.Reporting.Shell
         {
             List<List<string>> usertabel = new List<List<string>>();
             var users = Sitecore.Security.Accounts.UserManager.GetUsers();
+            if (users == null || users.Any() == false)
+            {
+                userlist.Text = "Error No Users";
+                return;
+            }
             var allrols = Sitecore.Security.Accounts.RolesInRolesManager.GetAllRoles();
+            if (allrols == null || allrols.Any() == false)
+            {
+                userlist.Text = "Error No Rols";
+                return;
+            }
+            
 
             List<string> row0 = new List<string>();
             row0.Add("User");
             row0.Add("Username");
             row0.Add("Domain");
 
-            foreach (var rol in Sitecore.Security.Accounts.RolesInRolesManager.GetAllRoles())
+            foreach (var rol in allrols)
             {
                 row0.Add(rol.Name);
             }
@@ -114,12 +126,19 @@ namespace Security.Rights.Reporting.Shell
                 List<string> row = new List<string>();
                 row.Add(user.Name);
                 row.Add(user.LocalName);
-                row.Add(user.Domain.Name);
+                if (user.Domain != null)
+                {
+                    row.Add(user.Domain.Name);
+                }
+                else
+                {
+                    row.Add("&nbsp;");
+                }
                 if (user.Roles != null)
                 {
                     foreach (var rol in allrols)
                     {
-                        if (user.IsInRole(rol))
+                        if (rol != null && user.IsInRole(rol))
                         {
                             row.Add("X");
                         }
