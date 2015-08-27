@@ -5,7 +5,7 @@ View all the Access right set on Sitecore rols or users. You can make a list of 
 
 ##Using
 Go to the Sitecore Desktop (/sitecore/shell/)
-And push the left-bottom start button in the right menuu there is inside the Security Tools menu a new Security Reporting menu item
+And push the left-bottom start button in the right menu there is inside the Security Tools menu a new Security Reporting menu item
 
 ##To Build:
 Add Sitecore.Kernel.dll to External folder
