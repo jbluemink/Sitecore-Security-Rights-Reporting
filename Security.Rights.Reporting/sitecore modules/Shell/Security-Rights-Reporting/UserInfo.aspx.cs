@@ -76,7 +76,7 @@ namespace Security.Rights.Reporting.Shell
             userrights.Text += "</table>";
         }
 
-        private bool CheckAccessRight()
+        public static bool CheckAccessRight()
         {
             if (Sitecore.Context.User.IsInRole("sitecore\\Sitecore Client Users"))
             {
@@ -91,29 +91,29 @@ namespace Security.Rights.Reporting.Shell
         }
 
 
-
-
-        void GetUserTabel()
+        public static List<List<string>> UserTabel()
         {
             List<List<string>> usertabel = new List<List<string>>();
             var users = Sitecore.Security.Accounts.UserManager.GetUsers();
             if (users == null || users.Any() == false)
             {
-                userlist.Text = "Error No Users";
-                return;
+                List<string> errorrow = new List<string> { "Error No Users" };
+                usertabel.Add(errorrow);
+                return usertabel;
             }
             var allrols = Sitecore.Security.Accounts.RolesInRolesManager.GetAllRoles();
             if (allrols == null || allrols.Any() == false)
             {
-                userlist.Text = "Error No Rols";
-                return;
+                List<string> errorrow = new List<string> { "Error No Rols" };
+                usertabel.Add(errorrow);
+                return usertabel;
             }
-            
 
             List<string> row0 = new List<string>();
             row0.Add("User");
             row0.Add("Username");
             row0.Add("Domain");
+            row0.Add("Admin");
 
             foreach (var rol in allrols)
             {
@@ -134,6 +134,7 @@ namespace Security.Rights.Reporting.Shell
                 {
                     row.Add("&nbsp;");
                 }
+                row.Add(user.IsAdministrator ? "*" : "&nbsp;");
                 if (user.Roles != null)
                 {
                     foreach (var rol in allrols)
@@ -150,7 +151,12 @@ namespace Security.Rights.Reporting.Shell
                 }
                 usertabel.Add(row);
             }
+            return usertabel;
+        }
 
+        void GetUserTabel()
+        {
+            var usertabel = UserTabel();
             userlist.Text = "<Table class=\"table table-header-rotated\">";
             var linecount = 0;
             foreach (var tabelrow in usertabel)
@@ -159,7 +165,7 @@ namespace Security.Rights.Reporting.Shell
                 var rowcount = 0;
                 foreach (var tabelfield in tabelrow)
                 {
-                    if (linecount == 0 && rowcount >= 3)
+                    if (linecount == 0 && rowcount >= 4)
                     {
                         userlist.Text += "<th class=\"rotate\"><div><span><a href=\"?account=" + tabelfield + "\">" + tabelfield + "</a></span></div></th>";
                     }
@@ -180,7 +186,7 @@ namespace Security.Rights.Reporting.Shell
                 userlist.Text += "</tr>";
                 linecount++;
             }
-            userlist.Text += "</Table><br><a href=\"?account=all\">Show all Right</a>";
+            userlist.Text += "</Table><br><a href=\"?account=all\">Show all Right</a><br><a href=\"/sitecore modules/Shell/Security-Rights-Reporting/Download.aspx\">Download</a>";
 
         }
 

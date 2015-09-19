@@ -60,11 +60,20 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="sitecore modules\Shell\Security-Rights-Reporting\Download.aspx" />
     <Content Include="sitecore modules\Shell\Security-Rights-Reporting\UserInfo.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\Download.aspx.cs">
+      <DependentUpon>Download.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\Download.aspx.designer.cs">
+      <DependentUpon>Download.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\OpenUserinfo.cs" />
     <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\UserInfo.aspx.cs">
       <DependentUpon>UserInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -74,6 +83,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Config\Include\Security.Rights.Reporting.Module.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
