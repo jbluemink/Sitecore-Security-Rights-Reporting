@@ -13,7 +13,6 @@ namespace Security.Rights.Reporting.Shell
             if (CheckAccessRight())
             {
                 var account = Request.QueryString.Get("account");
-                //account = "sitecore\\ed1";
                 if (string.IsNullOrEmpty(account))
                 {
                     GetUserTabel();
@@ -28,7 +27,6 @@ namespace Security.Rights.Reporting.Shell
             {
                 userlist.Text += "access denied";
             }
-
         }
 
         private void GetAccountRight(string account)
@@ -37,7 +35,6 @@ namespace Security.Rights.Reporting.Shell
             DisplayAccountRight(db, account);
             db = Sitecore.Configuration.Factory.GetDatabase("master");
             DisplayAccountRight(db, account);
-
         }
 
         private void DisplayAccountRight(Database db, string account)
@@ -87,7 +84,6 @@ namespace Security.Rights.Reporting.Shell
                 return true;
             }
             return false;
-
         }
 
 
@@ -156,6 +152,7 @@ namespace Security.Rights.Reporting.Shell
 
         void GetUserTabel()
         {
+            var defaultRols = DefaultRols.GetDefaultRols();
             var usertabel = UserTabel();
             userlist.Text = "<Table class=\"table table-header-rotated\">";
             var linecount = 0;
@@ -167,7 +164,16 @@ namespace Security.Rights.Reporting.Shell
                 {
                     if (linecount == 0 && rowcount >= 4)
                     {
-                        userlist.Text += "<th class=\"rotate\"><div><span><a href=\"?account=" + tabelfield + "\">" + tabelfield + "</a></span></div></th>";
+                        var style = "";
+                        var defaultRol = defaultRols.SingleOrDefault(x => x.Rol == tabelfield);
+                        if (defaultRol != null)
+                        {
+                            defaultRol.Hit = true;
+                            style = " style=\"color:#008800;\"";
+                        }
+                        var comment = string.Empty;
+                        DefaultRols.RolComment.TryGetValue(tabelfield, out comment);
+                        userlist.Text += string.Format("<th class=\"rotate\"><div><span><a href=\"?account={0}\"{1} title=\"{2}\">{0}</a></span></div></th>", tabelfield, style, comment);
                     }
                     else if (linecount == 0)
                     {
@@ -186,8 +192,17 @@ namespace Security.Rights.Reporting.Shell
                 userlist.Text += "</tr>";
                 linecount++;
             }
-            userlist.Text += "</Table><br><a href=\"?account=all\">Show all Right</a><br><a href=\"/sitecore modules/Shell/Security-Rights-Reporting/Download.aspx\">Download</a>";
-
+            userlist.Text += "</Table>";
+            var warningRols = defaultRols.Where(x => x.Hit == false);
+            if (warningRols.Any())
+            {
+                userlist.Text += "<br>WARNING: Expected rols not found: ";
+                foreach (var warningRol in warningRols)
+                {
+                    userlist.Text += warningRol.Rol+" ";
+                }
+            }
+            userlist.Text += "<br><a href=\"?account=all\">Show all Right</a><br><a href=\"/sitecore modules/Shell/Security-Rights-Reporting/Download.aspx\">Download</a><br>Legenda: <span style=\"color:#008800;\">Green Rol</span> is expected in Your Sitecore version:" + Sitecore.Configuration.About.Version;
         }
 
     }
