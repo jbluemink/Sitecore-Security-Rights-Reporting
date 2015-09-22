@@ -153,6 +153,7 @@ namespace Security.Rights.Reporting.Shell
         void GetUserTabel()
         {
             var defaultRols = DefaultRols.GetDefaultRols();
+            var defaultUsers = DefaultUsers.GetDefaultUsers();
             var usertabel = UserTabel();
             userlist.Text = "<Table class=\"table table-header-rotated\">";
             var linecount = 0;
@@ -181,7 +182,16 @@ namespace Security.Rights.Reporting.Shell
                     }
                     else if (rowcount == 0)
                     {
-                        userlist.Text += "<td><a href=\"?account=" + tabelfield + "\">" + tabelfield + "</a></td>";
+                        var style = "";
+                        var defaultUser = defaultUsers.SingleOrDefault(x => x.User == tabelfield);
+                        if (defaultUser != null)
+                        {
+                            defaultUser.Hit = true;
+                            style = " style=\"color:#008800;\"";
+                        }
+                        var comment = string.Empty;
+                        DefaultUsers.UserComment.TryGetValue(tabelfield, out comment);
+                        userlist.Text += string.Format("<td><a href=\"?account={0}\"{1} title=\"{2}\">{0}</a></td>", tabelfield, style, comment);
                     }
                     else
                     {
@@ -193,13 +203,22 @@ namespace Security.Rights.Reporting.Shell
                 linecount++;
             }
             userlist.Text += "</Table>";
-            var warningRols = defaultRols.Where(x => x.Hit == false);
+            var warningRols = defaultRols.Where(x => x.Hit == false).ToList();
             if (warningRols.Any())
             {
-                userlist.Text += "<br>WARNING: Expected rols not found: ";
+                userlist.Text += "<br><span style=\"color:#880000;\">WARNING:</span> Expected rols not found: ";
                 foreach (var warningRol in warningRols)
                 {
                     userlist.Text += warningRol.Rol+" ";
+                }
+            }
+            var warningUsers = defaultUsers.Where(x => x.Hit == false).ToList();
+            if (warningUsers.Any())
+            {
+                userlist.Text += "<br><span style=\"color:#880000;\">WARNING:</span> Expected user not found: ";
+                foreach (var warningUser in warningUsers)
+                {
+                    userlist.Text += warningUser.User + " ";
                 }
             }
             userlist.Text += "<br><a href=\"?account=all\">Show all Right</a><br><a href=\"/sitecore modules/Shell/Security-Rights-Reporting/Download.aspx\">Download</a><br>Legenda: <span style=\"color:#008800;\">Green Rol</span> is expected in Your Sitecore version:" + Sitecore.Configuration.About.Version;
