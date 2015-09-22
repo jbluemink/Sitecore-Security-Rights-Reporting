@@ -10,16 +10,24 @@ body {
     margin: 5px 5px 5px 10px;
 }
 .table-header-rotated {
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0px;
+}
+.xfield td {
+    width: 20px;
+}
+td {
+    position: relative;
+    background-clip: padding-box;
 }
 .table-header-rotated td {
-    width: 20px;
+    background-clip: padding-box;
 }
 .table-header-rotated th {
     padding: 5px 10px;
 }
 .table-header-rotated td {
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
     padding: 10px 5px;
     text-align: center;
 }

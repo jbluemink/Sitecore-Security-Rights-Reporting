@@ -89,8 +89,9 @@ namespace Security.Rights.Reporting.Shell
 
         public static List<List<string>> UserTabel()
         {
+            var profileFinder = new UserProfileFinder();
             List<List<string>> usertabel = new List<List<string>>();
-            var users = Sitecore.Security.Accounts.UserManager.GetUsers();
+            var users = Sitecore.Security.Accounts.UserManager.Provider.GetUsers();
             if (users == null || users.Any() == false)
             {
                 List<string> errorrow = new List<string> { "Error No Users" };
@@ -107,8 +108,13 @@ namespace Security.Rights.Reporting.Shell
 
             List<string> row0 = new List<string>();
             row0.Add("User");
+            row0.Add("Comment");
+            row0.Add("Locked");
             row0.Add("Username");
             row0.Add("Domain");
+            row0.Add("Profile");
+            row0.Add("Create date");
+            row0.Add("Last login");
             row0.Add("Admin");
 
             foreach (var rol in allrols)
@@ -121,6 +127,18 @@ namespace Security.Rights.Reporting.Shell
             {
                 List<string> row = new List<string>();
                 row.Add(user.Name);
+                var profileType = string.Empty;
+                if (user.Profile != null)
+                {
+                    row.Add(user.Profile.Comment);
+                    row.Add(user.Profile.State);
+                    profileType = profileFinder.GetProfile(user.Profile.ProfileItemId);
+                }
+                else
+                {
+                    row.Add("&nbsp;");
+                    row.Add("&nbsp;");
+                }
                 row.Add(user.LocalName);
                 if (user.Domain != null)
                 {
@@ -130,6 +148,17 @@ namespace Security.Rights.Reporting.Shell
                 {
                     row.Add("&nbsp;");
                 }
+                var membershipUser = System.Web.Security.Membership.GetUser(user.Name, false);
+                var createdate = string.Empty;
+                var lastlogin = string.Empty;
+                if (membershipUser != null)
+                {
+                    createdate = "<nobr>" + membershipUser.CreationDate.ToString("yyyy MMMM dd") + "</nobr>";
+                    lastlogin = "<nobr>" + membershipUser.LastLoginDate.ToString("yyyy MMMM dd") + "</nobr>";
+                }
+                row.Add(profileType);
+                row.Add(createdate);
+                row.Add(lastlogin);
                 row.Add(user.IsAdministrator ? "*" : "&nbsp;");
                 if (user.Roles != null)
                 {
@@ -163,7 +192,11 @@ namespace Security.Rights.Reporting.Shell
                 var rowcount = 0;
                 foreach (var tabelfield in tabelrow)
                 {
-                    if (linecount == 0 && rowcount >= 4)
+                    if (rowcount == 1)
+                    {
+                        //do nothings, skip comment, use this as optional title in the User column
+                    }
+                    else if (linecount == 0 && rowcount >= 9)
                     {
                         var style = "";
                         var defaultRol = defaultRols.SingleOrDefault(x => x.Rol == tabelfield);
@@ -190,12 +223,22 @@ namespace Security.Rights.Reporting.Shell
                             style = " style=\"color:#008800;\"";
                         }
                         var comment = string.Empty;
-                        DefaultUsers.UserComment.TryGetValue(tabelfield, out comment);
-                        userlist.Text += string.Format("<td><a href=\"?account={0}\"{1} title=\"{2}\">{0}</a></td>", tabelfield, style, comment);
+                        if (!DefaultUsers.UserComment.TryGetValue(tabelfield, out comment))
+                        {
+                            if (tabelrow.Count > 1)
+                            {
+                                comment = tabelrow[1];
+                            }
+                        }
+                        userlist.Text += string.Format("<td nowrap><a href=\"?account={0}\"{1} title=\"{2}\">{0}</a></td>", tabelfield, style, comment);
                     }
+                    else if (rowcount >= 9)
+                    {
+                        userlist.Text += "<td nowrap class=\"xfield\">" + tabelfield + "</td>";
+                    }                       
                     else
                     {
-                        userlist.Text += "<td>" + tabelfield + "</td>";
+                        userlist.Text += "<td nowrap>" + tabelfield + "</td>";
                     }
                     rowcount++;
                 }
@@ -221,7 +264,7 @@ namespace Security.Rights.Reporting.Shell
                     userlist.Text += warningUser.User + " ";
                 }
             }
-            userlist.Text += "<br><a href=\"?account=all\">Show all Right</a><br><a href=\"/sitecore modules/Shell/Security-Rights-Reporting/Download.aspx\">Download</a><br>Legenda: <span style=\"color:#008800;\">Green Rol</span> is expected in Your Sitecore version:" + Sitecore.Configuration.About.Version;
+            userlist.Text += "<br><a href=\"?account=all\">Show all Right</a><br><a href=\"/sitecore modules/Shell/Security-Rights-Reporting/Download.aspx\">Download</a><br>Legenda: <span style=\"color:#008800;\">Green Rol / User</span> is expected in Your Sitecore version:" + Sitecore.Configuration.About.Version;
         }
 
     }

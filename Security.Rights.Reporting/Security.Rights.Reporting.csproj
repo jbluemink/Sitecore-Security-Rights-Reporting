@@ -85,6 +85,7 @@
     <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\UserInfo.aspx.designer.cs">
       <DependentUpon>UserInfo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\UserProfileFinder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Security.Rights.Reporting.Module.config" />
