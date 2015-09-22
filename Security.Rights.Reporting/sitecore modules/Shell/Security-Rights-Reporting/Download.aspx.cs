@@ -18,7 +18,7 @@ namespace Security.Rights.Reporting.Shell
                         {
                             dowload.Text += ",";
                         }
-                        dowload.Text += string.Format("\"{0}\"", tabelfield.Replace("&nbsp;","").Replace("\"", "\"\""));
+                        dowload.Text += string.Format("\"{0}\"", tabelfield.Replace("&nbsp;", "").Replace("\"", "\"\"").Replace("<nobr>", "").Replace("</nobr>", ""));
                         rowcount++;
                     }
                     dowload.Text += "\n";
