@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Management;
 using Sitecore.Data;
 using Sitecore.Data.Items;
+using Sitecore.Security.Accounts;
+using Sitecore.Security.Domains;
 
 namespace Security.Rights.Reporting.Shell
 {
@@ -86,22 +89,46 @@ namespace Security.Rights.Reporting.Shell
             return false;
         }
 
-
-        public static List<List<string>> UserTabel()
+        public static List<List<string>> UserTabel(int maxusers, out string warning)
         {
+            warning = string.Empty;
             var profileFinder = new UserProfileFinder();
             List<List<string>> usertabel = new List<List<string>>();
-            var users = Sitecore.Security.Accounts.UserManager.Provider.GetUsers();
+            IEnumerable<User> users;
+            if (Sitecore.Security.Accounts.UserManager.Provider.GetUserCount() > maxusers)
+            {
+                warning += "To many users the user are filtered, show only the sitecore domain and the sitecore default users. ";
+                users = Domain.GetDomain("sitecore").GetUsers().Take(maxusers);
+                if (users.Count() >= maxusers)
+                {
+                    warning += "To many users in the Sitecore domain for this Tool, Take the first one and skip the rest, try the download this has a higher limiet. ";
+                }
+                users = users.Concat(Domain.GetDomain("default").GetUsers().Take(maxusers));
+
+                var webuser = Sitecore.Security.Accounts.User.FromName("extranet\\Anonymous",false);
+                if (webuser != null)
+                {
+                    var x = new List<User>();
+                    x.Add(webuser);
+                    users = users.Concat(x);
+                }   
+            }
+            else
+            {
+                users = Sitecore.Security.Accounts.UserManager.Provider.GetUsers();
+            }
             if (users == null || users.Any() == false)
             {
-                List<string> errorrow = new List<string> { "Error No Users" };
+                warning = "Error No Users";
+                List<string> errorrow = new List<string> { "Error No Users. " };
                 usertabel.Add(errorrow);
                 return usertabel;
             }
             var allrols = Sitecore.Security.Accounts.RolesInRolesManager.GetAllRoles();
             if (allrols == null || allrols.Any() == false)
             {
-                List<string> errorrow = new List<string> { "Error No Rols" };
+                warning += "Error No Rols";
+                List<string> errorrow = new List<string> { "Error No Rols. " };
                 usertabel.Add(errorrow);
                 return usertabel;
             }
@@ -122,7 +149,7 @@ namespace Security.Rights.Reporting.Shell
                 row0.Add(rol.Name);
             }
             usertabel.Add(row0);
-
+            
             foreach (var user in users)
             {
                 List<string> row = new List<string>();
@@ -183,7 +210,8 @@ namespace Security.Rights.Reporting.Shell
         {
             var defaultRols = DefaultRols.GetDefaultRols();
             var defaultUsers = DefaultUsers.GetDefaultUsers();
-            var usertabel = UserTabel();
+            string warning;
+            var usertabel = UserTabel(200, out warning);
             userlist.Text = "<Table class=\"table table-header-rotated\">";
             var linecount = 0;
             foreach (var tabelrow in usertabel)
@@ -246,6 +274,10 @@ namespace Security.Rights.Reporting.Shell
                 linecount++;
             }
             userlist.Text += "</Table>";
+            if (!string.IsNullOrEmpty(warning))
+            {
+                userlist.Text += "<br><span style=\"color:#880000;\">WARNING: " + warning;
+            }
             var warningRols = defaultRols.Where(x => x.Hit == false).ToList();
             if (warningRols.Any())
             {

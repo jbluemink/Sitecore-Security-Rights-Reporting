@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Security.Rights.Reporting.Shell
 {
@@ -8,17 +9,50 @@ namespace Security.Rights.Reporting.Shell
         {
             if (UserInfo.CheckAccessRight())
             {
-                var usertabel = UserInfo.UserTabel();
+                string warning = string.Empty;
+                List<List<string>> usertabel = null;
+                try
+                {
+                    usertabel = UserInfo.UserTabel(2000, out warning);
+                }
+                catch (Exception ex)
+                {
+                    dowload.Text += warning + ex.ToString();
+                    return;
+                }
+                if (!string.IsNullOrEmpty(warning))
+                {
+                    dowload.Text += warning + "\n";
+                }
+                if (usertabel == null || usertabel.Count <= 0)
+                {
+                    return;
+                }
                 foreach (var tabelrow in usertabel)
                 {
                     var rowcount = 0;
+                    if (tabelrow == null || tabelrow.Count <= 0)
+                    {
+                        continue;
+                    }
                     foreach (var tabelfield in tabelrow)
                     {
                         if (rowcount != 0)
                         {
                             dowload.Text += ",";
                         }
-                        dowload.Text += string.Format("\"{0}\"", tabelfield.Replace("&nbsp;", "").Replace("\"", "\"\"").Replace("<nobr>", "").Replace("</nobr>", ""));
+                        if (string.IsNullOrEmpty(tabelfield))
+                        {
+                            dowload.Text += "";
+                        }
+                        else
+                        {
+                            dowload.Text += string.Format("\"{0}\"",
+                                tabelfield.Replace("&nbsp;", "")
+                                    .Replace("\"", "\"\"")
+                                    .Replace("<nobr>", "")
+                                    .Replace("</nobr>", ""));
+                        }
                         rowcount++;
                     }
                     dowload.Text += "\n";

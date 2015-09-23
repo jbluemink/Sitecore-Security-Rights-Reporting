@@ -7,6 +7,8 @@ View all the Access right set on Sitecore rols or users. You can make a list of 
 Go to the Sitecore Desktop (/sitecore/shell/)
 And push the left-bottom start button in the right menu there is inside the Security Tools menu a new Security Reporting menu item
 
+This tool is for Sitecore Domain users, if there too many (extranet) users it is skipping other domain users, this tool works for max 200 users in the Sitecore Domain.
+
 ##To Build:
 Add Sitecore.Kernel.dll to External folder
 
