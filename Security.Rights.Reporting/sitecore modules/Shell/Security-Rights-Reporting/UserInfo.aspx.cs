@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Management;
 using Sitecore.Data;
 using Sitecore.Data.Items;
 using Sitecore.Security.Accounts;
@@ -97,13 +96,43 @@ namespace Security.Rights.Reporting.Shell
             IEnumerable<User> users;
             if (Sitecore.Security.Accounts.UserManager.Provider.GetUserCount() > maxusers)
             {
-                warning += "To many users the user are filtered, show only the sitecore domain and the sitecore default users. ";
-                users = Domain.GetDomain("sitecore").GetUsers().Take(maxusers);
-                if (users.Count() >= maxusers)
+                warning += "To many users the user are filtered, show only the sitecore domain and the default sitecore users. ";
+                var sitecoreDomain = Domain.GetDomain("sitecore");
+                if (sitecoreDomain == null)
                 {
-                    warning += "To many users in the Sitecore domain for this Tool, Take the first one and skip the rest, try the download this has a higher limiet. ";
+                    users = new List<User>();
+                    warning += "The sitecore domain is missing. ";
                 }
-                users = users.Concat(Domain.GetDomain("default").GetUsers().Take(maxusers));
+                else
+                {
+                    users = sitecoreDomain.GetUsers().Take(maxusers);
+                    if (users.Count() >= maxusers)
+                    {
+                        warning += "To many users in the Sitecore domain for this Tool, Take the first one and skip the rest, try the download link this has a higher limiet. ";
+                    }
+                }
+                var defaultDomain = Domain.GetDomain("default");
+                if (defaultDomain == null)
+                {
+                    warning += "The default domain is missing. ";
+                }
+                else
+                {
+                    var defaultUser = defaultDomain.GetUsers().Take(maxusers);
+                    if (defaultUser == null || defaultUser.Count() == 0)
+                    {
+                        warning += "No users found in the default domain, expect Anonymous. ";
+                    }
+                    else
+                    {
+                        if (defaultUser.Count() >= maxusers)
+                        {
+                            warning +=
+                                "To many users in the default domain for this Tool, Take the first one and skip the rest, try the download link this has a higher limiet. ";
+                        }
+                        users = users.Concat(defaultUser);
+                    }
+                }
 
                 var webuser = Sitecore.Security.Accounts.User.FromName("extranet\\Anonymous",false);
                 if (webuser != null)
