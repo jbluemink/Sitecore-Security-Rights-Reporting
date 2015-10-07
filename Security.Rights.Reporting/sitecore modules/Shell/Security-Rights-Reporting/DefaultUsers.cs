@@ -55,7 +55,7 @@ namespace Security.Rights.Reporting.Shell
         public static Dictionary<string, string> UserComment = new Dictionary<string, string>()
         {
               {"default\\Anonymous", "a virtual user who is assigned to an unauthenticated visitor who is viewing a website that does not have an assigned domain"}
-            , {"extranet\\Anonymous", "a user who is viewing the free to access parts of a website."}
+            , {"extranet\\Anonymous", "a user who is viewing the free to access parts of a website. If you are not logged in, you will have this user"}
             , {"sitecore\\Admin","A predefined administrator user."}
             , {"sitecore\\ServicesAPI","Sitecore.Services.Client service Web API&#13;The default is that the extranet\\Anonymous user does not have access to the ItemService. You set this behavior with the Sitecore.Services.AllowAnonymousUser setting in the Sitecore.Services.Client.config configuration file.&#13;When you set Sitecore.Services.AllowAnonymousUser to true, then the ItemService will run anonymous requests in the security context of the user defined in the Sitecore.Services.AnonymousUser configuration setting. Such requests will, by default, do  user impersonation and run as the sitecore\\ServicesAPI user."}
         };
