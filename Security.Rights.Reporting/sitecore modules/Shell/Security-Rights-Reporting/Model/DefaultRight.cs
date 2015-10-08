@@ -1,0 +1,12 @@
+﻿
+namespace Security.Rights.Reporting.Shell.Model
+{
+    public class DefaultRight
+    {
+        public string Path { get; set; }
+        public string Account { get; set; }
+        public string Right { get; set; }
+        public string Message { get; set; }
+        public bool Hit { get; set; }
+    }
+}

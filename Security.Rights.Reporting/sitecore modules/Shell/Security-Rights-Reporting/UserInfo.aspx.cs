@@ -42,10 +42,13 @@ namespace Security.Rights.Reporting.Shell
         private void DisplayAccountRight(Database db, string account)
         {
             userrights.Text += string.Format("<h2>Item Rights set on account {0} on {1} Database</h2>", System.Web.HttpUtility.HtmlEncode(account), db.Name);
+            //We use a query instead of index search because, security field data is not in query, will be slower by large resultset.
             const string query = "fast://sitecore//*[@__Security != '' ]";
 
             var itemList = new List<Item>(db.SelectItems(query));
             var count = 0;
+
+            var defaultRights = RightsData.RightsData.GetDefaultRights(db.Name, account);
 
             userrights.Text += "<table>";
             foreach (var item in itemList)
@@ -55,14 +58,27 @@ namespace Security.Rights.Reporting.Shell
                 {
                     foreach (var rule in accessRules)
                     {
+                        var defaultRight = defaultRights.FirstOrDefault(x => x.Path == item.Paths.FullPath && x.Account == rule.Account.Name && x.Right == rule.SecurityPermission.ToString());
+                        var style = "";
+                        var message = "";
+                        if (defaultRight != null)
+                        {
+                            defaultRight.Hit = true;
+                            style = " style=\"color:#008800;\"";
+                            message = string.Format(", ({0})", defaultRight.Message);
+                        }
                         if (rule.Account.Name == account)
                         {
-                            userrights.Text += string.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td></tr>\n", item.Paths.FullPath, rule.AccessRight.Comment, rule.SecurityPermission);
+                            userrights.Text += string.Format("<tr{3}><td>{0}</td><td>{1}{4}</td><td>{2}</td></tr>\n", item.Paths.FullPath, rule.AccessRight.Comment, rule.SecurityPermission, style,message);
                             count++;
                         }
                         else if (account == "all")
                         {
-                            userrights.Text += string.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>\n", item.Paths.FullPath, rule.Account.Name, rule.AccessRight.Comment, rule.SecurityPermission);
+                            userrights.Text += string.Format("<tr{4}><td>{0}</td><td>{1}{5}</td><td>{2}</td><td>{3}</td></tr>\n", item.Paths.FullPath, rule.Account.Name, rule.AccessRight.Comment, rule.SecurityPermission, style, message);
+                            count++;
+                        } else if (account == "devexport")
+                        {
+                            userrights.Text += string.Format(",new[] {{\"{0}\",\"{1}\",\"{2}\"}}\n<br>", item.Paths.FullPath, rule.Account.Name.Replace("\\", "\\\\"), rule.SecurityPermission);
                             count++;
                         }
                     }
@@ -73,6 +89,17 @@ namespace Security.Rights.Reporting.Shell
                 userrights.Text += "<tr><td>No rights found in this Database for the user</td></tr>";
             }
             userrights.Text += "</table>";
+
+            var warningRights = defaultRights.Where(x => x.Hit == false).ToList();
+            if (warningRights.Any())
+            {
+                userrights.Text += "<br><span style=\"color:#880000;\">WARNING:</span> Expected rights not found:<br><table style=\"color:#880000;\">";
+                foreach (var warningRight in warningRights)
+                {
+                    userrights.Text += string.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>\n", warningRight.Path, warningRight.Account, warningRight.Message, warningRight.Right);
+                }
+                userrights.Text += "</table>";
+            }
         }
 
         public static bool CheckAccessRight()
