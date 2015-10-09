@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Sitecore.Data;
 using Sitecore.Data.Items;
+using Sitecore.Security.AccessControl;
 using Sitecore.Security.Accounts;
 using Sitecore.Security.Domains;
 
@@ -56,30 +57,38 @@ namespace Security.Rights.Reporting.Shell
                 var accessRules = item.Security.GetAccessRules();
                 if (accessRules != null)
                 {
-                    foreach (var rule in accessRules)
+                    if (account == "devexport")
                     {
-                        var defaultRight = defaultRights.FirstOrDefault(x => x.Path == item.Paths.FullPath && x.Account == rule.Account.Name && x.Right == rule.SecurityPermission.ToString());
-                        var style = "";
-                        var message = "";
-                        if (defaultRight != null)
+                        userrights.Text += string.Format(",new[] {{\"{0}\",@\"{1}\"}}\n<br>", item.Paths.FullPath, item.Fields["__Security"].Value);
+                    }
+                    else
+                    {
+                        foreach (var rule in accessRules)
                         {
-                            defaultRight.Hit = true;
-                            style = " style=\"color:#008800;\"";
-                            message = string.Format(", ({0})", defaultRight.Message);
-                        }
-                        if (rule.Account.Name == account)
-                        {
-                            userrights.Text += string.Format("<tr{3}><td>{0}</td><td>{1}{4}</td><td>{2}</td></tr>\n", item.Paths.FullPath, rule.AccessRight.Comment, rule.SecurityPermission, style,message);
-                            count++;
-                        }
-                        else if (account == "all")
-                        {
-                            userrights.Text += string.Format("<tr{4}><td>{0}</td><td>{1}{5}</td><td>{2}</td><td>{3}</td></tr>\n", item.Paths.FullPath, rule.Account.Name, rule.AccessRight.Comment, rule.SecurityPermission, style, message);
-                            count++;
-                        } else if (account == "devexport")
-                        {
-                            userrights.Text += string.Format(",new[] {{\"{0}\",\"{1}\",\"{2}\"}}\n<br>", item.Paths.FullPath, rule.Account.Name.Replace("\\", "\\\\"), rule.SecurityPermission);
-                            count++;
+                            var defaultRight = defaultRights.FirstOrDefault(x => x.Path == item.Paths.FullPath && x.Account == rule.Account.Name && x.Right == rule.SecurityPermission.ToString() && x.Name == rule.AccessRight.Name && x.PropagationType == rule.PropagationType.ToString());
+                            var style = "";
+                            var message = "";
+                            if (defaultRight != null)
+                            {
+                                defaultRight.Hit = true;
+                                style = " style=\"color:#008800;\"";
+                                message = string.Format(", ({0})", defaultRight.Message);
+                            }
+                            if (rule.Account.Name == account)
+                            {
+                                userrights.Text += string.Format("<tr{3}><td>{0}</td><td>{1}</td><td>{6}</td><td>{2}{4}</td><td>{5}</tr>\n", item.Paths.FullPath, rule.AccessRight.Comment, rule.SecurityPermission, style, message, rule.PropagationType, rule.AccessRight.Name);
+                                count++;
+                            }
+                            else if (account == "all")
+                            {
+                                userrights.Text += string.Format("<tr{4}><td>{0}</td><td>{1}</td><td>{7}</td><td>{2}{5}</td><td>{3}</td><td>{6}</tr>\n", item.Paths.FullPath, rule.Account.Name, rule.AccessRight.Comment, rule.SecurityPermission, style, message, rule.PropagationType, rule.AccessRight.Name);
+                                count++;
+                            }
+                            else if (account == "alldevexport")
+                            {
+                                userrights.Text += string.Format(",new[] {{\"{0}\",\"{1}\",\"{2}\",\"{3}\"}}\n<br>", item.Paths.FullPath, rule.Account.Name.Replace("\\", "\\\\"), rule.SecurityPermission, rule.PropagationType);
+                                count++;
+                            }
                         }
                     }
                 }
@@ -96,7 +105,7 @@ namespace Security.Rights.Reporting.Shell
                 userrights.Text += "<br><span style=\"color:#880000;\">WARNING:</span> Expected rights not found:<br><table style=\"color:#880000;\">";
                 foreach (var warningRight in warningRights)
                 {
-                    userrights.Text += string.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>\n", warningRight.Path, warningRight.Account, warningRight.Message, warningRight.Right);
+                    userrights.Text += string.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td></tr>\n", warningRight.Path, warningRight.Account, warningRight.Name,warningRight.Message, warningRight.Right, warningRight.PropagationType);
                 }
                 userrights.Text += "</table>";
             }

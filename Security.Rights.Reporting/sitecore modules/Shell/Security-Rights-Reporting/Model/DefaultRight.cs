@@ -6,6 +6,8 @@ namespace Security.Rights.Reporting.Shell.Model
         public string Path { get; set; }
         public string Account { get; set; }
         public string Right { get; set; }
+        public string PropagationType { get; set; }
+        public string Name { get; set; }
         public string Message { get; set; }
         public bool Hit { get; set; }
     }
