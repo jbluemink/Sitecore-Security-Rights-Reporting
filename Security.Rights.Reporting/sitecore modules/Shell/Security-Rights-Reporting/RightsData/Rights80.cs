@@ -577,6 +577,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
 ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Advanced",@"ar|sitecore\Sitecore Limited Page Editor|pe|-item:read|pd|-item:read|"}
 ,new[] {"/sitecore/content/Applications/Tools/Keyboard Map",@"ar|sitecore\Sitecore Client Developing|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
 ,new[] {"/sitecore/content/Documents and settings/All users/Start menu/Programs/Content Editor",@"ar|sitecore\Sitecore Client Designing|pd|+item:read|pe|+item:read|ar|sitecore\Sitecore Client Authoring|pd|+item:read|pe|+item:read|"}
+,new[] {"/sitecore/client/Applications/PathAnalyzer/PathExplorer",@"ar|sitecore\Analytics Reporting|pe|+item:read|"}
 ,new[] {"/sitecore/content/Applications/Security/Domain Manager/Ribbon/Home/Serialization",@"ar|sitecore\Sitecore Client Developing|pe|+item:read|ar|Everyone|pe|^*|"}
 ,new[] {"/sitecore/system/Field types/Developer Types/Sitecore User/Menu/Select",@"ar|sitecore\Sitecore Client Account Managing|pd|+item:read|pe|+item:read|ar|sitecore\Sitecore Client Users|pd|!*|pe|!*|"}
 ,new[] {"/sitecore/templates/System/Templates/Sections/Validation Rules/Validation Rules/__Validator Bar Validation Rules",@"ar|sitecore\Sitecore Client Developing|pe|+field:read|pd|+field:read|au|sitecore\Anonymous|pe|-field:read|pd|-field:read|"}
