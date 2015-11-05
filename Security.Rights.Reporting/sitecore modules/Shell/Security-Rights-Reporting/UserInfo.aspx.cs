@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Sitecore.Data;
 using Sitecore.Data.Items;
-using Sitecore.Security.AccessControl;
 using Sitecore.Security.Accounts;
 using Sitecore.Security.Domains;
 
@@ -22,8 +21,18 @@ namespace Security.Rights.Reporting.Shell
                 }
                 else
                 {
-                    userrights.Text = string.Format("<h2><a href=\"{0}\">Back</a></h2>", Request.Path);
-                    GetAccountRight(account);
+                    string defaultrights = "Hide default Sitecore rights";
+                    string url = string.Format("account={0}&defaultright=off",account);
+                    bool showdefaultrights = true;
+                    if (Request.QueryString.Get("defaultright") == "off")
+                    {
+                        defaultrights = "Show default Sitecore rights";
+                        url = string.Format("account={0}", account);
+                        showdefaultrights = false;
+                    }
+                    userrights.Text = string.Format("<h2><a href=\"{0}\">Back</a> | <a href=\"#master\">Master</a> | <a href=\"?{1}\">{2}</a></h2>", Request.Path, url, defaultrights);
+                    userrights.Text += string.Format("Legenda: <span style=\"color:#008800;\">Green Right</span> is expected (only support for 8+) in Your Sitecore version: {0}<br>",Sitecore.Configuration.About.Version);
+                    GetAccountRight(account, showdefaultrights);
                 }
             }
             else
@@ -32,25 +41,29 @@ namespace Security.Rights.Reporting.Shell
             }
         }
 
-        private void GetAccountRight(string account)
+        private void GetAccountRight(string account, bool showdefaultrights)
         {
             Database db = Sitecore.Configuration.Factory.GetDatabase("core");
-            DisplayAccountRight(db, account);
+            DisplayAccountRight(db, account, showdefaultrights);
             db = Sitecore.Configuration.Factory.GetDatabase("master");
-            DisplayAccountRight(db, account);
+            DisplayAccountRight(db, account, showdefaultrights);
         }
 
-        private void DisplayAccountRight(Database db, string account)
+        private void DisplayAccountRight(Database db, string account, bool showdefaultrights)
         {
-            userrights.Text += string.Format("<h2>Item Rights set on account {0} on {1} Database</h2>", System.Web.HttpUtility.HtmlEncode(account), db.Name);
+            userrights.Text += string.Format("<h2 id=\"{1}\">Item Rights set on account {0} on {1} Database</h2>", System.Web.HttpUtility.HtmlEncode(account), db.Name);
             //We use a query instead of index search because, security field data is not in query, will be slower by large resultset.
             const string query = "fast://sitecore//*[@__Security != '' ]";
 
             var itemList = new List<Item>(db.SelectItems(query));
             var count = 0;
 
-            var defaultRights = RightsData.RightsData.GetDefaultRights(db.Name, account);
-
+            string outmessage;
+            var defaultRights = RightsData.RightsData.GetDefaultRights(db.Name, account, out outmessage);
+            if (!string.IsNullOrEmpty(outmessage))
+            {
+                userrights.Text += "<p>" + outmessage + "</p>";
+            }
             userrights.Text += "<table>";
             foreach (var item in itemList)
             {
@@ -73,6 +86,10 @@ namespace Security.Rights.Reporting.Shell
                                 defaultRight.Hit = true;
                                 style = " style=\"color:#008800;\"";
                                 message = string.Format(", ({0})", defaultRight.Message);
+                                if (!showdefaultrights)
+                                {
+                                    continue;
+                                }
                             }
                             if (rule.Account.Name == account)
                             {

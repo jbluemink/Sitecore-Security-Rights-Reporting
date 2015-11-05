@@ -1,10 +1,36 @@
-﻿
+﻿using System.Collections.Generic;
+using Security.Rights.Reporting.Shell.Model;
 
 namespace Security.Rights.Reporting.Shell.RightsData
 {
     public static class Rights80
     {
-        public static string[][] Core =
+ 
+        public static List<string[]> Core802Replace = new List<string[]> 
+        {
+            new[]
+            {
+                "/sitecore/client/Applications/PathAnalyzer/PageAnalyzer",@""
+            }
+            ,new[]
+            {
+                "/sitecore/client/Applications/PathAnalyzer/PageAnalyzerDialog",@""
+            }
+            ,new[]
+            {
+                "/sitecore/client/Applications/PathAnalyzer/PathExplorer",@""
+            }
+        };
+
+        public static List<string[]> Core801 = new List<string[]> 
+        {
+            new[]
+            {
+                "/sitecore/client/Applications/List Manager/Taskpages/Contact list/PageSettings/ListActions Parameters/ListActionColumn/ListActionGroup/Unlock list",@"ar|sitecore\Everyone|pe|!*|"
+            }
+        };
+
+        public static List<string[]> Core = new List<string[]> 
         {
  new[] {"/sitecore/content/Applications/Content Editor/Ribbons/Chunks/Social",@"ar|sitecore\Sitecore Client Social Authoring|pe|+item:read|pd|+item:read|"}
 ,new[] {"/sitecore/content/Applications/Content Editor/Ribbons/Chunks/Appearance/Set Contextual Tab",@"ar|sitecore\Sitecore Client Configuring|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
@@ -121,6 +147,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
 ,new[] {"/sitecore/content/Documents and settings/All users/Start menu/Programs/Keyboard Map",@"ar|sitecore\Sitecore Client Developing|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
 ,new[] {"/sitecore/content/Applications/Content Editor/Ribbons/Chunks/Feed Presentation",@"ar|sitecore\Sitecore Client Developing|pd|+item:read|pe|+item:read|"}
 ,new[] {"/sitecore/client/Applications/ContentTesting/Common/System/Navigation/Reports/MostActive",@"ar|Everyone|pe|!*|pd|!*|ar|sitecore\Analytics Management Reporting|pe|+item:read|pd|+item:read|"}
+,new[] {"/sitecore/client/Applications/PathAnalyzer/PageAnalyzer",@"ar|sitecore\Analytics Reporting|pe|+item:read|"}
 ,new[] {"/sitecore/system/Settings/Html Editor Profiles/Rich Text Default/WebEdit Buttons/Italic",@"ar|sitecore\Sitecore Minimal Page Editor|pd|-item:read|pe|-item:read|"}
 ,new[] {"/sitecore/content/Applications/Layouts/PageDesigner/Ribbon/Design/Devices/Devices",@"ar|sitecore\Sitecore Client Authoring|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
 ,new[] {"/sitecore/system/Settings/Security/Policies/Shell/Can Switch Databases",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|"}
@@ -209,7 +236,6 @@ namespace Security.Rights.Reporting.Shell.RightsData
 ,new[] {"/sitecore/client/Applications/Launchpad/PageSettings/Buttons/Marketing/Experience Optimization",@"ar|sitecore\Analytics Management Reporting|pe|+item:read|ar|sitecore\Analytics Testing|pe|+item:read|"}
 ,new[] {"/sitecore/content/Applications/Reports/LogViewer/Commands/Download",@"ar|sitecore\Sitecore Client Users|pd|-item:read|pe|-item:read|"}
 ,new[] {"/sitecore/client/Applications/Launchpad/PageSettings/Buttons/Tools",@"ar|sitecore\Sitecore Client Users|pe|+item:read|pd|-item:read|"}
-,new[] {"/sitecore/client/Applications/List Manager/Taskpages/Contact list/PageSettings/ListActions Parameters/ListActionColumn/ListActionGroup/Unlock list",@"ar|sitecore\Everyone|pe|!*|"}
 ,new[] {"/sitecore/content/Documents and settings/All users/Start menu/Left/Media Library",@"ar|sitecore\Sitecore Client Authoring|pd|+item:read|pe|+item:read|"}
 ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit",@"ar|sitecore\Sitecore Minimal Page Editor|pe|-item:read|pd|-item:read|ar|sitecore\Sitecore Client Users|pe|+item:read|pd|+item:read|"}
 ,new[] {"/sitecore/content/Applications/Content Editor/Menues/Publish/Publish Item",@"ar|sitecore\Sitecore Client Publishing|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
@@ -449,6 +475,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
 ,new[] {"/sitecore/system/Settings/Html Editor Profiles/Rich Text Full/WebEdit Buttons/Insert Link",@"ar|sitecore\Sitecore Minimal Page Editor|pd|-item:read|pe|-item:read|"}
 ,new[] {"/sitecore/content/Applications/WebEdit",@"ar|sitecore\Sitecore Client Developing|pe|+item:write|+item:rename|+item:delete|+item:create|pd|+item:write|+item:rename|+item:delete|+item:create|ar|sitecore\Sitecore Client Designing|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|ar|sitecore\Sitecore Limited Page Editor|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Authoring|pe|+item:read|pd|+item:read|"}
 ,new[] {"/sitecore/content/Applications/Content Editor/Menues/Delete",@"ar|sitecore\Sitecore Limited Content Editor|pd|-item:read|pe|-item:read|"}
+,new[] {"/sitecore/client/Applications/PathAnalyzer/PageAnalyzerDialog",@"ar|sitecore\Analytics Reporting|pe|+item:read|"}
 ,new[] {"/sitecore/content/Applications/Content Editor/Menues/Editing/WebDAVEdit",@"ar|sitecore\Sitecore Limited Content Editor|pe|-item:read|pd|-item:read|"}
 ,new[] {"/sitecore/client/Applications/ExperienceProfile",@"ar|sitecore\Author|pe|-item:read|pd|-item:read|ar|sitecore\Sitecore Client Users|pe|-bucket:makebucket|-bucket:unmake|!*|pd|-bucket:makebucket|-bucket:unmake|!*|ar|sitecore\Analytics Reporting|pe|+item:read|pd|+item:read|ar|sitecore\Designer|pe|-item:read|-item:write|pd|-item:read|-item:write|"}
 ,new[] {"/sitecore/templates/System/Templates/Sections/Item Buckets/Item Buckets/__Is Bucket",@"ar|sitecore\Everyone|pe|-field:write|+field:read|pd|-field:write|+field:read|"}
@@ -468,7 +495,6 @@ namespace Security.Rights.Reporting.Shell.RightsData
 ,new[] {"/sitecore/content/Documents and settings/All users/Start menu/Right/Security Tools/Access Viewer",@"ar|sitecore\Sitecore Client Account Managing|pd|+item:read|pe|+item:read|ar|sitecore\Sitecore Client Users|pd|!*|pe|!*|ar|sitecore\Sitecore Client Securing|pd|+item:read|pe|+item:read|"}
 ,new[] {"/sitecore/content/Applications/Analytics/Engagement Automation Previewer",@"ar|sitecore\Analytics Maintaining|pe|+item:read|ar|Everyone|pe|!*|pd|!*|ar|sitecore\Analytics Reporting|pe|+item:read|"}
 ,new[] {"/sitecore/content/Applications/Security/User Manager",@"ar|sitecore\Sitecore Client Account Managing|pe|+item:read|pd|+item:read|"}
-,new[] {"/sitecore/client/Applications/PathAnalyzer",@"ar|Everyone|pe|!*|pd|!*|ar|sitecore\Analytics Reporting|pe|+item:read|pd|+item:read|"}
 ,new[] {"/sitecore/media library",@"ar|sitecore\Sitecore Client Users|pe|+item:read|pd|+item:read|"}
 ,new[] {"/sitecore/content/Applications/Content Editor/Context Menues/Default/Edit",@"ar|sitecore\Sitecore Limited Content Editor|pd|-item:read|pe|-item:read|"}
 ,new[] {"/sitecore/content/Applications/Security/Access Viewer",@"ar|sitecore\Sitecore Client Securing|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
@@ -551,7 +577,6 @@ namespace Security.Rights.Reporting.Shell.RightsData
 ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Advanced",@"ar|sitecore\Sitecore Limited Page Editor|pe|-item:read|pd|-item:read|"}
 ,new[] {"/sitecore/content/Applications/Tools/Keyboard Map",@"ar|sitecore\Sitecore Client Developing|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
 ,new[] {"/sitecore/content/Documents and settings/All users/Start menu/Programs/Content Editor",@"ar|sitecore\Sitecore Client Designing|pd|+item:read|pe|+item:read|ar|sitecore\Sitecore Client Authoring|pd|+item:read|pe|+item:read|"}
-,new[] {"/sitecore/content/Applications/Tools/Log Viewer",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
 ,new[] {"/sitecore/content/Applications/Security/Domain Manager/Ribbon/Home/Serialization",@"ar|sitecore\Sitecore Client Developing|pe|+item:read|ar|Everyone|pe|^*|"}
 ,new[] {"/sitecore/system/Field types/Developer Types/Sitecore User/Menu/Select",@"ar|sitecore\Sitecore Client Account Managing|pd|+item:read|pe|+item:read|ar|sitecore\Sitecore Client Users|pd|!*|pe|!*|"}
 ,new[] {"/sitecore/templates/System/Templates/Sections/Validation Rules/Validation Rules/__Validator Bar Validation Rules",@"ar|sitecore\Sitecore Client Developing|pe|+field:read|pd|+field:read|au|sitecore\Anonymous|pe|-field:read|pd|-field:read|"}
@@ -561,8 +586,8 @@ namespace Security.Rights.Reporting.Shell.RightsData
 ,new[] {"/sitecore/content/Applications/WebEdit/Menus/Other Views/Explore",@"ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|ar|sitecore\Experience Explorer|pe|+item:read|"}
 ,new[] {"/sitecore/content/Documents and settings/All users/Start menu/Programs/Media Library",@"ar|sitecore\Sitecore Client Authoring|pd|+item:read|pe|+item:read|"}
 ,new[] {"/sitecore/content/Applications/Security",@"ar|Everyone|pd|!*|"}
-,new[] {"/sitecore/content/Applications/Content Editor/Ribbons/Chunks/View/Buckets",@"ar|sitecore\Sitecore Client Developing|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"} 
-        };
+,new[] {"/sitecore/content/Applications/Content Editor/Ribbons/Chunks/View/Buckets",@"ar|sitecore\Sitecore Client Developing|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
+};
 
         public static string[][] Master =
         {
@@ -706,7 +731,6 @@ new[] {"/sitecore/templates/System/Validation/Field Type Validation Rules/Valida
 ,new[] {"/sitecore/system/Workflows/Social Marketer Message Workflow/Awaiting Post Review",@"ar|sitecore\Social Message Workflow Reviewer|pe|+workflowState:delete|+workflowCommand:execute|+item:write|+item:read|+workflowState:write|pd|+workflowState:delete|+workflowCommand:execute|+item:write|+item:read|+workflowState:write|"}
 ,new[] {"/sitecore/templates/System/Templates/Sections/Appearance/Appearance/__Hidden",@"au|sitecore\Anonymous|pe|-field:read|pd|-field:read|ar|sitecore\Sitecore Client Configuring|pe|+field:read|pd|+field:read|"}
 ,new[] {"/sitecore/templates/System/Templates/Sections/Statistics/Statistics/__Updated",@"au|sitecore\Anonymous|pe|-field:read|pd|-field:read|ar|sitecore\Sitecore Client Maintaining|pe|+field:read|pd|+field:read|"}
-,new[] {"/sitecore/templates/System/Workflow/Standard Comment Template/__Standard Values",@"ar|Everyone|p*|+item:write|"}
 ,new[] {"/sitecore/system/Marketing Control Panel/Experience Explorer/Presets",@"ar|sitecore\Experience Explorer|pe|+item:create|pd|+item:rename|+item:write|+item:create|+item:delete|"}
 ,new[] {"/sitecore/templates/System/Templates/Sections/Appearance/Appearance/__Context Menu",@"au|sitecore\Anonymous|pe|-field:read|pd|-field:read|ar|sitecore\Sitecore Client Configuring|pe|+field:read|pd|+field:read|"}
 ,new[] {"/sitecore/system/Workflows/Sample Workflow/Draft/__OnSave",@"ar|sitecore\Sitecore Client Authoring|pd|+workflowCommand:execute|pe|+workflowCommand:execute|"}
@@ -715,7 +739,7 @@ new[] {"/sitecore/templates/System/Validation/Field Type Validation Rules/Valida
 ,new[] {"/sitecore/system/Workflows/Sample Workflow/Draft",@"ar|sitecore\Sitecore Client Authoring|pd|+workflowState:delete|+workflowState:write|pe|+workflowState:delete|+workflowState:write|"}
 ,new[] {"/sitecore/templates/System/Templates/Sections/Appearance/Appearance/__Thumbnail",@"au|sitecore\Anonymous|pe|-field:read|pd|-field:read|ar|sitecore\Sitecore Client Configuring|pe|+field:read|pd|+field:read|"}
 ,new[] {"/sitecore/social/Messages",@"ar|Everyone|pe|!*|pd|!*|ar|sitecore\Social Message Author|pe|+item:create|+item:write|+item:read|+item:delete|pd|+item:create|+item:write|+item:read|+item:delete|"}
-,new[] {"/sitecore/templates/System/Templates/Sections/Validators/Validation Rules/__Validator Bar Validation Rules",@"ar|sitecore\Sitecore Client Developing|pe|+field:read|pd|+field:read|au|sitecore\Anonymous|pe|-field:read|pd|-field:read|"} 
+,new[] {"/sitecore/templates/System/Templates/Sections/Validators/Validation Rules/__Validator Bar Validation Rules",@"ar|sitecore\Sitecore Client Developing|pe|+field:read|pd|+field:read|au|sitecore\Anonymous|pe|-field:read|pd|-field:read|"}
         };
     }
 }
