@@ -84,7 +84,7 @@ namespace Security.Rights.Reporting.Shell
                             if (defaultRight != null)
                             {
                                 defaultRight.Hit = true;
-                                style = " style=\"color:#008800;\"";
+                                style = " style=\"color:#008800;\" class=\"green\"";
                                 message = string.Format(", ({0})", defaultRight.Message);
                                 if (!showdefaultrights)
                                 {

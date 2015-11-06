@@ -8,26 +8,17 @@ namespace Security.Rights.Reporting.Shell.RightsData
  
         public static List<string[]> Core802Replace = new List<string[]> 
         {
-            new[]
-            {
-                "/sitecore/client/Applications/PathAnalyzer/PageAnalyzer",@""
-            }
-            ,new[]
-            {
-                "/sitecore/client/Applications/PathAnalyzer/PageAnalyzerDialog",@""
-            }
-            ,new[]
-            {
-                "/sitecore/client/Applications/PathAnalyzer/PathExplorer",@""
-            }
+            new[] {"/sitecore/client/Applications/List Manager/Taskpages/Contact list/PageSettings/ListActions Parameters/ListActionColumn/ListActionGroup/Unlock list",@"ar|sitecore\Everyone|pe|!*|"}
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer/PageAnalyzer",@""}
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer/PageAnalyzerDialog",@""}
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer/PathExplorer",@""}
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer",@"ar|Everyone|pe|!*|pd|!*|ar|sitecore\Analytics Reporting|pe|+item:read|pd|+item:read|"}
+            ,new[] {"/sitecore/content/Applications/Tools/Log Viewer",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"} 
         };
 
         public static List<string[]> Core801 = new List<string[]> 
         {
-            new[]
-            {
-                "/sitecore/client/Applications/List Manager/Taskpages/Contact list/PageSettings/ListActions Parameters/ListActionColumn/ListActionGroup/Unlock list",@"ar|sitecore\Everyone|pe|!*|"
-            }
+            new[] {"/sitecore/client/Applications/List Manager/Taskpages/Contact list/PageSettings/ListActions Parameters/ListActionColumn/ListActionGroup/Unlock list",@"ar|sitecore\Everyone|pe|!*|"}
         };
 
         public static List<string[]> Core = new List<string[]> 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Security.Rights.Reporting.Shell.Model;
+using Sitecore.Data.Validators.FieldValidators;
 using Sitecore.Security.AccessControl;
 using Sitecore.Web.UI.XamlSharp.Xaml.Extensions;
 
@@ -23,10 +24,9 @@ namespace Security.Rights.Reporting.Shell.RightsData
             
             //Here is a issue, we handle account without looking for user or rol... so if a user has same name as rol, it is mixing.
             var returnlist = new List<DefaultRight>();
-            foreach (var r in rights)
+            foreach (var r in rights.OrderBy(x => x[0]))
             {
-                var accessRules = new AccessRuleCollection();
-                accessRules = AccessRuleCollection.FromString(r[1]);
+                var accessRules = AccessRuleCollection.FromString(r[1]);
                 if (accessRules != null)
                 {
                     foreach (var rule in accessRules)
@@ -56,29 +56,34 @@ namespace Security.Rights.Reporting.Shell.RightsData
             message = string.Empty;
             if (Sitecore.Configuration.About.Version.StartsWith("8.0.141212"))
             {
+                //initial version
                 return Rights80.Core;
             }
             else if (Sitecore.Configuration.About.Version.StartsWith("8.0.150121"))
             {
+                //update 1
                 return Rights80.Core.Concat(Rights80.Core801);
             }
             else if (Sitecore.Configuration.About.Version.StartsWith("8.0.150223"))
             {
-                message = "Sitecore version not supported show rights as 8.0";
-                return Rights80.Core;
+                //update 2
+                return JoinPathRight(Rights80.Core, Rights80.Core802Replace);
             }
             else if (Sitecore.Configuration.About.Version.StartsWith("8.0.150427"))
             {
+                //update 3
                 message = "Sitecore version not supported show rights as 8.0";
                 return Rights80.Core;
             }
             else if (Sitecore.Configuration.About.Version.StartsWith("8.0.150621")) 
             {
+                //update 4
                 message = "Sitecore version not supported show rights as 8.0";
                 return Rights80.Core;
             }
             else if (Sitecore.Configuration.About.Version.StartsWith("8.0.150812"))
             {
+                //update 5
                 message = "Sitecore version not supported show rights as 8.0";
                 return Rights80.Core;
             }
@@ -89,6 +94,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
             }
             else if (Sitecore.Configuration.About.Version.StartsWith("8.1.151003"))
             {
+                //initial version 8.1
                 message = "Sitecore version not supported show rights as 8.0";
                 return Rights80.Core;
             }
@@ -100,6 +106,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
             message = "Sitecore version not supported for displaying default rights";
             return new string[0][];
         }
+
         public static string[][] GetDefaultMasterRightsByVersion(out string message)
         {
             message = string.Empty;
@@ -112,11 +119,28 @@ namespace Security.Rights.Reporting.Shell.RightsData
         }
 
 
-        public static string[][] JoinPathRight(string[][] l1, string[][] l2)
+        public static IEnumerable<string[]> JoinPathRight(List<string[]> l1, List<string[]> l2)
         {
-            var x = l1.ToList().Concat(l2.ToList());
+            var joinedlist = l1;
+            foreach (var pr in l2)
+            {
+                bool found = false;
+                foreach (string[] obj in joinedlist)
+                {
+                    if (obj[0] == pr[0])
+                    {
+                        obj[1] = pr[1];
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                {
+                    joinedlist.Add(pr);
+                }
+            }
 
-            return x.ToArray();
+            return joinedlist;
         }
     }
 }
