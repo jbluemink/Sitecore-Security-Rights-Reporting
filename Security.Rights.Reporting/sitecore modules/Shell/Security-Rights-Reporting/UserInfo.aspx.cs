@@ -31,7 +31,7 @@ namespace Security.Rights.Reporting.Shell
                         showdefaultrights = false;
                     }
                     userrights.Text = string.Format("<h2><a href=\"{0}\">Back</a> | <a href=\"#master\">Master</a> | <a href=\"?{1}\">{2}</a></h2>", Request.Path, url, defaultrights);
-                    userrights.Text += string.Format("With this tool you can check what rights exist, which are custom or default Sitecore, and get a warning as default Sitecore rights are lacking.<br/>Legenda: <span style=\"color:#008800;\">Green Right</span> is expected in Your Sitecore version: {0}<br>", Sitecore.Configuration.About.Version);
+                    userrights.Text += string.Format("With this tool you view all the Access right set on Sitecore items, and see which are custom or default Sitecore, and get a warning as default Sitecore rights are lacking.<br/>Legenda: <span style=\"color:#008800;\">Green Right</span> is expected in Your Sitecore version: {0}<br>", Sitecore.Configuration.About.Version);
                     GetAccountRight(account, showdefaultrights);
                 }
             }
@@ -51,7 +51,14 @@ namespace Security.Rights.Reporting.Shell
 
         private void DisplayAccountRight(Database db, string account, bool showdefaultrights)
         {
-            userrights.Text += string.Format("<h2 id=\"{1}\">Item Rights set on account {0} on {1} Database</h2>", System.Web.HttpUtility.HtmlEncode(account), db.Name);
+            if (account == "all")
+            {
+                userrights.Text += string.Format("<h2 id=\"{0}\">Item Rights set on all users and rols on {0} Database</h2>", db.Name);
+            }
+            else
+            {
+                userrights.Text += string.Format("<h2 id=\"{1}\">Item Rights set on account {0} on {1} Database</h2>", System.Web.HttpUtility.HtmlEncode(account), db.Name);
+            }
             //We use a query instead of index search because, security field data is not in query, will be slower by large resultset.
             const string query = "fast://sitecore//*[@__Security != '' ]";
 
@@ -112,7 +119,14 @@ namespace Security.Rights.Reporting.Shell
             }
             if (count == 0)
             {
-                userrights.Text += "<tr><td>No rights found in this Database for the user</td></tr>";
+                if (showdefaultrights)
+                {
+                    userrights.Text += "<tr><td>No rights found in this Database for the user or role.</td></tr>";
+                }
+                else
+                {
+                    userrights.Text += "<tr><td>No custom rights found in this Database.</td></tr>";
+                }
             }
             userrights.Text += "</table>";
 
@@ -355,7 +369,7 @@ namespace Security.Rights.Reporting.Shell
                 userlist.Text += "</tr>";
                 linecount++;
             }
-            userlist.Text += "</Table>";
+            userlist.Text += "</Table><p>With this tool you can view a all users and roles. It can be used to do audits. You can see which users and rols are custom or default Sitecore, and get reported as default Sitecore users or roles missing.</p>";
             if (!string.IsNullOrEmpty(warning))
             {
                 userlist.Text += "<br><span style=\"color:#880000;\">WARNING: " + warning;
