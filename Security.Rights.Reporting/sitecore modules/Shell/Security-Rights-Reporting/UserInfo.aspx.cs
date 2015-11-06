@@ -31,7 +31,7 @@ namespace Security.Rights.Reporting.Shell
                         showdefaultrights = false;
                     }
                     userrights.Text = string.Format("<h2><a href=\"{0}\">Back</a> | <a href=\"#master\">Master</a> | <a href=\"?{1}\">{2}</a></h2>", Request.Path, url, defaultrights);
-                    userrights.Text += string.Format("Legenda: <span style=\"color:#008800;\">Green Right</span> is expected (only support for 8+) in Your Sitecore version: {0}<br>",Sitecore.Configuration.About.Version);
+                    userrights.Text += string.Format("With this tool you can check what rights exist, which are custom or default Sitecore, and get a warning as default Sitecore rights are lacking.<br/>Legenda: <span style=\"color:#008800;\">Green Right</span> is expected in Your Sitecore version: {0}<br>", Sitecore.Configuration.About.Version);
                     GetAccountRight(account, showdefaultrights);
                 }
             }

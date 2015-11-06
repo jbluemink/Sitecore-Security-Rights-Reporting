@@ -5,7 +5,42 @@ namespace Security.Rights.Reporting.Shell.RightsData
 {
     public static class Rights80
     {
- 
+        public static List<string[]> Master810Replace = new List<string[]> 
+        {
+            new[] {"/sitecore/system/Workflows/Sample Workflow/Awaiting Approval/Approve",@"ar|sitecore\Sitecore Client Authoring|pd|+workflowCommand:execute|pe|+workflowCommand:execute|"}
+            ,new[] {"/sitecore/system/Workflows/Analytics Testing Workflow/Suspended/Deploy",@"ar|sitecore\Analytics Testing|pe|+workflowCommand:execute|pd|+workflowCommand:execute|"} 
+            ,new[] {"/sitecore/system/Marketing Control Panel/Path Analyzer/Maps/Default Maps/Site Maps/website",@"ar|Everyone|pe|-item:delete|"} 
+            ,new[] {"/sitecore/system/Workflows/Analytics Testing Workflow/Deployed/Cancel Test",@"ar|sitecore\Analytics Testing|pe|+workflowCommand:execute|pd|+workflowCommand:execute|"}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Analytics Filters",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Analytics Filters/Report Filters",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Campaigns",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Goals",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Personalization",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Profiles/Persona/Cecile",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Test Lab",@"ar|sitecore\Analytics Testing|pe|+item:create|pd|^*|+item:write|+item:read|+item:rename|+item:delete|+item:create|"} 
+            ,new[] {"/sitecore/system/Workflows/Sample Workflow/Awaiting Approval/Approve without Test",""}
+        };
+
+        public static List<string[]> Core810Replace = new List<string[]>
+        {
+            new[] {"/sitecore/client/Applications/PathAnalyzer/PageAnalyzer", @""}
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer/PageAnalyzerDialog", @""}
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer/PathExplorer", @""}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Experience/Language", @""}
+            ,new[] {"/sitecore/content/Home", @""}
+            ,new[] {"/sitecore/masters/System/__Image/$name", @""}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Menus/SelectVersion/Add Version",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|"}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Page Editor/Proofing",@"ar|sitecore\Sitecore Client Authoring|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Translating|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|"} 
+            ,new[] {"/sitecore/client/Applications/List Manager/Taskpages/Contact list/PageSettings/ListActions Parameters/ListActionColumn/ListActionGroup/Unlock list",@"ar|sitecore\Everyone|pe|!*|"}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Menus/Languages/More Languages",@"ar|Everyone|pe|-item:read|!*|pd|-item:read|!*|"} 
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Versions/Language",@"ar|sitecore\Sitecore Client Translating|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|ar|sitecore\Sitecore Client Authoring|pe|+item:read|pd|+item:read|"}
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer",@"ar|Everyone|pe|!*|pd|!*|ar|sitecore\Analytics Reporting|pe|+item:read|pd|+item:read|"}
+            ,new[] {"/sitecore/client/Applications/Launchpad/PageSettings/Buttons/Marketing/CampaignManager",@"ar|sitecore\Analytics Maintaining|pe|+item:read|"}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Advanced/Layout/Edit all versions",@"ar|sitecore\Sitecore Client Users|pe|!*|ar|sitecore\Analytics Personalization|pe|!*|+item:read|ar|sitecore\Analytics Testing|pe|!*|+item:read|"} 
+            ,new[] {"/sitecore/client/Applications/CampaignManager",@"ar|sitecore\Everyone|pe|!*|pd|!*|ar|sitecore\Analytics Maintaining|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Tools/Log Viewer",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"} 
+        };
+
         public static List<string[]> Core802Replace = new List<string[]> 
         {
             new[] {"/sitecore/client/Applications/List Manager/Taskpages/Contact list/PageSettings/ListActions Parameters/ListActionColumn/ListActionGroup/Unlock list",@"ar|sitecore\Everyone|pe|!*|"}
@@ -581,7 +616,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
 ,new[] {"/sitecore/content/Applications/Content Editor/Ribbons/Chunks/View/Buckets",@"ar|sitecore\Sitecore Client Developing|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
 };
 
-        public static string[][] Master =
+        public static List<string[]> Master = new List<string[]>
         {
 new[] {"/sitecore/templates/System/Validation/Field Type Validation Rules/Validation Rules/Workflow",@"ar|sitecore\Sitecore Client Developing|pe|+field:read|pd|+field:read|au|sitecore\Anonymous|pe|-field:read|pd|-field:read|"}
 ,new[] {"/sitecore/templates/System/Validation/Global Validation Rules/Validation Rules/Validate Button",@"ar|sitecore\Sitecore Client Developing|pe|+field:read|pd|+field:read|au|sitecore\Anonymous|pe|-field:read|pd|-field:read|"}
