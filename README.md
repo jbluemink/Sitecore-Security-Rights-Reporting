@@ -3,6 +3,10 @@ View all the Access right set on Sitecore rols or users. You can make a list of 
 
 ![Example](https://raw.githubusercontent.com/jbluemink/Sitecore-Security-Rights-Reporting/master/Sitecore-Security-Rights-Reporting-Module.PNG)
 
+##Detail right
+You can click on a user or role, and then you see all rights specific to that user or roll put on sitecore items. Or click on all to see all rights. 
+![Example detail rights](https://raw.githubusercontent.com/jbluemink/Sitecore-Security-Rights-Reporting/master/Sitecore-Security-Rights-Module-Detail.PNG)
+
 ##Using
 Go to the Sitecore Desktop (/sitecore/shell/)
 And push the left-bottom start button in the right menu there is inside the Security Tools menu a new Security Reporting menu item
