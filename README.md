@@ -13,6 +13,15 @@ And push the left-bottom start button in the right menu there is inside the Secu
 
 This tool is for Sitecore Domain users, if there too many (extranet) users it is skipping other domain users, this tool works for max 200 users in the Sitecore Domain.
 
+##Version
+1.0 initial version
+1.2 bug fixes
+1.5 add download and extra columns and descriptions and default rols/users
+2.0 now you can compair alle the rihts with the default Sitecore rights and easy see you own or missing rights.
+
+##Download
+See the Sitecore marketplace, or pick up the latest build here ![/Package](https://github.com/jbluemink/Sitecore-Security-Rights-Reporting/tree/master/Package)
+
 ##To Build:
 Add Sitecore.Kernel.dll to External folder
 
