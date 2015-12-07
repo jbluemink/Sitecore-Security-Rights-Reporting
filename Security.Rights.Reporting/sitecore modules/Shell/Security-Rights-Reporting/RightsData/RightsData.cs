@@ -84,6 +84,11 @@ namespace Security.Rights.Reporting.Shell.RightsData
                 //update 5 same as 2
                 return JoinPathRight(Rights80.Core, Rights80.Core802Replace);
             }
+            else if (Sitecore.Configuration.About.Version.StartsWith("8.0.151127"))
+            {
+                //update 6 same as 2
+                return JoinPathRight(Rights80.Core, Rights80.Core802Replace);
+            }   
             else if (Sitecore.Configuration.About.Version.StartsWith("8.0"))
             {
                 message = "Sitecore version not supported show rights as 8 update 5";
