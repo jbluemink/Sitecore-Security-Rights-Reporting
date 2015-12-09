@@ -74,7 +74,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
                 //update 3, same as 2
                 return JoinPathRight(Rights80.Core, Rights80.Core802Replace);
             }
-            else if (Sitecore.Configuration.About.Version.StartsWith("8.0.150621")) 
+            else if (Sitecore.Configuration.About.Version.StartsWith("8.0.150621"))
             {
                 //update 4 same as 2
                 return JoinPathRight(Rights80.Core, Rights80.Core802Replace);
@@ -88,7 +88,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
             {
                 //update 6 same as 2
                 return JoinPathRight(Rights80.Core, Rights80.Core802Replace);
-            }   
+            }
             else if (Sitecore.Configuration.About.Version.StartsWith("8.0"))
             {
                 message = "Sitecore version not supported show rights as 8 update 5";
@@ -97,14 +97,21 @@ namespace Security.Rights.Reporting.Shell.RightsData
             else if (Sitecore.Configuration.About.Version.StartsWith("8.1.151003"))
             {
                 //initial version 8.1
-                return JoinPathRight( Rights80.Core, Rights80.Core810Replace);
+                return JoinPathRight(Rights80.Core, Rights80.Core811Replace);
+            }
+            else if (Sitecore.Configuration.About.Version.StartsWith("8.1.151207"))
+            {
+                // update 1
+                return JoinPathRight(Rights80.Core, Rights80.Core811Replace);
             }
             else if (Sitecore.Configuration.About.Version.StartsWith("8.1"))
             {
-                message = "Sitecore version not supported show rights as 8.1 initial version";
-                return Rights80.Core;
+                message = "Sitecore version not supported show rights as 8.1 update 1";
+                return JoinPathRight(Rights80.Core, Rights80.Core811Replace);
             }
-            message = "Sitecore version not supported for displaying default rights";
+
+
+        message = "Sitecore version not supported for displaying default rights";
             return new string[0][];
         }
 
@@ -119,10 +126,15 @@ namespace Security.Rights.Reporting.Shell.RightsData
             {
                 return JoinPathRight(Rights80.Master, Rights80.Master810Replace);
             }
+            else if (Sitecore.Configuration.About.Version.StartsWith("8.1.151207"))
+            {
+                // update 1
+                return JoinPathRight(Rights80.Master, Rights80.Master810Replace);
+            }
             else if (Sitecore.Configuration.About.Version.StartsWith("8.1"))
             {
                 message = "Sitecore version not supported show rights as 8.1 initial version";
-                return Rights80.Core;
+                return JoinPathRight(Rights80.Master, Rights80.Master810Replace);
             }
             message = "Sitecore version not supported for displaying default rights";
             return new string[0][];
