@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\CheckAccount.cs" />
     <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\DefaultRols.cs" />
     <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\DefaultUsers.cs" />
     <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\Download.aspx.cs">

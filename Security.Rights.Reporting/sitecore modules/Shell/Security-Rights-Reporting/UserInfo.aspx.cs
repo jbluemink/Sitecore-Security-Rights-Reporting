@@ -5,6 +5,7 @@ using Sitecore.Data;
 using Sitecore.Data.Items;
 using Sitecore.Security.Accounts;
 using Sitecore.Security.Domains;
+using Sitecore.SecurityModel;
 
 namespace Security.Rights.Reporting.Shell
 {
@@ -31,7 +32,7 @@ namespace Security.Rights.Reporting.Shell
                         showdefaultrights = false;
                     }
                     userrights.Text = string.Format("<h2><a href=\"{0}\">Back</a> | <a href=\"#master\">Master</a> | <a href=\"?{1}\">{2}</a></h2>", Request.Path, url, defaultrights);
-                    userrights.Text += string.Format("With this tool you view all the Access right set on Sitecore items, and see which are custom or default Sitecore, and get a warning as default Sitecore rights are lacking.<br/>Legenda: <span style=\"color:#008800;\">Green Right</span> is expected in Your Sitecore version: {0}<br>", Sitecore.Configuration.About.Version);
+                    userrights.Text += string.Format("With this tool you view all the Access right set on Sitecore items, and see which are custom or default Sitecore, and get a warning as default Sitecore rights are lacking.<br/>Legenda:<br/>Black Right is custom<br /><span style=\"color:#880000;\">Red Right</span> is missing<br /><span style=\"color:#FFA500;\">Orange Right</span> account not found<br /><span style=\"color:#008800;\">Green Right</span> is expected in Your Sitecore version: {0}<br>", Sitecore.Configuration.About.Version);
                     GetAccountRight(account, showdefaultrights);
                 }
             }
@@ -65,13 +66,15 @@ namespace Security.Rights.Reporting.Shell
             var itemList = new List<Item>(db.SelectItems(query));
             var count = 0;
 
+            var checkAccount = new CheckAccount();
+
             string outmessage;
             var defaultRights = RightsData.RightsData.GetDefaultRights(db.Name, account, out outmessage);
             if (!string.IsNullOrEmpty(outmessage))
             {
                 userrights.Text += "<p>" + outmessage + "</p>";
             }
-            userrights.Text += "<table>";
+            userrights.Text += "<table id=\"table-accountrights\">";
             foreach (var item in itemList)
             {
                 var accessRules = item.Security.GetAccessRules();
@@ -98,14 +101,29 @@ namespace Security.Rights.Reporting.Shell
                                     continue;
                                 }
                             }
+                            var accountExsist = true;
+                            if (rule.Account.AccountType == AccountType.Role)
+                            {
+                                accountExsist = checkAccount.IsRolExsisting(rule.Account.Name);
+                            }
+                            else
+                            {
+                                accountExsist = checkAccount.IsUserExsisting(rule.Account.Name);
+                            }
+                            if (!accountExsist)
+                            {
+                                message += ", Account unknown";
+                                style = " style=\"color:#FFA500;\" class=\"orange\"";
+                            }
+
                             if (rule.Account.Name == account)
                             {
-                                userrights.Text += string.Format("<tr{3}><td>{0}</td><td>{1}</td><td>{6}</td><td>{2}{4}</td><td>{5}</tr>\n", item.Paths.FullPath, rule.AccessRight.Comment, rule.SecurityPermission, style, message, rule.PropagationType, rule.AccessRight.Name);
+                                userrights.Text += string.Format("<tr{3}><td>{0}</td><td>{1}</td><td>{6}</td><td>{2}{4}</td><td>{5}</td></tr>\n", item.Paths.FullPath, rule.AccessRight.Comment, rule.SecurityPermission, style, message, rule.PropagationType, rule.AccessRight.Name);
                                 count++;
                             }
                             else if (account == "all")
                             {
-                                userrights.Text += string.Format("<tr{4}><td>{0}</td><td>{1}</td><td>{7}</td><td>{2}{5}</td><td>{3}</td><td>{6}</tr>\n", item.Paths.FullPath, rule.Account.Name, rule.AccessRight.Comment, rule.SecurityPermission, style, message, rule.PropagationType, rule.AccessRight.Name);
+                                userrights.Text += string.Format("<tr{4}><td>{0}</td><td>{8} : {1}</td><td>{7}</td><td>{2}{5}</td><td>{3}</td><td>{6}</td></tr>\n", item.Paths.FullPath, rule.Account.Name, rule.AccessRight.Comment, rule.SecurityPermission, style, message, rule.PropagationType, rule.AccessRight.Name, rule.Account.AccountType.ToString());
                                 count++;
                             }
                             else if (account == "alldevexport")
@@ -220,15 +238,26 @@ namespace Security.Rights.Reporting.Shell
                 usertabel.Add(errorrow);
                 return usertabel;
             }
-            var allrols = Sitecore.Security.Accounts.RolesInRolesManager.GetAllRoles();
-            if (allrols == null || allrols.Any() == false)
+            var allnormalrols = Sitecore.Security.Accounts.RolesInRolesManager.GetAllRoles();
+            if (allnormalrols == null || allnormalrols.Any() == false)
             {
                 warning += "Error No Rols";
                 List<string> errorrow = new List<string> { "Error No Rols. " };
                 usertabel.Add(errorrow);
                 return usertabel;
             }
+            var allrols = allnormalrols.ToList();
 
+            foreach (var d in DomainManager.GetDomains())
+            {
+                var every = d.GetEveryoneRole();
+                if (every != null)
+                {
+                    allrols.Add(every);
+                }
+            }
+            //missing a.t.m the Everone without a domain.
+            
             List<string> row0 = new List<string>();
             row0.Add("User");
             row0.Add("Comment");
@@ -242,7 +271,15 @@ namespace Security.Rights.Reporting.Shell
 
             foreach (var rol in allrols)
             {
-                row0.Add(rol.Name);
+                if (rol.IsEveryone)
+                {
+                    row0.Add(rol.Name+"?EVERYONE?");
+                }
+                else
+                {
+                    row0.Add(rol.Name);
+                }
+                
             }
             usertabel.Add(row0);
             
@@ -323,7 +360,13 @@ namespace Security.Rights.Reporting.Shell
                     else if (linecount == 0 && rowcount >= 9)
                     {
                         var style = "";
-                        var defaultRol = defaultRols.SingleOrDefault(x => x.Rol == tabelfield);
+                        var note = "";
+                        if (tabelfield.EndsWith("?EVERYONE?"))
+                        {
+                            note = " *e";
+                        }
+                        var rolfield = tabelfield.Replace("?EVERYONE?","");
+                        var defaultRol = defaultRols.SingleOrDefault(x => x.Rol == rolfield);
                         if (defaultRol != null)
                         {
                             defaultRol.Hit = true;
@@ -331,7 +374,7 @@ namespace Security.Rights.Reporting.Shell
                         }
                         var comment = string.Empty;
                         DefaultRols.RolComment.TryGetValue(tabelfield, out comment);
-                        userlist.Text += string.Format("<th class=\"rotate\"><div><span><a href=\"?account={0}\"{1} title=\"{2}\">{0}</a></span></div></th>", tabelfield, style, comment);
+                        userlist.Text += string.Format("<th class=\"rotate\"><div><span><a href=\"?account={0}&t=d\"{1} title=\"{2}\">{0}</a>{3}</span></div></th>", rolfield, style, comment,note);
                     }
                     else if (linecount == 0)
                     {
@@ -354,7 +397,7 @@ namespace Security.Rights.Reporting.Shell
                                 comment = tabelrow[1];
                             }
                         }
-                        userlist.Text += string.Format("<td nowrap><a href=\"?account={0}\"{1} title=\"{2}\">{0}</a></td>", tabelfield, style, comment);
+                        userlist.Text += string.Format("<td nowrap><a href=\"?account={0}&t=u\"{1} title=\"{2}\">{0}</a></td>", tabelfield, style, comment);
                     }
                     else if (rowcount >= 9)
                     {
@@ -392,7 +435,7 @@ namespace Security.Rights.Reporting.Shell
                     userlist.Text += warningUser.User + " ";
                 }
             }
-            userlist.Text += "<br><a href=\"?account=all\">Show all Right</a><br><a href=\"/sitecore modules/Shell/Security-Rights-Reporting/Download.aspx\">Download</a><br>Legenda: <span style=\"color:#008800;\">Green Rol / User</span> is expected in Your Sitecore version:" + Sitecore.Configuration.About.Version;
+            userlist.Text += "<br><a href=\"?account=all\">Show all Right</a><br><a href=\"/sitecore modules/Shell/Security-Rights-Reporting/Download.aspx\">Download</a><br>Legenda:<br>* isAdmin<br>*r Everyone rol<br><span style=\"color:#008800;\">Green Rol / User</span> is expected in Your Sitecore version:" + Sitecore.Configuration.About.Version;
         }
 
     }

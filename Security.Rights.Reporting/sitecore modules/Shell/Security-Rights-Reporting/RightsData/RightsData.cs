@@ -4,6 +4,7 @@ using System.Linq;
 using Security.Rights.Reporting.Shell.Model;
 using Sitecore.Data.Validators.FieldValidators;
 using Sitecore.Security.AccessControl;
+using Sitecore.Security.Accounts;
 using Sitecore.Web.UI.XamlSharp.Xaml.Extensions;
 
 namespace Security.Rights.Reporting.Shell.RightsData
@@ -21,7 +22,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
             {
                 rights = GetDefaultMasterRightsByVersion(out message);
             }
-            
+
             //Here is a issue, we handle account without looking for user or rol... so if a user has same name as rol, it is mixing.
             var returnlist = new List<DefaultRight>();
             foreach (var r in rights.OrderBy(x => x[0]))
@@ -37,12 +38,24 @@ namespace Security.Rights.Reporting.Shell.RightsData
                             {
                                 Path = r[0],
                                 Account = rule.Account.Name,
+                                AccountType = rule.Account.AccountType,
                                 Right = rule.SecurityPermission.ToString(),
                                 PropagationType = rule.PropagationType.ToString(),
                                 Name = rule.AccessRight.Name,
                                 Message = "Default Sitecore",
                                 Hit = false
                             };
+                            if (tmp.AccountType != AccountType.Role)
+                            {
+                                if (tmp.AccountType == AccountType.User)
+                                {
+                                    tmp.Message += " User rol not not recommend";
+                                }
+                                else
+                                {
+                                    tmp.Message += " User rol Unknown";
+                                }
+                            }
                             returnlist.Add(tmp);
                         }
                     }
@@ -133,7 +146,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
             }
             else if (Sitecore.Configuration.About.Version.StartsWith("8.1"))
             {
-                message = "Sitecore version not supported show rights as 8.1 initial version";
+                message = "Sitecore version not supported show rights as 8.1 update 1";
                 return JoinPathRight(Rights80.Master, Rights80.Master810Replace);
             }
             message = "Sitecore version not supported for displaying default rights";
