@@ -80,6 +80,10 @@ namespace Security.Rights.Reporting.Shell
             , "sitecore\\Social Message Workflow Editor"
             , "sitecore\\Social Message Workflow Reviewer"
             , "sitecore\\Twitter Message Reviewer"
+            , "sitecore\\Everyone"
+            , "extranet\\Everyone"
+            , "default\\Everyone"
+            , "Everyone"
         };
         public static string[] DefaultsRolsSitecore72 =
         {
@@ -107,6 +111,10 @@ namespace Security.Rights.Reporting.Shell
             , "sitecore\\Sitecore Limited Page Editor"
             , "sitecore\\Sitecore Local Administrators"
             , "sitecore\\Sitecore Minimal Page Editor"
+            , "sitecore\\Everyone"
+            , "extranet\\Everyone"
+            , "default\\Everyone"
+            , "Everyone"
         };
         public static string[] DefaultsRolsSitecore7 =
         {
@@ -133,6 +141,10 @@ namespace Security.Rights.Reporting.Shell
             , "sitecore\\Sitecore Limited Page Editor"
             , "sitecore\\Sitecore Local Administrators"
             , "sitecore\\Sitecore Minimal Page Editor"
+            , "sitecore\\Everyone"
+            , "extranet\\Everyone"
+            , "default\\Everyone"
+            , "Everyone"
         };
         public static string[] DefaultsRolsSitecore65 =
         {
@@ -158,6 +170,10 @@ namespace Security.Rights.Reporting.Shell
             , "sitecore\\Sitecore Limited Page Editor"
             , "sitecore\\Sitecore Local Administrators"
             , "sitecore\\Sitecore Minimal Page Editor"
+            , "sitecore\\Everyone"
+            , "extranet\\Everyone"
+            , "default\\Everyone"
+            , "Everyone"
         };
 
         public static Dictionary<string, string> RolComment = new Dictionary<string, string>()
@@ -201,6 +217,10 @@ namespace Security.Rights.Reporting.Shell
             , {"sitecore\\ECM Users","Email Experience Manager Module&#13;Gives the user access to all the basic functionality in the Email Experience Manager, such as create, send, and manage messages. This role is a member of the List Manager Editors role"}
             , {"sitecore\\Sitecore Client Forms Author", "Web Forms for Marketers Modulee&#13;Gives the user access to the minimum features of the Web Forms for Marketers module. This role allows the user to:&#13;-Insert a new form&#13;-Edit an existing form&#13;-View the Summary report"}
             , {"sitecore\\Sitecore Marketer Form Author", "Web Forms for Marketers Modulee&#13;This role inherits access rights from the following roles, and can be used as a shortcut to assign a user all the access rights from those roles:&#13;-Sitecore Client Form Author&#13;-Analytics Maintaining&#13;-Analytics Reporting "}
+            , {"Everyone", "All users are assigned the Everyone role.This role is a virtual role. It mirrors the Windows Everyone group. It does not exist in the role database but is only used for assigning and resolving security. You can use the Everyone role to assign access rights to every user or every user in a specific domain. The Everyone role is available as both a global role and a local role in every domain."}
+            , {"sitecore\\Everyone", "All users are assigned the Everyone role.This role is a virtual role. It mirrors the Windows Everyone group. It does not exist in the role database but is only used for assigning and resolving security. You can use the Everyone role to assign access rights to every user or every user in a specific domain. The Everyone role is available as both a global role and a local role in every domain."}
+            , {"extranet\\Everyone", "All users are assigned the Everyone role.This role is a virtual role. It mirrors the Windows Everyone group. It does not exist in the role database but is only used for assigning and resolving security. You can use the Everyone role to assign access rights to every user or every user in a specific domain. The Everyone role is available as both a global role and a local role in every domain."}
+            , {"default\\Everyone", "All users are assigned the Everyone role.This role is a virtual role. It mirrors the Windows Everyone group. It does not exist in the role database but is only used for assigning and resolving security. You can use the Everyone role to assign access rights to every user or every user in a specific domain. The Everyone role is available as both a global role and a local role in every domain."}
         };
 
     }

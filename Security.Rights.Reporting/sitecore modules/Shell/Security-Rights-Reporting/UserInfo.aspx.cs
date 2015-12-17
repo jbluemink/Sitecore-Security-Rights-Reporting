@@ -256,6 +256,12 @@ namespace Security.Rights.Reporting.Shell
                     allrols.Add(every);
                 }
             }
+            var roleEveryone = Sitecore.Security.Accounts.Role.FromName("Everyone");
+            if (roleEveryone != null)
+            {
+                allrols.Add(roleEveryone);
+            }
+
             //missing a.t.m the Everone without a domain.
             
             List<string> row0 = new List<string>();
@@ -373,7 +379,7 @@ namespace Security.Rights.Reporting.Shell
                             style = " style=\"color:#008800;\"";
                         }
                         var comment = string.Empty;
-                        DefaultRols.RolComment.TryGetValue(tabelfield, out comment);
+                        DefaultRols.RolComment.TryGetValue(rolfield, out comment);
                         userlist.Text += string.Format("<th class=\"rotate\"><div><span><a href=\"?account={0}&t=d\"{1} title=\"{2}\">{0}</a>{3}</span></div></th>", rolfield, style, comment,note);
                     }
                     else if (linecount == 0)
@@ -435,7 +441,7 @@ namespace Security.Rights.Reporting.Shell
                     userlist.Text += warningUser.User + " ";
                 }
             }
-            userlist.Text += "<br><a href=\"?account=all\">Show all Right</a><br><a href=\"/sitecore modules/Shell/Security-Rights-Reporting/Download.aspx\">Download</a><br>Legenda:<br>* isAdmin<br>*r Everyone rol<br><span style=\"color:#008800;\">Green Rol / User</span> is expected in Your Sitecore version:" + Sitecore.Configuration.About.Version;
+            userlist.Text += "<br><a href=\"?account=all\">Show all Right</a><br><a href=\"/sitecore modules/Shell/Security-Rights-Reporting/Download.aspx\">Download</a><br>Legenda:<br>* isAdmin<br>*r Everyone rol (cannot assign to a user only to a item)<br><span style=\"color:#008800;\">Green Rol / User</span> is expected in Your Sitecore version:" + Sitecore.Configuration.About.Version;
         }
 
     }
