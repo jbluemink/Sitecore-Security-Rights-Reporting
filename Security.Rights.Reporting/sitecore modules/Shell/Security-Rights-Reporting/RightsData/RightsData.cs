@@ -49,11 +49,11 @@ namespace Security.Rights.Reporting.Shell.RightsData
                             {
                                 if (tmp.AccountType == AccountType.User)
                                 {
-                                    tmp.Message += " User rol not not recommend";
+                                    tmp.Message += " User role not not recommend";
                                 }
                                 else
                                 {
-                                    tmp.Message += " User rol Unknown";
+                                    tmp.Message += " User role Unknown";
                                 }
                             }
                             returnlist.Add(tmp);

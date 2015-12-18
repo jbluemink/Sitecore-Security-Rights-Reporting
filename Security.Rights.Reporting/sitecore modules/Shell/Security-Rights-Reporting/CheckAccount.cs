@@ -5,12 +5,12 @@ namespace Security.Rights.Reporting.Shell
     public class CheckAccount
     {
         private Dictionary<string, bool> users;
-        private Dictionary<string, bool> rols;
+        private Dictionary<string, bool> roles;
 
         public CheckAccount()
         {
             users = new Dictionary<string, bool>();
-            rols = new Dictionary<string, bool>();
+            roles = new Dictionary<string, bool>();
         }
 
         public bool IsUserExsisting(string username)
@@ -24,25 +24,25 @@ namespace Security.Rights.Reporting.Shell
             return isUser;
         }
 
-        public bool IsRolExsisting(string rolname)
+        public bool IsRolExsisting(string rolename)
         {
-            if (rols.ContainsKey(rolname))
+            if (roles.ContainsKey(rolename))
             {
-                return rols[rolname];
+                return roles[rolename];
             }
-            var isRol = Sitecore.Security.Accounts.Role.Exists(rolname);
-            rols.Add(rolname, isRol);
+            var isRol = Sitecore.Security.Accounts.Role.Exists(rolename);
+            roles.Add(rolename, isRol);
             return isRol;
         }
 
-        public bool IsRolDefaultAnonymous(string rolname)
+        public bool IsRolDefaultAnonymous(string rolename)
         {
-            if (Sitecore.Security.Domains.Domain.GetDefaultAnonymousUser().Name == rolname)
+            if (Sitecore.Security.Domains.Domain.GetDefaultAnonymousUser().Name == rolename)
             {
                 return true;
             }
-            var isRol = Sitecore.Security.Accounts.Role.Exists(rolname);
-            rols.Add(rolname, isRol);
+            var isRol = Sitecore.Security.Accounts.Role.Exists(rolename);
+            roles.Add(rolename, isRol);
             return isRol;
         }
     }

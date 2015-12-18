@@ -8,9 +8,9 @@ namespace Security.Rights.Reporting.Shell
 
         public static List<DefaultRol> GetDefaultRols()
         {
-            var rols = GetDefaultRolsByVersion();
+            var roles = GetDefaultRolsByVersion();
             var returnlist = new List<DefaultRol>();
-            foreach (var rol in rols)
+            foreach (var rol in roles)
             {
                 var tmp = new DefaultRol {Rol = rol, Hit = false};
                 returnlist.Add(tmp);
@@ -218,9 +218,9 @@ namespace Security.Rights.Reporting.Shell
             , {"sitecore\\Sitecore Client Forms Author", "Web Forms for Marketers Modulee&#13;Gives the user access to the minimum features of the Web Forms for Marketers module. This role allows the user to:&#13;-Insert a new form&#13;-Edit an existing form&#13;-View the Summary report"}
             , {"sitecore\\Sitecore Marketer Form Author", "Web Forms for Marketers Modulee&#13;This role inherits access rights from the following roles, and can be used as a shortcut to assign a user all the access rights from those roles:&#13;-Sitecore Client Form Author&#13;-Analytics Maintaining&#13;-Analytics Reporting "}
             , {"Everyone", "All users are assigned the Everyone role.This role is a virtual role. It mirrors the Windows Everyone group. It does not exist in the role database but is only used for assigning and resolving security. You can use the Everyone role to assign access rights to every user or every user in a specific domain. The Everyone role is available as both a global role and a local role in every domain."}
-            , {"sitecore\\Everyone", "All users are assigned the Everyone role.This role is a virtual role. It mirrors the Windows Everyone group. It does not exist in the role database but is only used for assigning and resolving security. You can use the Everyone role to assign access rights to every user or every user in a specific domain. The Everyone role is available as both a global role and a local role in every domain."}
-            , {"extranet\\Everyone", "All users are assigned the Everyone role.This role is a virtual role. It mirrors the Windows Everyone group. It does not exist in the role database but is only used for assigning and resolving security. You can use the Everyone role to assign access rights to every user or every user in a specific domain. The Everyone role is available as both a global role and a local role in every domain."}
-            , {"default\\Everyone", "All users are assigned the Everyone role.This role is a virtual role. It mirrors the Windows Everyone group. It does not exist in the role database but is only used for assigning and resolving security. You can use the Everyone role to assign access rights to every user or every user in a specific domain. The Everyone role is available as both a global role and a local role in every domain."}
+            , {"sitecore\\Everyone", "All users are assigned the Everyone role. This role is a virtual role. It mirrors the Windows Everyone group. It does not exist in the role database but is only used for assigning and resolving security. You can use the Everyone role to assign access rights to every user or every user in a specific domain. The Everyone role is available as both a global role and a local role in every domain."}
+            , {"extranet\\Everyone", "All users are assigned the Everyone role. This role is a virtual role. It mirrors the Windows Everyone group. It does not exist in the role database but is only used for assigning and resolving security. You can use the Everyone role to assign access rights to every user or every user in a specific domain. The Everyone role is available as both a global role and a local role in every domain."}
+            , {"default\\Everyone", "All users are assigned the Everyone role. This role is a virtual role. It mirrors the Windows Everyone group. It does not exist in the role database but is only used for assigning and resolving security. You can use the Everyone role to assign access rights to every user or every user in a specific domain. The Everyone role is available as both a global role and a local role in every domain."}
         };
 
     }

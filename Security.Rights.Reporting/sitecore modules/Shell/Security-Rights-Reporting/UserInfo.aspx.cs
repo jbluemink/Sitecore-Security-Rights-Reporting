@@ -11,6 +11,7 @@ namespace Security.Rights.Reporting.Shell
 {
     public partial class UserInfo : System.Web.UI.Page
     {
+        #region page load
         protected void Page_Load(object sender, EventArgs e)
         {
             if (CheckAccessRight())
@@ -41,6 +42,7 @@ namespace Security.Rights.Reporting.Shell
                 userlist.Text += "access denied";
             }
         }
+#endregion
 
         private void GetAccountRight(string account, bool showdefaultrights)
         {
@@ -50,11 +52,12 @@ namespace Security.Rights.Reporting.Shell
             DisplayAccountRight(db, account, showdefaultrights);
         }
 
+        #region Account rights screen
         private void DisplayAccountRight(Database db, string account, bool showdefaultrights)
         {
             if (account == "all")
             {
-                userrights.Text += string.Format("<h2 id=\"{0}\">Item Rights set on all users and rols on {0} Database</h2>", db.Name);
+                userrights.Text += string.Format("<h2 id=\"{0}\">Item Rights set on all users and roles on {0} Database</h2>", db.Name);
             }
             else
             {
@@ -159,6 +162,7 @@ namespace Security.Rights.Reporting.Shell
                 userrights.Text += "</table>";
             }
         }
+        #endregion
 
         public static bool CheckAccessRight()
         {
@@ -173,6 +177,7 @@ namespace Security.Rights.Reporting.Shell
             return false;
         }
 
+        #region User / domain screen
         public static List<List<string>> UserTabel(int maxusers, out string warning)
         {
             warning = string.Empty;
@@ -238,15 +243,15 @@ namespace Security.Rights.Reporting.Shell
                 usertabel.Add(errorrow);
                 return usertabel;
             }
-            var allnormalrols = Sitecore.Security.Accounts.RolesInRolesManager.GetAllRoles();
-            if (allnormalrols == null || allnormalrols.Any() == false)
+            var allnormalroles = Sitecore.Security.Accounts.RolesInRolesManager.GetAllRoles();
+            if (allnormalroles == null || allnormalroles.Any() == false)
             {
-                warning += "Error No Rols";
-                List<string> errorrow = new List<string> { "Error No Rols. " };
+                warning += "Error No Roles";
+                List<string> errorrow = new List<string> { "Error No Roles. " };
                 usertabel.Add(errorrow);
                 return usertabel;
             }
-            var allrols = allnormalrols.ToList();
+            var allrols = allnormalroles.ToList();
 
             foreach (var d in DomainManager.GetDomains())
             {
@@ -262,7 +267,6 @@ namespace Security.Rights.Reporting.Shell
                 allrols.Add(roleEveryone);
             }
 
-            //missing a.t.m the Everone without a domain.
             
             List<string> row0 = new List<string>();
             row0.Add("User");
@@ -333,6 +337,10 @@ namespace Security.Rights.Reporting.Shell
                         if (rol != null && user.IsInRole(rol))
                         {
                             row.Add("X");
+                        }
+                        else if (rol != null && rol.IsEveryone && (rol.Domain == user.Domain || rol.Domain == null))
+                        {
+                            row.Add("*e");
                         }
                         else
                         {
@@ -418,7 +426,7 @@ namespace Security.Rights.Reporting.Shell
                 userlist.Text += "</tr>";
                 linecount++;
             }
-            userlist.Text += "</Table><p>With this tool you can view a all users and roles. It can be used to do audits. You can see which users and rols are custom or default Sitecore, and get reported as default Sitecore users or roles missing.</p>";
+            userlist.Text += "</Table><p>With this tool you can view a all users and roles. It can be used to do audits. You can see which users and roles are custom or default Sitecore, and get reported as default Sitecore users or roles missing.</p>";
             if (!string.IsNullOrEmpty(warning))
             {
                 userlist.Text += "<br><span style=\"color:#880000;\">WARNING: " + warning;
@@ -426,7 +434,7 @@ namespace Security.Rights.Reporting.Shell
             var warningRols = defaultRols.Where(x => x.Hit == false).ToList();
             if (warningRols.Any())
             {
-                userlist.Text += "<br><span style=\"color:#880000;\">WARNING:</span> Expected rols not found: ";
+                userlist.Text += "<br><span style=\"color:#880000;\">WARNING:</span> Expected roles not found: ";
                 foreach (var warningRol in warningRols)
                 {
                     userlist.Text += warningRol.Rol+" ";
@@ -441,8 +449,8 @@ namespace Security.Rights.Reporting.Shell
                     userlist.Text += warningUser.User + " ";
                 }
             }
-            userlist.Text += "<br><a href=\"?account=all\">Show all Right</a><br><a href=\"/sitecore modules/Shell/Security-Rights-Reporting/Download.aspx\">Download</a><br>Legenda:<br>* isAdmin<br>*r Everyone rol (cannot assign to a user only to a item)<br><span style=\"color:#008800;\">Green Rol / User</span> is expected in Your Sitecore version:" + Sitecore.Configuration.About.Version;
+            userlist.Text += "<br><a href=\"?account=all\">Show all Right</a><br><a href=\"/sitecore modules/Shell/Security-Rights-Reporting/Download.aspx\">Download</a><br>Legenda:<br>X Role is assigned to user<br>* isAdmin<br>*r Everyone role (can only assign to a item, All users are assigned to the Everyone role)<br><span style=\"color:#008800;\">Green Role / User</span> is expected in Your Sitecore version:" + Sitecore.Configuration.About.Version;
         }
-
+#endregion
     }
 }
