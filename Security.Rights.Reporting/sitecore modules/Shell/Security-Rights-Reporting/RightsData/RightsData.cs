@@ -49,7 +49,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
                             {
                                 if (tmp.AccountType == AccountType.User)
                                 {
-                                    tmp.Message += " User role not not recommend";
+                                    tmp.Message += " User role not recommend";
                                 }
                                 else
                                 {

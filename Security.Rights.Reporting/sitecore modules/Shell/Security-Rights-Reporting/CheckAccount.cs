@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sitecore.Security.Domains;
 
 namespace Security.Rights.Reporting.Shell
 {
@@ -31,19 +32,30 @@ namespace Security.Rights.Reporting.Shell
                 return roles[rolename];
             }
             var isRol = Sitecore.Security.Accounts.Role.Exists(rolename);
+            if (!isRol)
+            {
+                isRol = IsRolDefaultAnonymous(rolename);
+            }
             roles.Add(rolename, isRol);
             return isRol;
         }
 
         public bool IsRolDefaultAnonymous(string rolename)
         {
-            if (Sitecore.Security.Domains.Domain.GetDefaultAnonymousUser().Name == rolename)
+            if ("Everyone" == rolename)
             {
                 return true;
             }
-            var isRol = Sitecore.Security.Accounts.Role.Exists(rolename);
-            roles.Add(rolename, isRol);
-            return isRol;
+            var domainame = rolename.Split('\\')[0];
+            var domain = Domain.GetDomain(domainame);
+            if (domain != null)
+            {
+                if (rolename == domain.EveryoneRoleName)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
