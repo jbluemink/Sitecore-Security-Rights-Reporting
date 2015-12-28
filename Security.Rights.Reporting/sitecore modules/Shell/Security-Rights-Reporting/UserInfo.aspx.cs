@@ -4,6 +4,7 @@ using System.Linq;
 using Sitecore.Data;
 using Sitecore.Data.Items;
 using Sitecore.Security.Accounts;
+using Sitecore.Security.Authentication;
 using Sitecore.Security.Domains;
 using Sitecore.SecurityModel;
 
@@ -33,7 +34,7 @@ namespace Security.Rights.Reporting.Shell
                         showdefaultrights = false;
                     }
                     userrights.Text = string.Format("<h2><a href=\"{0}\">Back</a> | <a href=\"#master\">Master</a> | <a href=\"?{1}\">{2}</a></h2>", Request.Path, url, defaultrights);
-                    userrights.Text += string.Format("With this tool you view all the Access right set on Sitecore items, and see which are custom or default Sitecore, and get a warning as default Sitecore rights are lacking.<br/>Legenda:<br/>Black Right is custom<br /><span style=\"color:#880000;\">Red Right</span> is missing<br /><span style=\"color:#FFA500;\">Orange Right</span> account not found<br /><span style=\"color:#008800;\">Green Right</span> is expected in Your Sitecore version: {0}<br>", Sitecore.Configuration.About.Version);
+                    userrights.Text += string.Format("With this tool you view all the Access right set on Sitecore items, and see which are custom or default Sitecore, and get a warning as default Sitecore rights are lacking.<br/>Legenda:<br/>Black Right is custom<br /><span style=\"color:#880000;\">Red Right</span> is missing<br /><span style=\"color:#FFA500;\">Orange Right</span> account not found, Note: $currentuser is a valid token for a __Standard Values item or a Branche template<br /><span style=\"color:#008800;\">Green Right</span> is expected in Your Sitecore version: {0}<br>", Sitecore.Configuration.About.Version);
                     GetAccountRight(account, showdefaultrights);
                 }
             }
@@ -243,6 +244,20 @@ namespace Security.Rights.Reporting.Shell
                 usertabel.Add(errorrow);
                 return usertabel;
             }
+
+            //Add the sitecore Anonymous
+            var sDomain = Domain.GetDomain("sitecore");
+            if (sDomain != null)
+            {
+                var sAnony = sDomain.GetAnonymousUser();
+                if (sAnony != null)
+                {
+                    var xan = new List<User>();
+                    xan.Add(sAnony);
+                    users = users.Concat(xan);
+                }
+            }
+
             var allnormalroles = Sitecore.Security.Accounts.RolesInRolesManager.GetAllRoles();
             if (allnormalroles == null || allnormalroles.Any() == false)
             {
@@ -386,7 +401,7 @@ namespace Security.Rights.Reporting.Shell
                             defaultRol.Hit = true;
                             style = " style=\"color:#008800;\"";
                         }
-                        var comment = string.Empty;
+                        string comment;
                         DefaultRols.RolComment.TryGetValue(rolfield, out comment);
                         userlist.Text += string.Format("<th class=\"rotate\"><div><span><a href=\"?account={0}&t=d\"{1} title=\"{2}\">{0}</a>{3}</span></div></th>", rolfield, style, comment,note);
                     }
@@ -403,7 +418,7 @@ namespace Security.Rights.Reporting.Shell
                             defaultUser.Hit = true;
                             style = " style=\"color:#008800;\"";
                         }
-                        var comment = string.Empty;
+                        string comment;
                         if (!DefaultUsers.UserComment.TryGetValue(tabelfield, out comment))
                         {
                             if (tabelrow.Count > 1)
@@ -426,6 +441,7 @@ namespace Security.Rights.Reporting.Shell
                 userlist.Text += "</tr>";
                 linecount++;
             }
+            userlist.Text += "<tr><td><a href=\"?account=$currentuser&t=u\" title=\"replace token for Standard value\">$currentuser</a></td><td style=\"text-align: left\" colspan=\"0\" align=\"left\">Not a real user but a Sitecore replace token, can be used for item rights on __Standard Values or Branches, but no roles</td></tr>";
             userlist.Text += "</Table><p>With this tool you can view a all users and roles. It can be used to do audits. You can see which users and roles are custom or default Sitecore, and get reported as default Sitecore users or roles missing.</p>";
             if (!string.IsNullOrEmpty(warning))
             {
@@ -449,7 +465,7 @@ namespace Security.Rights.Reporting.Shell
                     userlist.Text += warningUser.User + " ";
                 }
             }
-            userlist.Text += "<br><a href=\"?account=all\">Show all Right</a><br><a href=\"/sitecore modules/Shell/Security-Rights-Reporting/Download.aspx\">Download</a><br>Legenda:<br>X Role is assigned to user<br>* isAdmin<br>*r Everyone role (can only assign to a item, All users are assigned to the Everyone role)<br><span style=\"color:#008800;\">Green Role / User</span> is expected in Your Sitecore version:" + Sitecore.Configuration.About.Version;
+            userlist.Text += "<p><a href=\"?account=all\">Show all Right</a><br><a href=\"/sitecore modules/Shell/Security-Rights-Reporting/Download.aspx\">Download</a></p><p><strong>Legenda:</strong><br>X Role is assigned to user<br>* isAdmin<br>*r Everyone role (can only assign to a item, All users are assigned to the Everyone role)<br><span style=\"color:#008800;\">Green Role / User</span> is expected in Your Sitecore version:" + Sitecore.Configuration.About.Version+"</p>";
         }
 #endregion
     }

@@ -21,8 +21,27 @@ namespace Security.Rights.Reporting.Shell
                 return users[username];
             }
             var isUser = Sitecore.Security.Accounts.User.Exists(username);
+            if (!isUser)
+            {
+                isUser = IsUserAnonymous(username);
+            }
             users.Add(username,isUser);
             return isUser;
+        }
+
+        public bool IsUserAnonymous(string username)
+        {
+            var domainame = username.Split('\\')[0];
+            var domain = Domain.GetDomain(domainame);
+            if (domain != null)
+            {
+                var anonymoususer = domain.GetAnonymousUser();
+                if (anonymoususer != null && username == anonymoususer.Name)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public bool IsRolExsisting(string rolename)

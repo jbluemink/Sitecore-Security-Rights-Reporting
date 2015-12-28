@@ -124,7 +124,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
             }
 
 
-        message = "Sitecore version not supported for displaying default rights";
+            message = "<span style=\"color:#000088;\">Sitecore version not supported for displaying default rights</span>";
             return new string[0][];
         }
 
@@ -149,7 +149,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
                 message = "Sitecore version not supported show rights as 8.1 update 1";
                 return JoinPathRight(Rights80.Master, Rights80.Master810Replace);
             }
-            message = "Sitecore version not supported for displaying default rights";
+            message = "<span style=\"color:#000088;\">Sitecore version not supported for displaying default rights</span>";
             return new string[0][];
         }
 
