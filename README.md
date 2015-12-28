@@ -1,5 +1,5 @@
 # Sitecore-Security-Rights-Reporting Module
-View all the Access right set on Sitecore rols or users. You can make a list of all users and roles. It can be used to do audits.
+View all the Access right set on Sitecore roles or users. You can make a list of all users and roles. It can be used to do audits.
 
 ![Example](https://raw.githubusercontent.com/jbluemink/Sitecore-Security-Rights-Reporting/master/Sitecore-Security-Rights-Reporting-Module.PNG)
 
@@ -7,7 +7,7 @@ View all the Access right set on Sitecore rols or users. You can make a list of 
 See the Sitecore marketplace, or pick up the latest release build here ![/Package](https://github.com/jbluemink/Sitecore-Security-Rights-Reporting/tree/master/Package)
 
 ##Detail right
-You can click on a user or role, and then you see all rights specific to that user or roll put on sitecore items. Or click on all to see all rights. 
+You can click on a user or role, and then you see all rights specific to that user or role put on sitecore items. Or click on all to see all rights. 
 ![Example detail rights](https://raw.githubusercontent.com/jbluemink/Sitecore-Security-Rights-Reporting/master/Sitecore-Security-Rights-Module-Detail.PNG)
 
 ##Using
@@ -19,8 +19,13 @@ This tool is for Sitecore Domain users, if there too many (extranet) users it is
 ##Version
 - 1.0 Initial version
 - 1.2 Bug fixes
-- 1.5 Add download and extra columns and descriptions and default rols/users
+- 1.5 Add download and extra columns and descriptions and default roles/users
 - 2.0 Now you can compare all the Sitecore rights with the default Sitecore rights and easy see you own or missing rights.
+- 2.1 Bugfixing And Support for Everyone roles, Anonymous users, $currentuser token and check account exists on the item rights. Support for Sitecore 8.1 update-1 and Sitecore 8 update-6
+
+##Upgading
+
+- Install a new package and overwrite.
 
 ##To Build:
 Add Sitecore.Kernel.dll to External folder
