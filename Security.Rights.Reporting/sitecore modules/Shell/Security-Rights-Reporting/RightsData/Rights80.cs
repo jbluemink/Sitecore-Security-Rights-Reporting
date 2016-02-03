@@ -53,6 +53,17 @@ namespace Security.Rights.Reporting.Shell.RightsData
             ,new[] {"/sitecore/system/Workflows/Sample Workflow/Awaiting Approval/Approve without Test",""}
         };
 
+        public static List<string[]> Master807Replace = new List<string[]> 
+        {
+            new[] {"/sitecore/layout/Layouts/System/App Center Sync",@""}
+            ,new[] {"/sitecore/layout/Placeholder Settings/App Center Sync", @""}
+            ,new[] {"/sitecore/layout/Renderings/App Center Sync", @""}
+            ,new[] {"/sitecore/layout/Sublayouts/App Center Sync",""}
+            ,new[] {"/sitecore/system/App Center Sync", @""}
+            ,new[] {"/sitecore/templates/App Center Sync", @""}
+
+        };
+
         public static List<string[]> Core810Replace = new List<string[]>
         {
             new[] {"/sitecore/client/Applications/PathAnalyzer/PageAnalyzer", @""}
@@ -72,7 +83,16 @@ namespace Security.Rights.Reporting.Shell.RightsData
             ,new[] {"/sitecore/client/Applications/CampaignManager",@"ar|sitecore\Everyone|pe|!*|pd|!*|ar|sitecore\Analytics Maintaining|pe|+item:read|pd|+item:read|"} 
             ,new[] {"/sitecore/content/Applications/Tools/Log Viewer",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"} 
         };
-
+        public static List<string[]> Core806Replace = new List<string[]> 
+        {
+            new[] {"/sitecore/client/Applications/List Manager/Taskpages/Contact list/PageSettings/ListActions Parameters/ListActionColumn/ListActionGroup/Unlock list",@"ar|sitecore\Everyone|pe|!*|"}
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer/PageAnalyzer",@""}
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer/PageAnalyzerDialog",@""}
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer/PathExplorer",@""}
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer",@"ar|Everyone|pe|!*|pd|!*|ar|sitecore\Analytics Reporting|pe|+item:read|pd|+item:read|"}
+            ,new[] {"/sitecore/content/Applications/Tools/Log Viewer",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
+            ,new[] {"/sitecore/system/Settings/Security/Policies/Recycle Bin/Can See All Items",@"ar|sitecore\Everyone|pe|!*|pd|!*|ar|sitecore\Sitecore Local Administrators|pe|+item:read|pd|+item:read|"} 
+        };
         public static List<string[]> Core802Replace = new List<string[]> 
         {
             new[] {"/sitecore/client/Applications/List Manager/Taskpages/Contact list/PageSettings/ListActions Parameters/ListActionColumn/ListActionGroup/Unlock list",@"ar|sitecore\Everyone|pe|!*|"}

@@ -552,7 +552,7 @@ namespace Security.Rights.Reporting.Shell
                 userlist.Text += "</tr>";
                 linecount++;
             }
-            userlist.Text += "<tr><td><a href=\"?account=$currentuser&t=u\" title=\"replace token for Standard value\">$currentuser</a></td><td style=\"text-align: left\" colspan=\"0\" align=\"left\">Not a real user but a Sitecore replace token, can be used for item rights on __Standard Values or Branches, but no roles</td></tr>";
+            userlist.Text += "<tr><td><a href=\"?account=$currentuser&t=u\" title=\"replace token for Standard value\">$currentuser</a></td><td style=\"text-align: left\" colspan=\"25\" align=\"left\">Not a real user but a Sitecore replace token, can be used for item rights on __Standard Values or Branches, but no roles</td></tr>";
             userlist.Text += "</Table><p>With this tool you can view a all users and roles. It can be used to do audits. You can see which users and roles are custom or default Sitecore, and get reported as default Sitecore users or roles missing.</p>";
             if (!string.IsNullOrEmpty(warning))
             {

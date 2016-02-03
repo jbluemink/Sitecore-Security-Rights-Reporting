@@ -99,8 +99,13 @@ namespace Security.Rights.Reporting.Shell.RightsData
             }
             else if (Sitecore.Configuration.About.Version.StartsWith("8.0.151127"))
             {
-                //update 6 same as 2
-                return JoinPathRight(Rights80.Core, Rights80.Core802Replace);
+                //update 6 changes
+                return JoinPathRight(Rights80.Core, Rights80.Core806Replace);
+            }
+            else if (Sitecore.Configuration.About.Version.StartsWith("8.0.160115"))
+            {
+                //update 7 changes core same as 6
+                return JoinPathRight(Rights80.Core, Rights80.Core806Replace);
             }
             else if (Sitecore.Configuration.About.Version.StartsWith("8.0"))
             {
@@ -131,11 +136,24 @@ namespace Security.Rights.Reporting.Shell.RightsData
         public static IEnumerable<string[]> GetDefaultMasterRightsByVersion(out string message)
         {
             message = string.Empty;
-            if (Sitecore.Configuration.About.Version.StartsWith("8.0"))
+            if (Sitecore.Configuration.About.Version.StartsWith("8.0.14"))
             {
                 return Rights80.Master;
             }
-            if (Sitecore.Configuration.About.Version.StartsWith("8.1.151003"))
+            else if (Sitecore.Configuration.About.Version.StartsWith("8.0.15"))
+            {
+                return Rights80.Master;
+            }
+            else if (Sitecore.Configuration.About.Version.StartsWith("8.0.160115"))
+            {
+                return JoinPathRight(Rights80.Master, Rights80.Master807Replace);
+            }
+            else if (Sitecore.Configuration.About.Version.StartsWith("8.0"))
+            {
+                message = "Sitecore version not supported show rights as 8.0 update 7";
+                return JoinPathRight(Rights80.Master, Rights80.Master807Replace);
+            }
+            else if (Sitecore.Configuration.About.Version.StartsWith("8.1.151003"))
             {
                 return JoinPathRight(Rights80.Master, Rights80.Master810Replace);
             }

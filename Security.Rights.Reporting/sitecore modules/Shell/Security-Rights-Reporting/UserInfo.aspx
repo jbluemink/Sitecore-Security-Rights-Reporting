@@ -60,7 +60,7 @@ th.rotate > div > span {
 <asp:Literal runat="server" ID="userlist"></asp:Literal>
     
 <asp:Literal runat="server" ID="userrights"></asp:Literal>
-<p align="right">Sitecore community code on <a href="https://github.com/jbluemink" target="_blank">GitHub</a> <a href="https://nl.linkedin.com/in/jan-bluemink-6b4467" target="_blank">Jan Bluemink</a></p>
+<p align="right">Sitecore community code on <a href="https://github.com/jbluemink" target="_blank">GitHub</a> <a href="https://nl.linkedin.com/in/jan-bluemink-6b4467" target="_blank">Jan Bluemink</a> <a href="?mode=uninstall">Uninstall</a></p>
 </body>
 </html>
 
