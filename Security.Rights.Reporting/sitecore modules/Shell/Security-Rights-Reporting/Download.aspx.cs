@@ -10,10 +10,11 @@ namespace Security.Rights.Reporting.Shell
             if (UserInfo.CheckAccessRight())
             {
                 string warning = string.Empty;
+                string info = string.Empty;
                 List<List<string>> usertabel = null;
                 try
                 {
-                    usertabel = UserInfo.UserTabel(2000, out warning);
+                    usertabel = UserInfo.UserTabel(2000, out warning, out info);
                 }
                 catch (Exception ex)
                 {

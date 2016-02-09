@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using Sitecore.Data;
 using Sitecore.Data.Items;
 using Sitecore.Security.Accounts;
-using Sitecore.Security.Authentication;
 using Sitecore.Security.Domains;
 using Sitecore.SecurityModel;
 
@@ -290,13 +288,17 @@ namespace Security.Rights.Reporting.Shell
 
 
         #region User / domain screen
-        public static List<List<string>> UserTabel(int maxusers, out string warning)
+        public static List<List<string>> UserTabel(int maxusers, out string warning, out string info)
         {
             warning = string.Empty;
+            info = string.Empty;
+
             var profileFinder = new UserProfileFinder();
             List<List<string>> usertabel = new List<List<string>>();
             IEnumerable<User> users;
-            if (Sitecore.Security.Accounts.UserManager.Provider.GetUserCount() > maxusers)
+            var totaluser = Sitecore.Security.Accounts.UserManager.Provider.GetUserCount();
+            info = string.Format("Total real Membership users is {0} (sitecore\\Anonymous does not count)", totaluser);
+            if (totaluser > maxusers)
             {
                 warning += "To many users the user are filtered, show only the sitecore domain and the default sitecore users. ";
                 var sitecoreDomain = Domain.GetDomain("sitecore");
@@ -307,8 +309,10 @@ namespace Security.Rights.Reporting.Shell
                 }
                 else
                 {
+                    var totalsitecoreusers = sitecoreDomain.GetUserCount();
+                    info += " Total Users in Sitecore Domain is " + totalsitecoreusers;
                     users = sitecoreDomain.GetUsers().Take(maxusers);
-                    if (users.Count() >= maxusers)
+                    if (users.Count() < totalsitecoreusers)
                     {
                         warning += "To many users in the Sitecore domain for this Tool, Take the first one and skip the rest, try the download link this has a higher limiet. ";
                     }
@@ -484,7 +488,8 @@ namespace Security.Rights.Reporting.Shell
             var defaultRols = DefaultRols.GetDefaultRols();
             var defaultUsers = DefaultUsers.GetDefaultUsers();
             string warning;
-            var usertabel = UserTabel(200, out warning);
+            string info;
+            var usertabel = UserTabel(200, out warning, out info);
             userlist.Text = "<Table class=\"table table-header-rotated\">";
             var linecount = 0;
             foreach (var tabelrow in usertabel)
@@ -553,7 +558,7 @@ namespace Security.Rights.Reporting.Shell
                 linecount++;
             }
             userlist.Text += "<tr><td><a href=\"?account=$currentuser&t=u\" title=\"replace token for Standard value\">$currentuser</a></td><td style=\"text-align: left\" colspan=\"25\" align=\"left\">Not a real user but a Sitecore replace token, can be used for item rights on __Standard Values or Branches, but no roles</td></tr>";
-            userlist.Text += "</Table><p>With this tool you can view a all users and roles. It can be used to do audits. You can see which users and roles are custom or default Sitecore, and get reported as default Sitecore users or roles missing.</p>";
+            userlist.Text += "</Table><p>With this tool you can view a all users and roles. It can be used to do audits. You can see which users and roles are custom or default Sitecore, and get reported as default Sitecore users or roles missing.<br>" + info + "</p>";
             if (!string.IsNullOrEmpty(warning))
             {
                 userlist.Text += "<br><span style=\"color:#880000;\">WARNING: " + warning;
