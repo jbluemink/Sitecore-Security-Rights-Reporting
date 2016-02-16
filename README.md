@@ -22,10 +22,15 @@ This tool is for Sitecore Domain users, if there too many (extranet) users it is
 - 1.5 Add download and extra columns and descriptions and default roles/users
 - 2.0 Now you can compare all the Sitecore rights with the default Sitecore rights and easy see you own or missing rights.
 - 2.1 Bugfixing And Support for Everyone roles, Anonymous users, $currentuser token and check account exists on the item rights. Support for Sitecore 8.1 update-1 and Sitecore 8 update-6
+- 2.2 Uninstaller, user count info, support for Sitecore 8 update 7, Bugfixing
 
 ##Upgading
 
 - Install a new package and overwrite.
+
+##Uninstall
+Version 2.2 or higher
+- Click on the uninstall link on the bottom right or use url: /sitecore%20modules/Shell/Security-Rights-Reporting/UserInfo.aspx?mode=uninstall
 
 ##To Build:
 Add Sitecore.Kernel.dll to External folder
