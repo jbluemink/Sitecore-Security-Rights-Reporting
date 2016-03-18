@@ -20,6 +20,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
             ,new[] {"/sitecore/system/Marketing Control Panel/Profiles/Persona/Cecile",""}
             ,new[] {"/sitecore/system/Marketing Control Panel/Test Lab",@"ar|sitecore\Analytics Testing|pe|+item:create|pd|^*|+item:write|+item:read|+item:rename|+item:delete|+item:create|"} 
             ,new[] {"/sitecore/system/Workflows/Sample Workflow/Awaiting Approval/Approve without Test",""}
+            ,new[] {"/sitecore/templates/System/Workflow/Standard Comment Template/__Standard Values",@"ar|Everyone|p*|+item:write|"}
             ,new[] {"/sitecore/layout/Layouts/System/App Center Sync",""}
             ,new[] {"/sitecore/layout/Sublayouts/App Center Sync",""}
             ,new[] {"/sitecore/layout/Placeholder Settings/App Center Sync",""}
@@ -27,14 +28,6 @@ namespace Security.Rights.Reporting.Shell.RightsData
             ,new[] {"/sitecore/system/Settings/Buckets/Views/ID View",""}
             ,new[] {"/sitecore/templates/App Center Sync",""}
             ,new[] {"/sitecore/system/App Center Sync",""}
-            ,new[] {"/sitecore/templates/System/Social/Message/Social Marketer Message/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"} 
-            ,new[] {"/sitecore/templates/System/Social/Message/Facebook Message/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"}
-            ,new[] {"/sitecore/templates/System/Social/Message/Twitter Message/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"} 
-            ,new[] {"/sitecore/templates/System/Social/Posting Configuration/Account Posting Configuration/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"} 
-            ,new[] {"/sitecore/templates/System/Social/Posting Configuration/Container Posting Configuration/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"}
-            ,new[] {"/sitecore/templates/System/Social/Posting Configuration/Content Posting Configuration/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"}
-            ,new[] {"/sitecore/templates/System/Social/Posting Configuration/Goal Posting Configuration/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"} 
-            ,new[] {"/sitecore/templates/System/Workflow/Standard Comment Template/__Standard Values",@"ar|Everyone|p*|+item:write|"} 
         };
 
         public static List<string[]> Core811Replace = new List<string[]>
@@ -79,6 +72,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
             ,new[] {"/sitecore/system/Marketing Control Panel/Profiles/Persona/Cecile",""}
             ,new[] {"/sitecore/system/Marketing Control Panel/Test Lab",@"ar|sitecore\Analytics Testing|pe|+item:create|pd|^*|+item:write|+item:read|+item:rename|+item:delete|+item:create|"} 
             ,new[] {"/sitecore/system/Workflows/Sample Workflow/Awaiting Approval/Approve without Test",""}
+            ,new[] {"/sitecore/templates/System/Workflow/Standard Comment Template/__Standard Values",@"ar|Everyone|p*|+item:write|"} 
         };
 
         public static List<string[]> Master807Replace = new List<string[]> 
@@ -695,6 +689,7 @@ new[] {"/sitecore",@"ar|sitecore\Sitecore Client Developing|pe|+item:write|+item
 ,new[] {"/sitecore/content/Documents and settings/All users/Start menu/Programs/Media Library",@"ar|sitecore\Sitecore Client Authoring|pd|+item:read|pe|+item:read|"}
 ,new[] {"/sitecore/content/Applications/Security",@"ar|Everyone|pd|!*|"}
 ,new[] {"/sitecore/content/Applications/Content Editor/Ribbons/Chunks/View/Buckets",@"ar|sitecore\Sitecore Client Developing|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
+,new[] {"/sitecore/content/Applications/Tools/Log Viewer",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"} 
 };
 
         public static List<string[]> Master = new List<string[]>
@@ -849,6 +844,14 @@ new[] {"/sitecore",@"ar|Everyone|pe|+item:read|pd|+item:read|ar|sitecore\Everyon
 ,new[] {"/sitecore/templates/System/Templates/Sections/Appearance/Appearance/__Thumbnail",@"au|sitecore\Anonymous|pe|-field:read|pd|-field:read|ar|sitecore\Sitecore Client Configuring|pe|+field:read|pd|+field:read|"}
 ,new[] {"/sitecore/social/Messages",@"ar|Everyone|pe|!*|pd|!*|ar|sitecore\Social Message Author|pe|+item:create|+item:write|+item:read|+item:delete|pd|+item:create|+item:write|+item:read|+item:delete|"}
 ,new[] {"/sitecore/templates/System/Templates/Sections/Validators/Validation Rules/__Validator Bar Validation Rules",@"ar|sitecore\Sitecore Client Developing|pe|+field:read|pd|+field:read|au|sitecore\Anonymous|pe|-field:read|pd|-field:read|"}
+,new[] {"/sitecore/templates/System/Social/Message/Social Marketer Message/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"} 
+,new[] {"/sitecore/templates/System/Social/Message/Facebook Message/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"}
+,new[] {"/sitecore/templates/System/Social/Message/Twitter Message/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"} 
+,new[] {"/sitecore/templates/System/Social/Posting Configuration/Account Posting Configuration/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"} 
+,new[] {"/sitecore/templates/System/Social/Posting Configuration/Container Posting Configuration/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"}
+,new[] {"/sitecore/templates/System/Social/Posting Configuration/Content Posting Configuration/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"}
+,new[] {"/sitecore/templates/System/Social/Posting Configuration/Goal Posting Configuration/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"} 
+
         };
     }
 }
