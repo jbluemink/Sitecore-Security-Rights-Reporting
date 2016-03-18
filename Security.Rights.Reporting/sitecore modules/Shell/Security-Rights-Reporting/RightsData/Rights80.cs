@@ -5,8 +5,36 @@ namespace Security.Rights.Reporting.Shell.RightsData
 {
     public static class Rights80
     {
-        public static List<string[]> Master811Replace = new List<string[]>
+        public static List<string[]> Master812Replace = new List<string[]>
         {
+            new[] {"/sitecore/system/Settings/Buckets/Views/IDView",@"ar|sitecore\Author|pe|-item:read|pd|-item:read|ar|sitecore\Analytics Personalization|pe|-item:read|pd|-item:read|"} 
+            ,new[] {"/sitecore/system/Workflows/Sample Workflow/Awaiting Approval/Approve",@"ar|sitecore\Sitecore Client Authoring|pd|+workflowCommand:execute|pe|+workflowCommand:execute|"}
+            ,new[] {"/sitecore/system/Workflows/Analytics Testing Workflow/Suspended/Deploy",@"ar|sitecore\Analytics Testing|pe|+workflowCommand:execute|pd|+workflowCommand:execute|"} 
+            ,new[] {"/sitecore/system/Marketing Control Panel/Path Analyzer/Maps/Default Maps/Site Maps/website",@"ar|Everyone|pe|-item:delete|"} 
+            ,new[] {"/sitecore/system/Workflows/Analytics Testing Workflow/Deployed/Cancel Test",@"ar|sitecore\Analytics Testing|pe|+workflowCommand:execute|pd|+workflowCommand:execute|"}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Analytics Filters",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Analytics Filters/Report Filters",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Campaigns",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Goals",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Personalization",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Profiles/Persona/Cecile",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Test Lab",@"ar|sitecore\Analytics Testing|pe|+item:create|pd|^*|+item:write|+item:read|+item:rename|+item:delete|+item:create|"} 
+            ,new[] {"/sitecore/system/Workflows/Sample Workflow/Awaiting Approval/Approve without Test",""}
+            ,new[] {"/sitecore/layout/Layouts/System/App Center Sync",""}
+            ,new[] {"/sitecore/layout/Sublayouts/App Center Sync",""}
+            ,new[] {"/sitecore/layout/Placeholder Settings/App Center Sync",""}
+            ,new[] {"/sitecore/layout/Renderings/App Center Sync",""}
+            ,new[] {"/sitecore/system/Settings/Buckets/Views/ID View",""}
+            ,new[] {"/sitecore/templates/App Center Sync",""}
+            ,new[] {"/sitecore/system/App Center Sync",""}
+            ,new[] {"/sitecore/templates/System/Social/Message/Social Marketer Message/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"} 
+            ,new[] {"/sitecore/templates/System/Social/Message/Facebook Message/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"}
+            ,new[] {"/sitecore/templates/System/Social/Message/Twitter Message/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"} 
+            ,new[] {"/sitecore/templates/System/Social/Posting Configuration/Account Posting Configuration/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"} 
+            ,new[] {"/sitecore/templates/System/Social/Posting Configuration/Container Posting Configuration/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"}
+            ,new[] {"/sitecore/templates/System/Social/Posting Configuration/Content Posting Configuration/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"}
+            ,new[] {"/sitecore/templates/System/Social/Posting Configuration/Goal Posting Configuration/__Standard Values",@"ar|sitecore\Social Message Author|pe|+item:write|"} 
+            ,new[] {"/sitecore/templates/System/Workflow/Standard Comment Template/__Standard Values",@"ar|Everyone|p*|+item:write|"} 
         };
 
         public static List<string[]> Core811Replace = new List<string[]>
@@ -110,7 +138,8 @@ namespace Security.Rights.Reporting.Shell.RightsData
 
         public static List<string[]> Core = new List<string[]> 
         {
- new[] {"/sitecore/content/Applications/Content Editor/Ribbons/Chunks/Social",@"ar|sitecore\Sitecore Client Social Authoring|pe|+item:read|pd|+item:read|"}
+new[] {"/sitecore",@"ar|sitecore\Sitecore Client Developing|pe|+item:write|+item:rename|+item:delete|+item:create|pd|+item:write|+item:rename|+item:delete|+item:create|ar|sitecore\Sitecore Client Users|pe|+item:read|pd|+item:read|"}
+,new[] {"/sitecore/content/Applications/Content Editor/Ribbons/Chunks/Social",@"ar|sitecore\Sitecore Client Social Authoring|pe|+item:read|pd|+item:read|"}
 ,new[] {"/sitecore/content/Applications/Content Editor/Ribbons/Chunks/Appearance/Set Contextual Tab",@"ar|sitecore\Sitecore Client Configuring|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
 ,new[] {"/sitecore/content/Applications/Security/Role Manager/Ribbon/Home/Tools/Security Editor",@"ar|sitecore\Sitecore Client Configuring|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Securing|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
 ,new[] {"/sitecore/system/Settings/Html Editor Profiles/Rich Text Full/Buttons/HTML View",@"ar|sitecore\Sitecore Client Users|pe|+item:read|pd|+item:read|"}
@@ -670,7 +699,8 @@ namespace Security.Rights.Reporting.Shell.RightsData
 
         public static List<string[]> Master = new List<string[]>
         {
-new[] {"/sitecore/templates/System/Validation/Field Type Validation Rules/Validation Rules/Workflow",@"ar|sitecore\Sitecore Client Developing|pe|+field:read|pd|+field:read|au|sitecore\Anonymous|pe|-field:read|pd|-field:read|"}
+new[] {"/sitecore",@"ar|Everyone|pe|+item:read|pd|+item:read|ar|sitecore\Everyone|pe|+item:read|pd|+item:read|"} 
+,new[] {"/sitecore/templates/System/Validation/Field Type Validation Rules/Validation Rules/Workflow",@"ar|sitecore\Sitecore Client Developing|pe|+field:read|pd|+field:read|au|sitecore\Anonymous|pe|-field:read|pd|-field:read|"}
 ,new[] {"/sitecore/templates/System/Validation/Global Validation Rules/Validation Rules/Validate Button",@"ar|sitecore\Sitecore Client Developing|pe|+field:read|pd|+field:read|au|sitecore\Anonymous|pe|-field:read|pd|-field:read|"}
 ,new[] {"/sitecore/templates/System/Templates/Sections/Lifetime/Lifetime/__Hide version",@"au|sitecore\Anonymous|pe|-field:read|pd|-field:read|ar|sitecore\Sitecore Client Maintaining|pe|+field:read|pd|+field:read|"}
 ,new[] {"/sitecore/system/Workflows/Sample Workflow/Approved",@"ar|sitecore\Sitecore Client Authoring|pd|+workflowState:delete|+workflowState:write|pe|+workflowState:delete|+workflowState:write|"}
