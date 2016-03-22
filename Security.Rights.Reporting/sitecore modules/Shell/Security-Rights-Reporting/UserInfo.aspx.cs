@@ -159,12 +159,9 @@ namespace Security.Rights.Reporting.Shell
                 userrights.Text += string.Format("<h2 id=\"{1}\">Item Rights set on account {0} on {1} Database</h2>", System.Web.HttpUtility.HtmlEncode(account), db.Name);
             }
             //We use a query instead of index search because, security field data is not in query, will be slower by large resultset.
-            //const string query = "fast://sitecore//*[@__Security != '' ]";
+            const string query = "fast://*[@__Security != '' ]";
 
-            //var itemList = new List<Item>(db.SelectItems(query));
-            var root = db.GetItem("/sitecore");
-            var itemList = root.Axes.GetDescendants().ToList();
-            itemList.Insert(0, root);
+            var itemList = new List<Item>(db.SelectItems(query));
 
             var count = 0;
 
