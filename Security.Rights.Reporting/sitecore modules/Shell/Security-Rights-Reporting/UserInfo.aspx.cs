@@ -9,6 +9,11 @@ using Sitecore.SecurityModel;
 
 namespace Security.Rights.Reporting.Shell
 {
+    internal static class Removetoken
+    {
+        internal static string Securitytoke = Guid.NewGuid().ToString(); 
+    }
+    
     public partial class UserInfo : System.Web.UI.Page
     {
         #region page load
@@ -18,9 +23,10 @@ namespace Security.Rights.Reporting.Shell
             {
                 var account = Request.QueryString.Get("account");
                 var mode = Request.QueryString.Get("mode");
+                var securitytoke = Request.QueryString.Get("token");
                 if (!string.IsNullOrEmpty(mode))
                 {
-                    ApplicationSetup(mode);
+                    ApplicationSetup(mode, securitytoke);
                 }
                 else if (string.IsNullOrEmpty(account))
                 {
@@ -51,16 +57,16 @@ namespace Security.Rights.Reporting.Shell
 
         #region setup
 
-        private void ApplicationSetup(string mode)
+        private void ApplicationSetup(string mode, string securitytoke)
         {
             if (CheckSetupRights())
             {
                 if (mode == "uninstall")
                 {
                     userlist.Text +=
-                        "<h1>Uninstall the Security Rights Reporting Module</h1><p>Are you sure you want to delete the Security Rights Reporting Module? <a href=\"?mode=unistallyes\">Yes remove</a> - <a href=\"?\">No cancel</a>";
+                        "<h1>Uninstall the Security Rights Reporting Module</h1><p>Are you sure you want to delete the Security Rights Reporting Module? <a href=\"?mode=unistallyes&token=" + Removetoken.Securitytoke + "\">Yes remove</a> - <a href=\"?\">No cancel</a>";
                 }
-                else if (mode == "unistallyes")
+                else if (mode == "unistallyes" && securitytoke == Removetoken.Securitytoke)
                 {
                     DeleteFileFromWebroot("~\\App_Config\\Include\\Security.Rights.Reporting.Module.config");
                     DeleteFileFromWebroot("~\\bin\\Security.Rights.Reporting.dll");
