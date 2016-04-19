@@ -51,6 +51,7 @@ namespace Security.Rights.Reporting.Shell
                             dowload.Text += string.Format("\"{0}\"",
                                 tabelfield.Replace("&nbsp;", "")
                                     .Replace("\"", "\"\"")
+                                     .Replace("?EVERYONE?", "")
                                     .Replace("<nobr>", "")
                                     .Replace("</nobr>", ""));
                         }
