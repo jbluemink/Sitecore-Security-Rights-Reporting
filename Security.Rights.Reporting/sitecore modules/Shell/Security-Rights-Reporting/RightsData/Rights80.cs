@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Security.Rights.Reporting.Shell.Model;
+using Sitecore.Security;
 
 namespace Security.Rights.Reporting.Shell.RightsData
 {
@@ -56,6 +57,75 @@ namespace Security.Rights.Reporting.Shell.RightsData
             ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Page Editor/New/Presets",""}
             ,new[] {"/sitecore/content/Home",""}
             ,new[] {"/sitecore/masters/System/__Image/$name",""}
+        };
+
+        public static List<string[]> Core813Replace = new List<string[]>
+        {
+            new[] {"/sitecore/content/Applications/Dialogs/Upload",@"ar|sitecore\Author|pe|-item:read|"}
+            ,new[] {"/sitecore/content/Applications/Layouts/GridDesigner",@"ar|sitecore\Author|pe|-item:read|"} 
+            ,new[] {"/sitecore/system/Settings/Security/Policies/Recycle Bin/Can See All Items",@"ar|sitecore\Everyone|pe|!*|pd|!*|ar|sitecore\Sitecore Local Administrators|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Security/Access Viewer",@"ar|sitecore\Sitecore Client Securing|pe|+item:read|pd|+item:read|ar|sitecore\Author|pe|-item:read|"}
+            ,new[] {"/sitecore/client/Applications/Launchpad/PageSettings/Buttons/Marketing/CampaignManager",@"ar|sitecore\Analytics Maintaining|pe|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Tools/Log Viewer",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|-item:read|pd|-item:read|"}
+            ,new[] {"/sitecore/content/Applications/Templates/Change Template",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|ar|sitecore\Author|pe|-item:read|"}
+            ,new[] {"/sitecore/content/Applications/Layouts/IDE/Toolbar/Debug/Profiler",@"ar|sitecore\Author|pe|-item:read|"}
+            ,new[] {"/sitecore/content/Applications/Templates/Create Template",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|ar|sitecore\Author|pe|-item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Debugger",@"ar|sitecore\Author|pe|-item:read|"} 
+            ,new[] {"/sitecore/content/Applications/WebEdit/Menus/SelectVersion/Add Version",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/client/Applications/List Manager/Taskpages/Contact list/PageSettings/ListActions Parameters/ListActionColumn/ListActionGroup/Unlock list",@"ar|sitecore\Everyone|pe|!*|"} 
+            ,new[] {"/sitecore/content/Applications/Templates/Template Inheritance",@"ar|sitecore\Author|pe|-item:read|"} 
+            ,new[] {"/sitecore/content/Applications/WebEdit/Menus/Languages/More Languages",@"ar|Everyone|pe|-item:read|!*|pd|-item:read|!*|"} 
+            ,new[] {"/sitecore/content/Applications/Layouts/Layout Lister",@"ar|sitecore\Author|pe|-item:read|"}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Versions/Language",@"ar|sitecore\Sitecore Client Translating|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|ar|sitecore\Sitecore Client Authoring|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Item browser",@"ar|sitecore\Author|pe|-item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Layouts/IDE",@"ar|sitecore\Author|pe|-item:read|ar|sitecore\Sitecore Client Developing|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Portal sidebar/Configurator",@"ar|sitecore\Author|pe|-item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Layouts/IDE/New File",@"ar|sitecore\Author|pe|-item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Files/FileBrowser",@"ar|sitecore\Author|pe|-item:read|"} 
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Advanced/Layout/Presets",@"ar|sitecore\Sitecore Limited Page Editor|pe|-item:read|pd|-item:read|"} 
+            ,new[] {"/sitecore/client/Applications/CampaignManager",@"ar|sitecore\Everyone|pe|!*|pd|!*|ar|sitecore\Analytics Maintaining|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer",@"ar|Everyone|pe|!*|pd|!*|ar|sitecore\Analytics Reporting|pe|+item:read|pd|+item:read|"}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Advanced/Layout/Edit all versions",@"ar|sitecore\Sitecore Client Users|pe|!*|ar|sitecore\Analytics Personalization|pe|!*|+item:read|ar|sitecore\Analytics Testing|pe|!*|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Templates/Template Lister",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|ar|sitecore\Author|pe|-item:read|"}
+            ,new[] {"/sitecore/content/Applications/Tools/Installer/Designer/Ribbon/Package/Add/Add files manual",@"ar|sitecore\Author|pe|-item:read|"} 
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Page Editor/Proofing",@"ar|sitecore\Sitecore Client Authoring|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Translating|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|"} 
+            ,new[] {"/sitecore/content/Applications/Carousel",@"ar|sitecore\Author|pe|-item:read|"}
+            ,new[] {"/sitecore/system/Settings/Key Map/Find",@"ar|sitecore\Sitecore Client Bucket Management|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Content Editor/Context Menues/Default/Search",@"ar|sitecore\Sitecore Client Bucket Management|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/client/Applications/FXM",@"ar|sitecore\Everyone|pe|!*|pd|!*|"} 
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer/PageAnalyzer",""}
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer/PageAnalyzerDialog",""}
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer/PathExplorer",""}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Experience/Language",""}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Page Editor/New/Presets",""}
+            ,new[] {"/sitecore/content/Home",""}
+            ,new[] {"/sitecore/masters/System/__Image/$name",""}
+        };
+
+        public static List<string[]> Master813Replace = new List<string[]>
+        {
+             new[] {"/sitecore/system/Settings/Buckets/Views/IDView",@"ar|sitecore\Author|pe|-item:read|pd|-item:read|ar|sitecore\Analytics Personalization|pe|-item:read|pd|-item:read|"} 
+            ,new[] {"/sitecore/system/Workflows/Sample Workflow/Awaiting Approval/Approve",@"ar|sitecore\Sitecore Client Authoring|pd|+workflowCommand:execute|pe|+workflowCommand:execute|"}
+            ,new[] {"/sitecore/system/Workflows/Analytics Testing Workflow/Suspended/Deploy",@"ar|sitecore\Analytics Testing|pe|+workflowCommand:execute|pd|+workflowCommand:execute|"} 
+            ,new[] {"/sitecore/system/Marketing Control Panel/Path Analyzer/Maps/Default Maps/Site Maps/website",@"ar|Everyone|pe|-item:delete|"} 
+            ,new[] {"/sitecore/system/Workflows/Analytics Testing Workflow/Deployed/Cancel Test",@"ar|sitecore\Analytics Testing|pe|+workflowCommand:execute|pd|+workflowCommand:execute|"}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Analytics Filters",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Analytics Filters/Report Filters",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Campaigns",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Goals",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Personalization",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Profiles/Persona/Cecile",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Test Lab",@"ar|sitecore\Analytics Testing|pe|+item:create|pd|^*|+item:write|+item:read|+item:rename|+item:delete|+item:create|"} 
+            ,new[] {"/sitecore/system/Workflows/Sample Workflow/Awaiting Approval/Approve without Test",""}
+            ,new[] {"/sitecore/templates/System/Workflow/Standard Comment Template/__Standard Values",@"ar|Everyone|p*|+item:write|"}
+            ,new[] {"/sitecore/layout/Layouts/System/App Center Sync",""}
+            ,new[] {"/sitecore/layout/Sublayouts/App Center Sync",""}
+            ,new[] {"/sitecore/layout/Placeholder Settings/App Center Sync",""}
+            ,new[] {"/sitecore/layout/Renderings/App Center Sync",""}
+            ,new[] {"/sitecore/system/Settings/Buckets/Views/ID View",""}
+            ,new[] {"/sitecore/templates/App Center Sync",""}
+            ,new[] {"/sitecore/system/App Center Sync",""} 
+            ,new[] {"/sitecore/templates/System/Workflow/Standard Comment Template/__Standard Values",""}
         };
 
         public static List<string[]> Master810Replace = new List<string[]> 
