@@ -137,6 +137,17 @@ namespace Security.Rights.Reporting.Shell.RightsData
                 message = "Sitecore version not supported show rights as 8.1 update 3";
                 return JoinPathRight(Rights80.Core, Rights80.Core813Replace);
             }
+            else if (Sitecore.Configuration.About.Version.StartsWith("8.2.160729"))
+            {
+                // 8.2 initial
+                return JoinPathRight(Rights80.Core, Rights80.Core820Replace);
+            }
+            else if (Sitecore.Configuration.About.Version.StartsWith("8.2"))
+            {
+                message = "Sitecore version not supported show rights as 8.2 initial";
+                return JoinPathRight(Rights80.Core, Rights80.Core820Replace);
+            }
+            
 
 
             message = "<span style=\"color:#000088;\">Sitecore version not supported for displaying default rights</span>";
