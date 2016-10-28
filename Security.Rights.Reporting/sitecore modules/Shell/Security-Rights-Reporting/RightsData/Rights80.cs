@@ -190,6 +190,32 @@ namespace Security.Rights.Reporting.Shell.RightsData
             ,new[] {"/sitecore/templates/System/Workflow/Standard Comment Template/__Standard Values",""}
         };
 
+        public static List<string[]> Master820Replace = new List<string[]>
+        { 
+            new[] {"/sitecore/system/Workflows/Sample Workflow/Awaiting Approval/Approve",@"ar|sitecore\Sitecore Client Authoring|pd|+workflowCommand:execute|pe|+workflowCommand:execute|"}
+            ,new[] {"/sitecore/system/Workflows/Analytics Testing Workflow/Suspended/Deploy",@"ar|sitecore\Analytics Testing|pe|+workflowCommand:execute|pd|+workflowCommand:execute|"} 
+            ,new[] {"/sitecore/system/Workflows/Analytics Testing Workflow/Deployed/Cancel Test",@"ar|sitecore\Analytics Testing|pe|+workflowCommand:execute|pd|+workflowCommand:execute|"}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Analytics Filters",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Analytics Filters/Report Filters",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Campaigns",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Goals",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Personalization",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Profiles/Persona/Cecile",""}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Test Lab",@"ar|sitecore\Analytics Testing|pe|+item:create|pd|^*|+item:write|+item:read|+item:rename|+item:delete|+item:create|"} 
+            ,new[] {"/sitecore/system/Workflows/Sample Workflow/Awaiting Approval/Approve without Test",""}
+            ,new[] {"/sitecore/templates/System/Workflow/Standard Comment Template/__Standard Values",@"ar|Everyone|p*|+item:write|"}
+            ,new[] {"/sitecore/layout/Layouts/System/App Center Sync",""}
+            ,new[] {"/sitecore/layout/Sublayouts/App Center Sync",""}
+            ,new[] {"/sitecore/layout/Placeholder Settings/App Center Sync",""}
+            ,new[] {"/sitecore/layout/Renderings/App Center Sync",""}
+            ,new[] {"/sitecore/system/Settings/Buckets/Views/ID View",""}
+            ,new[] {"/sitecore/templates/App Center Sync",""}
+            ,new[] {"/sitecore/system/App Center Sync",""} 
+            ,new[] {"/sitecore/templates/System/Workflow/Standard Comment Template/__Standard Values",""}
+            ,new[] {"/sitecore/system/Settings/Buckets/Views/ID View",@"ar|sitecore\Author|pe|-item:read|pd|-item:read|ar|sitecore\Analytics Personalization|pe|-item:read|pd|-item:read|"}
+            ,new[] {"/sitecore/system/Marketing Control Panel/Path Analyzer/Maps/Default maps/Site maps/website",@"ar|Everyone|pe|-item:delete|"} 
+        };
+
         public static List<string[]> Master810Replace = new List<string[]> 
         {
             new[] {"/sitecore/system/Workflows/Sample Workflow/Awaiting Approval/Approve",@"ar|sitecore\Sitecore Client Authoring|pd|+workflowCommand:execute|pe|+workflowCommand:execute|"}
