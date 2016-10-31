@@ -24,7 +24,7 @@ This tool is for Sitecore Domain users, if there too many (extranet) users it is
 - 2.1 Bugfixing And Support for Everyone roles, Anonymous users, $currentuser token and check account exists on the item rights. Support for Sitecore 8.1 update-1 and Sitecore 8 update-6
 - 2.2 Uninstaller, user count info, support for Sitecore 8 update 7, Bugfixing
 - 2.3 Support for Sitecore 8.1 update 2, added the rootnode, Bugfixing
-
+- 2.4 Support for Sitecore 8.2 and Sitecore 8.1 update 3, Bugfixing
 
 ##Upgading
 
