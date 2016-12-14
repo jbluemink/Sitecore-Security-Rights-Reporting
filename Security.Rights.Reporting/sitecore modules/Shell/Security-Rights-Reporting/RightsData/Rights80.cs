@@ -163,6 +163,84 @@ namespace Security.Rights.Reporting.Shell.RightsData
             ,new[] {"/sitecore/content/Applications/Tools/Log Viewer",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
             ,new[] {"/sitecore/content/Applications/Templates/Create Template",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
         };
+        public static List<string[]> Core821Replace = new List<string[]>
+        {
+            new[] {"/sitecore/content/Applications/Layouts/GridDesigner",@"ar|sitecore\Author|pe|-item:read|"} 
+            ,new[] {"/sitecore/system/Settings/Security/Policies/Recycle Bin/Can See All Items",@"ar|sitecore\Everyone|pe|!*|pd|!*|ar|sitecore\Sitecore Local Administrators|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Security/Access Viewer",@"ar|sitecore\Sitecore Client Securing|pe|+item:read|pd|+item:read|ar|sitecore\Author|pe|-item:read|"}
+            ,new[] {"/sitecore/client/Applications/Launchpad/PageSettings/Buttons/Marketing/CampaignManager",@"ar|sitecore\Analytics Maintaining|pe|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Templates/Change Template",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|ar|sitecore\Author|pe|-item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Debugger",@"ar|sitecore\Author|pe|-item:read|"} 
+            ,new[] {"/sitecore/content/Applications/WebEdit/Menus/SelectVersion/Add Version",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/client/Applications/List Manager/Taskpages/Contact list/PageSettings/ListActions Parameters/ListActionColumn/ListActionGroup/Unlock list",@"ar|sitecore\Everyone|pe|!*|"} 
+            ,new[] {"/sitecore/content/Applications/Templates/Template Inheritance",@"ar|sitecore\Author|pe|-item:read|"} 
+            ,new[] {"/sitecore/content/Applications/WebEdit/Menus/Languages/More Languages",@"ar|Everyone|pe|-item:read|!*|pd|-item:read|!*|"} 
+            ,new[] {"/sitecore/content/Applications/Layouts/Layout Lister",@"ar|sitecore\Author|pe|-item:read|"}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Versions/Language",@"ar|sitecore\Sitecore Client Translating|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|ar|sitecore\Sitecore Client Authoring|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Item browser",@"ar|sitecore\Author|pe|-item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Portal sidebar/Configurator",@"ar|sitecore\Author|pe|-item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Files/FileBrowser",@"ar|sitecore\Author|pe|-item:read|"} 
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Advanced/Layout/Presets",@"ar|sitecore\Sitecore Limited Page Editor|pe|-item:read|pd|-item:read|"} 
+            ,new[] {"/sitecore/client/Applications/CampaignManager",@"ar|sitecore\Everyone|pe|!*|pd|!*|ar|sitecore\Analytics Maintaining|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer",@"ar|Everyone|pe|!*|pd|!*|ar|sitecore\Analytics Reporting|pe|+item:read|pd|+item:read|"}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Advanced/Layout/Edit all versions",@"ar|sitecore\Sitecore Client Users|pe|!*|ar|sitecore\Analytics Personalization|pe|!*|+item:read|ar|sitecore\Analytics Testing|pe|!*|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Templates/Template Lister",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|ar|sitecore\Author|pe|-item:read|"}
+            ,new[] {"/sitecore/content/Applications/Tools/Installer/Designer/Ribbon/Package/Add/Add files manual",@"ar|sitecore\Author|pe|-item:read|"} 
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Page Editor/Proofing",@"ar|sitecore\Sitecore Client Authoring|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Translating|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|"} 
+            ,new[] {"/sitecore/content/Applications/Carousel",@"ar|sitecore\Author|pe|-item:read|"}
+            ,new[] {"/sitecore/system/Settings/Key Map/Find",@"ar|sitecore\Sitecore Client Bucket Management|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Content Editor/Context Menues/Default/Search",@"ar|sitecore\Sitecore Client Bucket Management|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/client/Applications/FXM",@"ar|sitecore\Everyone|pe|!*|pd|!*|"} 
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer/PageAnalyzer",""}
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer/PageAnalyzerDialog",""}
+            ,new[] {"/sitecore/client/Applications/PathAnalyzer/PathExplorer",""}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Experience/Language",""}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Page Editor/New/Presets",""}
+            ,new[] {"/sitecore/content/Home",""}
+            ,new[] {"/sitecore/masters/System/__Image/$name",""}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/View/Show/Associated content",@"ar|sitecore\Sitecore Client Users|pe|!*|ar|sitecore\Analytics Personalization|pe|!*|+item:read|ar|sitecore\Analytics Testing|pe|!*|+item:read|"}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Advanced/Content",@"ar|sitecore\Analytics Maintaining|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Configuring|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Developing|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|"}
+            ,new[] {"/sitecore/client/Business Component Library/version 2/Content/Guidance/Renderings/Containers/ScrollablePanel/PageSettings/Tabs/Demo/PageSettings/ScrollablePanelSecurity",@"ar|sitecore\Developer|pe|+item:read|+item:write|"}
+            ,new[] {"/sitecore/client/Business Component Library/version 2/Content/Guidance/Renderings/Containers/Border/PageSettings/Tabs/Demo/PageSettings/BorderSecurity",@"ar|sitecore\Developer|pe|+item:read|+item:write|"}
+            ,new[] {"/sitecore/content/Applications/Layouts/IDE/Toolbar/Security/Divider",@"ar|sitecore\Sitecore Client Securing|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
+            ,new[] {"/sitecore/client/Applications/ExperienceProfile",@"ar|sitecore\Analytics Reporting|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|-bucket:makebucket|-bucket:unmake|!*|pd|-bucket:makebucket|-bucket:unmake|!*|"}
+            ,new[] {"/sitecore/content/Applications/Carousel",""}
+            ,new[] {"/sitecore/content/Applications/Control Panel/Database/Rebuild search index",""}
+            ,new[] {"/sitecore/content/Applications/Debugger",""}
+            ,new[] {"/sitecore/content/Applications/Files/FileBrowser",""}
+            ,new[] {"/sitecore/content/Applications/Layouts/IDE/Toolbar/Debug/Profiler",""}
+            ,new[] {"/sitecore/content/Applications/Layouts/Layout Lister",""}
+            ,new[] {"/sitecore/content/Applications/Portal sidebar/Configurator",""}
+            ,new[] {"/sitecore/content/Applications/Security/Access Viewer",@"ar|sitecore\Sitecore Client Securing|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
+            ,new[] {"/sitecore/content/Applications/Templates/Change Template",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"} 
+            ,new[] {"/sitecore/content/Applications/Templates/Template Inheritance",""}
+            ,new[] {"/sitecore/content/Applications/Templates/Template Lister",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"} 
+            ,new[] {"/sitecore/content/Applications/Tools/Installer/Designer/Ribbon/Package/Add/Add files manual",""}
+            ,new[] {"/sitecore/content/Applications/Tools/Log Viewer",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
+            ,new[] {"/sitecore/content/Applications/Templates/Create Template",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"}
+            ,new[] {"/sitecore/content/Applications/Control Panel/Reports/Broken Links",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Authoring|pe|+item:read|pd|+item:read|"}
+            ,new[] {"/sitecore/system/Languages",@"ar|sitecore\Sitecore Client Users|pe|+language:read|pd|+language:read|ar|sitecore\Sitecore Client Developing|pe|+language:read|+language:write|pd|+language:read|+language:write|"}
+            ,new[] {"/sitecore/content/Applications/Control Panel/Database/Rebuild link database",@"ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|"}
+            ,new[] {"/sitecore/content/Applications/Control Panel/Globalization/Import Language",@"ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|"}
+            ,new[] {"/sitecore/content/Applications/Control Panel/Administration/Administration tools",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Developing|pe|+item:read|pd|+item:read|a?|Everyone|p*|!*|"} 
+            ,new[] {"/sitecore/content/Applications/Dialogs/Upload",@"ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Maintaining|pe|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Layouts/GridDesigner",@"ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Maintaining|pe|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Control Panel/Database/Transfer to Database",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Developing|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Tools/Log Viewer",@"ar|sitecore\Sitecore Client Maintaining|pd|+item:read|pe|+item:read|ar|Everyone|pe|!*|"} 
+            ,new[] {"/sitecore/content/Applications/Control Panel/Globalization/Delete Language",@"ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Control Panel/Administration/Update Installation Wizard",@"ar|sitecore\Sitecore Client Users|pe|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Control Panel/Database/Clean Up Databases",@"ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Control Panel/Analytics/Deploy Marketing Definitions",@"ar|Everyone|pe|!*|ar|sitecore\Analytics Maintaining|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Templates/Template Lister",@"ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Tools/Installer/Designer/Ribbon/Package/Add/Add files manual",@"ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Developing|pe|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Control Panel/Globalization/Add Language",@"ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Layouts/IDE",@"ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|ar|sitecore\Sitecore Client Developing|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Layouts/IDE/New File",@"ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Developing|pe|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Control Panel/Globalization/Export Language",@"ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Control Panel/Database/Database Usage",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Developing|pe|+item:read|pd|+item:read|"} 
+            ,new[] {"/sitecore/content/Applications/Item browser",@"ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Maintaining|pe|+item:read|"} 
+        };
+        
 
         public static List<string[]> Master813Replace = new List<string[]>
         {
