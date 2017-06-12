@@ -3,20 +3,20 @@ View all the Access right set on Sitecore roles or users. You can make a list of
 
 ![Example](https://raw.githubusercontent.com/jbluemink/Sitecore-Security-Rights-Reporting/master/Sitecore-Security-Rights-Reporting-Module.PNG)
 
-##Download
+## Download
 See the Sitecore marketplace, or pick up the latest release build here ![/Package](https://github.com/jbluemink/Sitecore-Security-Rights-Reporting/tree/master/Package)
 
-##Detail right
+## Detail right
 You can click on a user or role, and then you see all rights specific to that user or role put on sitecore items. Or click on all to see all rights. 
 ![Example detail rights](https://raw.githubusercontent.com/jbluemink/Sitecore-Security-Rights-Reporting/master/Sitecore-Security-Rights-Module-Detail.PNG)
 
-##Using
+## Using
 Go to the Sitecore Desktop (/sitecore/shell/)
 And push the left-bottom start button in the right menu there is inside the Security Tools menu a new Security Reporting menu item
 
 This tool is for Sitecore Domain users, if there too many (extranet) users it is skipping other domain users, this tool works for max 200 users in the Sitecore Domain.
 
-##Version
+## Version
 - 1.0 Initial version
 - 1.2 Bug fixes
 - 1.5 Add download and extra columns and descriptions and default roles/users
@@ -27,18 +27,18 @@ This tool is for Sitecore Domain users, if there too many (extranet) users it is
 - 2.4 Support for Sitecore 8.2 and Sitecore 8.1 update 3, Bugfixing
 - 2.5 Support for Sitecore 8.2 update 3, Bugfixing and styling
 
-##Upgading
+## Upgading
 
 - Install a new package and overwrite.
 
-##Uninstall
+## Uninstall
 Version 2.2 or higher
 - Click on the uninstall link on the bottom right or use url: /sitecore%20modules/Shell/Security-Rights-Reporting/UserInfo.aspx?mode=uninstall
 
-##To Build:
+## To Build:
 Add Sitecore.Kernel.dll to External folder
 
-##Deploy:
+## Deploy:
 - Copy the builded Security.Rights.Reporting.dll to the Sitecore bin directory (CMS server)
 - Copy the UserInfo.aspx to \sitecore modules\Shell\Security-Rights-Reporting of your Sitecore (CMS server)
 - Create the application in the core database and create a link in the menu, see the Serialization folder
