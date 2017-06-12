@@ -8,13 +8,15 @@
     <style>
 body {
     margin: 5px 5px 5px 10px;
+    font-family: "Open Sans",Arial,sans-serif;
+    font-size: 12px;
 }
 .table-header-rotated {
     border-collapse: separate;
     border-spacing: 0px;
 }
 .xfield td {
-    width: 20px;
+    width: 18px;
 }
 td {
     position: relative;
@@ -24,24 +26,33 @@ td {
     background-clip: padding-box;
 }
 .table-header-rotated th {
-    padding: 5px 10px;
+    padding: 4px
+    font-size: 11px;
 }
 .table-header-rotated td {
-    border: 1px solid #cccccc;
-    padding: 10px 5px;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding: 5px 1px;
     text-align: center;
 }
+tr td:first-child {
+    border-left: 1px solid #ccc;
+}
+th {
+    border-bottom: 1px solid #ccc;
+}
 th.rotate {
-    height: 320px;
+    height: 226px;
     white-space: nowrap;
 }
 th.rotate > div {
-    transform: translate(16px, 148px) rotate(315deg);
+    transform: translate(10px, 100px) rotate(315deg);
     width: 20px;
+    font-size: 11px;
 }
 th.rotate > div > span {
     border-bottom: 1px solid #ccc;
-    padding: 5px 10px;
+    padding: 3px 5px;
 }
 .table-header-rotated th.row-header {
     border-bottom: 1px solid #ccc;
