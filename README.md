@@ -25,6 +25,7 @@ This tool is for Sitecore Domain users, if there too many (extranet) users it is
 - 2.2 Uninstaller, user count info, support for Sitecore 8 update 7, Bugfixing
 - 2.3 Support for Sitecore 8.1 update 2, added the rootnode, Bugfixing
 - 2.4 Support for Sitecore 8.2 and Sitecore 8.1 update 3, Bugfixing
+- 2.5 Support for Sitecore 8.2 update 3, Bugfixing and styling
 
 ##Upgading
 
