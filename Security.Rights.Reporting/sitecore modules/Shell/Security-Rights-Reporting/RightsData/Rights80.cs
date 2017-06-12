@@ -240,7 +240,6 @@ namespace Security.Rights.Reporting.Shell.RightsData
             ,new[] {"/sitecore/content/Applications/Control Panel/Database/Database Usage",@"ar|sitecore\Sitecore Client Maintaining|pe|+item:read|pd|+item:read|ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Developing|pe|+item:read|pd|+item:read|"} 
             ,new[] {"/sitecore/content/Applications/Item browser",@"ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Maintaining|pe|+item:read|"} 
         };
-        
 
         public static List<string[]> Master813Replace = new List<string[]>
         {
