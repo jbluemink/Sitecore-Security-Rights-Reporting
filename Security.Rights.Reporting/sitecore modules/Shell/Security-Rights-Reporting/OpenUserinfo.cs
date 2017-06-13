@@ -23,7 +23,7 @@ namespace Security.Rights.Reporting.Shell
         {
             Assert.ArgumentNotNull((object)context, "context");
             UrlString urlString = new UrlString();
-            Windows.RunApplication("Security Reporting", urlString.ToString());
+            Sitecore.Shell.Framework.Windows.RunApplication("Security Reporting", urlString.ToString());
         }
 
         /// <summary>

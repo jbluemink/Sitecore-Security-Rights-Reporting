@@ -28,6 +28,8 @@ This tool is for Sitecore Domain users, if there too many (extranet) users it is
 - 2.4 Support for Sitecore 8.2 and Sitecore 8.1 update 3, Bugfixing
 - 2.5 Support for Sitecore 8.2 update 3, Bugfixing and styling
 
+Tested on Sitecore 6.5 - 8.2, Version 2.3 and higher only tested on Sitecore 8.x but should work on older versions.
+
 ## Upgading
 
 - Install a new package and overwrite.
@@ -37,7 +39,7 @@ Version 2.2 or higher
 - Click on the uninstall link on the bottom right or use url: /sitecore%20modules/Shell/Security-Rights-Reporting/UserInfo.aspx?mode=uninstall
 
 ## To Build:
-Add Sitecore.Kernel.dll to External folder
+Add Sitecore.Kernel.dll as references or use NuGet https://sitecore.myget.org/F/sc-packages/api/v3/index.json
 
 ## Deploy:
 - Copy the builded Security.Rights.Reporting.dll to the Sitecore bin directory (CMS server)
