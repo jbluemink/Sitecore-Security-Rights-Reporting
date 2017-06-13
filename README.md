@@ -9,7 +9,7 @@ See the Sitecore marketplace, or pick up the latest release build here ![/Packag
 ## Detail right
 You can click on a user or role, and then you see all rights specific to that user or role put on sitecore items. Or click on all to see all rights. 
 ![Example detail rights](https://raw.githubusercontent.com/jbluemink/Sitecore-Security-Rights-Reporting/master/Sitecore-Security-Rights-Module-Detail.PNG)
-and you can see ![http://sitecore.stockpick.nl/english/what-rights-are-custom/](what rights are custom)
+and you can see ![what rights are custom](http://sitecore.stockpick.nl/english/what-rights-are-custom/)
 
 ## Using
 Go to the Sitecore Desktop (/sitecore/shell/)
