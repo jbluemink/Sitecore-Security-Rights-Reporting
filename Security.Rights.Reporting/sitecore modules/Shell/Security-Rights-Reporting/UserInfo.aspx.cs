@@ -303,7 +303,7 @@ namespace Security.Rights.Reporting.Shell
             var profileFinder = new UserProfileFinder();
             List<List<string>> usertabel = new List<List<string>>();
             IEnumerable<User> users;
-            var totaluser = Sitecore.Security.Accounts.UserManager.Provider.GetUserCount();
+            var totaluser = Sitecore.Security.Accounts.UserManager.GetUserCount();
             info = string.Format("Total real Membership users is {0} (sitecore\\Anonymous does not count)", totaluser);
             if (totaluser > maxusers)
             {
@@ -357,7 +357,7 @@ namespace Security.Rights.Reporting.Shell
             }
             else
             {
-                users = Sitecore.Security.Accounts.UserManager.Provider.GetUsers();
+                users = Sitecore.Security.Accounts.UserManager.GetUsers();
             }
             if (users == null || users.Any() == false)
             {
