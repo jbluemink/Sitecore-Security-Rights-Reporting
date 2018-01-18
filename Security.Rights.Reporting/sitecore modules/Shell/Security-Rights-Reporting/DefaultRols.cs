@@ -20,6 +20,14 @@ namespace Security.Rights.Reporting.Shell
 
         public static string[] GetDefaultRolsByVersion()
         {
+            if (Sitecore.Configuration.About.Version.StartsWith("9.0.0"))
+            {
+                return DefaultsRolsSitecore9;
+            }
+            if (Sitecore.Configuration.About.Version.StartsWith("9"))
+            {
+                return DefaultsRolsSitecore901;
+            }
             if (Sitecore.Configuration.About.Version.StartsWith("8"))
             {
                 return DefaultsRolsSitecore8;
@@ -42,7 +50,80 @@ namespace Security.Rights.Reporting.Shell
             }
             return  new string[0];
         }
-
+        public static string[] DefaultsRolsSitecore901 =
+        {
+            "sitecore\\Analytics Advanced Testing"
+            , "sitecore\\Analytics Content Profiling"
+            , "sitecore\\Analytics Maintaining"
+            , "sitecore\\Analytics Management Reporting"
+            , "sitecore\\Analytics Personalization"
+            , "sitecore\\Analytics Reporting"
+            , "sitecore\\Analytics Testing"
+            , "sitecore\\Author"
+            , "sitecore\\Designer"
+            , "sitecore\\Developer"
+            , "sitecore\\EXM Users"
+            , "sitecore\\EXM Advanced Users"
+            , "sitecore\\Forms Editor"
+            , "sitecore\\List Manager Editors"
+            , "sitecore\\Marketing Automation Editors"
+            , "sitecore\\Sitecore Client Account Managing"
+            , "sitecore\\Sitecore Client Advanced Publishing"
+            , "sitecore\\Sitecore Client Authoring"
+            , "sitecore\\Sitecore Client Bucket Management"
+            , "sitecore\\Sitecore Client Configuring"
+            , "sitecore\\Sitecore Client Designing"
+            , "sitecore\\Sitecore Client Developing"
+            , "sitecore\\Sitecore Client Maintaining"
+            , "sitecore\\Sitecore Client Publishing"
+            , "sitecore\\Sitecore Client Securing"
+            , "sitecore\\Sitecore Client Translating"
+            , "sitecore\\Sitecore Client Users"
+            , "sitecore\\Sitecore Limited Content Editor"
+            , "sitecore\\Sitecore Limited Page Editor"
+            , "sitecore\\Sitecore Local Administrators"
+            , "sitecore\\Sitecore Minimal Page Editor"
+            , "sitecore\\Everyone"
+            , "extranet\\Everyone"
+            , "default\\Everyone"
+            , "Everyone"
+        };
+        public static string[] DefaultsRolsSitecore9 =
+        {
+            "sitecore\\Analytics Advanced Testing"
+            , "sitecore\\Analytics Content Profiling"
+            , "sitecore\\Analytics Maintaining"
+            , "sitecore\\Analytics Management Reporting"
+            , "sitecore\\Analytics Personalization"
+            , "sitecore\\Analytics Reporting"
+            , "sitecore\\Analytics Testing"
+            , "sitecore\\Author"
+            , "sitecore\\Designer"
+            , "sitecore\\Developer"
+            , "sitecore\\Forms Editor"
+            , "sitecore\\List Manager Editors"
+            , "sitecore\\Marketing Automation Editors"
+            , "sitecore\\Sitecore Client Account Managing"
+            , "sitecore\\Sitecore Client Advanced Publishing"
+            , "sitecore\\Sitecore Client Authoring"
+            , "sitecore\\Sitecore Client Bucket Management"
+            , "sitecore\\Sitecore Client Configuring"
+            , "sitecore\\Sitecore Client Designing"
+            , "sitecore\\Sitecore Client Developing"
+            , "sitecore\\Sitecore Client Maintaining"
+            , "sitecore\\Sitecore Client Publishing"
+            , "sitecore\\Sitecore Client Securing"
+            , "sitecore\\Sitecore Client Translating"
+            , "sitecore\\Sitecore Client Users"
+            , "sitecore\\Sitecore Limited Content Editor"
+            , "sitecore\\Sitecore Limited Page Editor"
+            , "sitecore\\Sitecore Local Administrators"
+            , "sitecore\\Sitecore Minimal Page Editor"
+            , "sitecore\\Everyone"
+            , "extranet\\Everyone"
+            , "default\\Everyone"
+            , "Everyone"
+        };
         public static string[] DefaultsRolsSitecore8 =
         {
             "sitecore\\Analytics Advanced Testing"
@@ -188,8 +269,10 @@ namespace Security.Rights.Reporting.Shell
             , {"sitecore\\Author","Gives the user access to content in the content tree. This role provides access to basic item editing features, such as the Media Library and the Content Editor, with a reduced set of tabs on the ribbon. &#13;This role also has two of the Sitecore Client roles as members, so if you assign just this role to a user, the Sitecore Client Authoring and Sitecore Client Users roles will be automatically assigned to the user."}
             , {"sitecore\\Designer","Gives the user read and write access to the areas of the content tree that are required when changing layout details for individual items and groups of items via template standard values, as well as items required when configuring the Experience Editor Design Pane. &#13;This role also has two of the Sitecore Client roles assigned to it, so if you assign just this role to a user, the Sitecore Client Designing and Sitecore Client Users roles will be automatically assigned to the user. &#13;This role provides access to the Experience Editor Design Pane features and the designer options in the Content Editor.&#13;Note This role is not a member of the Author and Authoring roles, so it does not allow users to edit items."}
             , {"sitecore\\Developer","Gives the user access to content manipulation facilities in the Content Editor, plus all the design and authoring roles normally used by client authors and client designers. It also provides access to more functionality on the ribbon of the Content Editor to allow full development features for users assigned to this role. &#13;This role also has access to the Development Tools menu in the Sitecore menu, which gives the user access to further development tools, such as the Package Designer."}
-            , {"sitecore\\Experience Explorer","Gives the user access to the explore mode in the Experience Editor and to manage the Presets of the Explore mode in the Marketing Control Panel.&#13;The role is intended for marketers who set up campaigns and personalization."}
-            , {"sitecore\\Facebook Message Reviewer","Gives the user access to edit Facebook messages."}
+            , {"sitecore\\Experience Explorer","Removed in Sitecore 9, Gives the user access to the explore mode in the Experience Editor and to manage the Presets of the Explore mode in the Marketing Control Panel.&#13;The role is intended for marketers who set up campaigns and personalization."}
+            , {"sitecore\\Forms Editor","New in Sitecore 9, With the Forms Editor role, a user can access the Sitecore Forms application from the Launchpad and is able to create, edit, and delete forms."}
+            , {"sitecore\\Facebook Message Reviewer","Removed in Sitecore 9, Gives the user access to edit Facebook messages."}
+            , {"sitecore\\Marketing Automation Editors","New in Sitecore 9, Gives the user access to the Marketing Automation application so they can create, edit, and manage marketing automation campaigns. In addition, this role gives the user access to the Marketing Control Panel application so they can create, edit, and manage marketing definitions that are part of the automation campaigns and the Analytics workflow."}
             , {"sitecore\\List Manager Editors","Gives the user access to the List Manager application for marketers who need to manage contact lists. This is primarily given to EXM users.&#13;Members of this role are:&#13;-Sitecore\\ECM Users&#13;-Sitecore\\ECM Advanced Users"}
             , {"sitecore\\Sitecore Client Account Managing","Gives the user access to maintain users, roles, and domains in the Access Manager, the Domain Manager, the Role Manager, and the User Manager."}
             , {"sitecore\\Sitecore Client Advanced Publishing","Gives the user access to the publishing functionality in the Experience Editor and in the Content Editor.&#13; This role has access to republish in addition to the same access rights as the Sitecore Client Publishing role."}
@@ -201,20 +284,22 @@ namespace Security.Rights.Reporting.Shell
             , {"sitecore\\Sitecore Client Maintaining","Gives the user access to template editing features and reporting tools. This role is intended for Sitecore super-users and developers"}
             , {"sitecore\\Sitecore Client Publishing","Gives the user access to the publishing functionality in the Experience Editor and in the Content Editor. Users that are not members of the Publishing role may still be able to publish, but only via automatic publishing features associated with Workflows.&#13;This role has access to Incremental publish, Smart publish, and Publish related items."}
             , {"sitecore\\Sitecore Client Securing","Gives the user access rights to security features in the Content Editor and other relevant applications.&#13;This role is intended for users who need to maintain users and access rights. "}
-            , {"sitecore\\Sitecore Client Social Authoring","Gives the user access to create messages and post them to social networks.&#13;The role is a member of the Sitecore\\Author role."}
+            , {"sitecore\\Sitecore Client Social Authoring","Removed in Sitecore 9, Gives the user access to create messages and post them to social networks.&#13;The role is a member of the Sitecore\\Author role."}
             , {"sitecore\\Sitecore Client Translating","Gives the user access to Sitecore’s translation features, such as the command Scan the database for untranslated fields.&#13;The role is intended for content authors who need access to languages other than the site's default language."}
             , {"sitecore\\Sitecore Client Users","Gives the user minimal access to Sitecore. With this role, the user can log in to the Sitecore Desktop, but will not have access to any applications.&#13;All of the other Sitecore client roles are members of the Sitecore Client Users role, which means that users in any Sitecore client role are automatically members of the Sitecore Client Users role."}
             , {"sitecore\\Sitecore Limited Content Editor","Limits the amount of Content Editor functionality provided by the Sitecore Client Authoring role (which is still required for users given this role).&#13;When a content author is assigned this role, they only have access to the Home, Review, and Publish tabs on the Content Editor ribbon and have no access to copy, move, or sort from the item's right-click menu."}
             , {"sitecore\\Sitecore Limited Page Editor","Restricts the amount of functionality that is available in the Experience Editor. However, unlike the Minimal Page Editor role, users assigned this role see a simple version of the standard Experience Editor ribbon.&#13;This role limits the amount of functionality provided by the Sitecore Client Authoring role (which is still required for users given this role), but allows more functional access than the Sitecore Minimal Page Editor role."}
             , {"sitecore\\Sitecore Local Administrators","Sitecore local administrators can log in to Sitecore and manage the security applications (including assigning security) within that domain. A local administrator cannot create domains or associate domains to users.&#13;Note&#13;The local administrator role is a member of the Sitecore Client Users, Sitecore Client Account Managing, and Sitecore Client Securing roles. You can use this role as a shortcut to adding these roles to a user."}
             , {"sitecore\\Sitecore Minimal Page Editor","Restricts the amount of functionality provided in the Experience Editor to the absolute minimum and users who have been assigned this role do not have access to the Experience Editor ribbon. For example, members of the Minimal Page Editor role cannot switch personalization variations.&#13;This role limits the amount of functionality provided by the Sitecore Client Authoring role (which is still required for users given this role)."}
-            , {"sitecore\\Social Marketer Message Reviewer","Gives the user access to edit social marketer messages."}
-            , {"sitecore\\Social Message Author","Gives the user access to create, edit, and remove all social marketer messages."}
-            , {"sitecore\\Social Message Workflow Editor","Gives the user access to use the Draft state and its commands in the Social Message workflow and the Social Marketer Message workflow."}
-            , {"sitecore\\Social Message Workflow Reviewer","Gives the user access to use the Awaiting Approval state and its commands in the Social Message workflow. In addition, the user also has access to the Awaiting Post Review, Post Accepted, and Post Removed states and their commands in the Social Marketer Message workflow."}
-            , {"sitecore\\Twitter Message Reviewer","Gives the user access to edit Twitter messages."}
-            , {"sitecore\\ECM Advanced Users","Email Experience Manager Module&#13;Gives the user full access to all the functionality in the Email Experience Manager. This role is a member of the List Manager Editors role.&#13;Members of this role can:&#13;-Delete a message.&#13;-Change the default settings.&#13;-Open or edit the engagement plan.&#13;-Change the recipient lists of a subscription message.&#13;-Save a message as a subscription message template.&#13;-Change the target device."}
-            , {"sitecore\\ECM Users","Email Experience Manager Module&#13;Gives the user access to all the basic functionality in the Email Experience Manager, such as create, send, and manage messages. This role is a member of the List Manager Editors role"}
+            , {"sitecore\\Social Marketer Message Reviewer","Removed in Sitecore 9, Gives the user access to edit social marketer messages."}
+            , {"sitecore\\Social Message Author","Removed in Sitecore 9,Gives the user access to create, edit, and remove all social marketer messages."}
+            , {"sitecore\\Social Message Workflow Editor","Removed in Sitecore 9, Gives the user access to use the Draft state and its commands in the Social Message workflow and the Social Marketer Message workflow."}
+            , {"sitecore\\Social Message Workflow Reviewer","Removed in Sitecore 9, Gives the user access to use the Awaiting Approval state and its commands in the Social Message workflow. In addition, the user also has access to the Awaiting Post Review, Post Accepted, and Post Removed states and their commands in the Social Marketer Message workflow."}
+            , {"sitecore\\Twitter Message Reviewer","Removed in Sitecore 9, Gives the user access to edit Twitter messages."}
+            , {"sitecore\\ECM Advanced Users","For Email Experience Manager Module 3.4 and lower.&#13;Gives the user full access to all the functionality in the Email Experience Manager. This role is a member of the List Manager Editors role.&#13;Members of this role can:&#13;-Delete a message.&#13;-Change the default settings.&#13;-Open or edit the engagement plan.&#13;-Change the recipient lists of a subscription message.&#13;-Save a message as a subscription message template.&#13;-Change the target device."}
+            , {"sitecore\\ECM Users","For Email Experience Manager Module 3.4 and lower.e&#13;Gives the user access to all the basic functionality in the Email Experience Manager, such as create, send, and manage messages. This role is a member of the List Manager Editors role"}
+            , {"sitecore\\EXM Users","For Email Experience Manager 3.5 and higher. Gives the user access to all the basic functionality in the Email Experience Manager, such as create, send, and manage messages. This role is a member of the List Manager Editors role."}
+            , {"sitecore\\EXM Advanced Users","For Email Experience Manager 3.5 and higher. Gives the user full access to all the functionality in the Email Experience Manager. This role is a member of the List Manager Editors role.&#13;Members of this role can:&#13;-Delete a message.&#13;-Change the default settings.&#13;-Open or edit the engagement plan.&#13;-Change the recipient lists of a subscription message.&#13;-Save a message as a subscription message template.&#13;-Change the target device."}
             , {"sitecore\\Sitecore Client Forms Author", "Web Forms for Marketers Module&#13;Gives the user access to the minimum features of the Web Forms for Marketers module. This role allows the user to:&#13;-Insert a new form&#13;-Edit an existing form&#13;-View the Summary report"}
             , {"sitecore\\Sitecore Marketer Form Author", "Web Forms for Marketers Module&#13;This role inherits access rights from the following roles, and can be used as a shortcut to assign a user all the access rights from those roles:&#13;-Sitecore Client Form Author&#13;-Analytics Maintaining&#13;-Analytics Reporting "}
             , {"sitecore\\Publishing Service Administrator","Publishing Service module&#13;This role has full access to the Publishing Service features, including the full republish functionality on the Publishing Dashboard. The Sitecore Client Publishing and the Sitecore Client Advanced Publishing roles do not grant access to the full republish functionality."}
