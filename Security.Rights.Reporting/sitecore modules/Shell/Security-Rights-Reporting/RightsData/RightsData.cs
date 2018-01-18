@@ -162,9 +162,19 @@ namespace Security.Rights.Reporting.Shell.RightsData
                 // 8.2 update 4
                 return JoinPathRight(Rights80.Core, Rights80.Core824Replace);
             }
+            else if (Sitecore.Configuration.About.Version.StartsWith("8.2.170728"))
+            {
+                // 8.2 update 5
+                return JoinPathRight(Rights80.Core, Rights80.Core824Replace);
+            }
+            else if (Sitecore.Configuration.About.Version.StartsWith("8.2.171121"))
+            {
+                // 8.2 update 6
+                return JoinPathRight(Rights80.Core, Rights80.Core824Replace);
+            }
             else if (Sitecore.Configuration.About.Version.StartsWith("8.2"))
             {
-                message = "Sitecore version not supported show rights as 8.2 update 4";
+                message = "Sitecore version not supported show rights as 8.2 update 6";
                 return JoinPathRight(Rights80.Core, Rights80.Core824Replace);
             }
            
@@ -242,9 +252,19 @@ namespace Security.Rights.Reporting.Shell.RightsData
                 // 8.2 update 4
                 return JoinPathRight(Rights80.Master, Rights80.Master820Replace);
             }
+            else if (Sitecore.Configuration.About.Version.StartsWith("8.2.170728"))
+            {
+                // 8.2 update 5
+                return JoinPathRight(Rights80.Master, Rights80.Master820Replace);
+            }
+            else if (Sitecore.Configuration.About.Version.StartsWith("8.2.171121"))
+            {
+                // 8.2 update 6
+                return JoinPathRight(Rights80.Master, Rights80.Master820Replace);
+            }
             else if (Sitecore.Configuration.About.Version.StartsWith("8.2"))
             {
-                message = "Sitecore version not supported show rights as 8.2 update 4";
+                message = "Sitecore version not supported show rights as 8.2 update 6";
                 return JoinPathRight(Rights80.Master, Rights80.Master820Replace);
             }
             message = "<span style=\"color:#000088;\">Sitecore version not supported for displaying default rights</span>";
