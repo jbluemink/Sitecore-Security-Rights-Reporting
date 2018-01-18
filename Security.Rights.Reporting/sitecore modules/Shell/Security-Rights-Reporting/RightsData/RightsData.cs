@@ -180,17 +180,17 @@ namespace Security.Rights.Reporting.Shell.RightsData
             else if (Sitecore.Configuration.About.Version.StartsWith("9.0.0.171002"))
             {
                 // 9 initial version
-                return JoinPathRight(Rights80.Core, Rights80.Core824Replace);
+                return JoinPathRight(Rights90.Core, Rights90.Core900Replace);
             }
-            else if (Sitecore.Configuration.About.Version.StartsWith("9.0.0.171219"))
+            else if (Sitecore.Configuration.About.Version.StartsWith("9.0.1.171219"))
             {
                 // 9 update 1
-                return JoinPathRight(Rights80.Core, Rights80.Core824Replace);
+                return  Rights90.Core;
             }
             else if (Sitecore.Configuration.About.Version.StartsWith("9"))
             {
                 message = "Sitecore version not supported show rights as 9 update 1";
-                return JoinPathRight(Rights80.Core, Rights80.Core824Replace);
+                return Rights90.Core;
             }
 
             message = "<span style=\"color:#000088;\">Sitecore version not supported for displaying default rights</span>";
@@ -284,17 +284,17 @@ namespace Security.Rights.Reporting.Shell.RightsData
             else if (Sitecore.Configuration.About.Version.StartsWith("9.0.0.171002"))
             {
                 // 9 initial version
-                return JoinPathRight(Rights80.Master, Rights80.Master820Replace);
+                return JoinPathRight(Rights90.Master,Rights90.Master900Replace);
             }
-            else if (Sitecore.Configuration.About.Version.StartsWith("9.0.0.171219"))
+            else if (Sitecore.Configuration.About.Version.StartsWith("9.0.1.171219"))
             {
                 // 9 update 1
-                return JoinPathRight(Rights80.Master, Rights80.Master820Replace);
+                return Rights90.Master;
             }
             else if (Sitecore.Configuration.About.Version.StartsWith("9"))
             {
                 message = "Sitecore version not supported show rights as 9 update 1";
-                return JoinPathRight(Rights80.Master, Rights80.Master820Replace);
+                return Rights90.Master;
             }
             message = "<span style=\"color:#000088;\">Sitecore version not supported for displaying default rights</span>";
             return new string[0][];

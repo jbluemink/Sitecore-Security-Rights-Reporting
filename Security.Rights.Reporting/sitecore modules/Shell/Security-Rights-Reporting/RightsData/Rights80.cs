@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using Security.Rights.Reporting.Shell.Model;
-using Sitecore.Security;
 
 namespace Security.Rights.Reporting.Shell.RightsData
 {
@@ -318,6 +316,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
             ,new[] {"/sitecore/content/Applications/Item browser",@"ar|Everyone|pe|!*|ar|sitecore\Sitecore Client Maintaining|pe|+item:read|"}
             ,new[] {"/sitecore/content/Documents and settings/All users/Start menu/Programs/Control Panel","" }
         };
+
         public static List<string[]> Master813Replace = new List<string[]>
         {
              new[] {"/sitecore/system/Settings/Buckets/Views/IDView",@"ar|sitecore\Author|pe|-item:read|pd|-item:read|ar|sitecore\Analytics Personalization|pe|-item:read|pd|-item:read|"} 

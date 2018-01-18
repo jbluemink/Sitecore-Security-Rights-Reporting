@@ -82,6 +82,7 @@
     <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\Model\DefaultUser.cs" />
     <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\Model\DefaultRol.cs" />
     <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\OpenUserinfo.cs" />
+    <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\RightsData\Rights90.cs" />
     <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\RightsData\Rights80.cs" />
     <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\RightsData\RightsData.cs" />
     <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\UserInfo.aspx.cs">
