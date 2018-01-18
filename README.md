@@ -27,9 +27,9 @@ This tool is for Sitecore Domain users, if there too many (extranet) users it is
 - 2.3 Support for Sitecore 8.1 update 2, added the rootnode, Bugfixing
 - 2.4 Support for Sitecore 8.2 and Sitecore 8.1 update 3, Bugfixing
 - 2.5 Support for Sitecore 8.2 update 3, Bugfixing and styling
+- 2.6 Support for Sitecore 9 update 1,and Sitecore 8.2 update 6 this version knows about the new roles in Sitecore 9 and The EXM rights.
 
-Tested on Sitecore 6.5 - 8.2, Version 2.3 and higher only tested on Sitecore 8.x but should work on older versions.
-Currently no support for Sitecore 9 due to a breaking change working on a new Version.
+Tested on Sitecore 6.5 - 9, Version 2.3 and higher only tested on Sitecore 8.x but should work on older versions.
 
 ## Upgading
 
