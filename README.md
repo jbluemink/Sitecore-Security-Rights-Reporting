@@ -28,9 +28,10 @@ This tool is for Sitecore Domain users, if there too many (extranet) users it is
 - 2.4 Support for Sitecore 8.2 and Sitecore 8.1 update 3, Bugfixing
 - 2.5 Support for Sitecore 8.2 update 3, Bugfixing and styling
 - 2.6 Support for Sitecore 9 update 1,and Sitecore 8.2 update 6 this version knows about the new roles in Sitecore 9 and The EXM rights.
+- 2.7 Support for Sitecore 9 update 2, and JSS
 
 Tested on Sitecore 6.5 - 9, Version 2.3 and higher only tested on Sitecore 8.x and 9.x but should work on older versions.
-and h
+
 ## Upgading
 
 - Install a new package and overwrite.

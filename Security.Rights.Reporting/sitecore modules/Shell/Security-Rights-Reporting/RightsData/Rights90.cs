@@ -25,7 +25,13 @@ namespace Security.Rights.Reporting.Shell.RightsData
 ,new[] { "/sitecore/system/Settings/Html Editor Profiles/Message Content/WebEdit Buttons/Insert Link", @""}
 ,new[] { "/sitecore/system/Settings/Html Editor Profiles/Message Content/WebEdit Buttons/Italic", @""}
 ,new[] { "/sitecore/system/Settings/Html Editor Profiles/Message Content/WebEdit Buttons/Underline", @""}
+        };
 
+        public static List<string[]> Core902Replace = new List<string[]>
+        {
+new[] {"/sitecore/client/Applications/UpdateCenter",@"ar|Everyone|pe|!*|pd|!*|ar|sitecore\Sitecore Client Developing|pe|+item:read|pd|+item:read|"}
+,new[] {"/sitecore/client/Applications/FormsBuilder",@"ar|sitecore\Everyone|pe|!*|pd|!*|ar|sitecore\Forms Editor|pe|+item:read|pd|+item:read|"}
+,new[] {"/sitecore/client/Applications/Launchpad/PageSettings/Buttons/Tools/UpdateCenter",@"ar|sitecore\Sitecore Client Developing|pe|+item:read|"}
         };
 
         public static List<string[]> Master900Replace = new List<string[]>
