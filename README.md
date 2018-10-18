@@ -17,6 +17,9 @@ And push the left-bottom start button in the right menu there is inside the Secu
 
 This tool is for Sitecore Domain users, if there too many (extranet) users it is skipping other domain users, this tool works for max 200 users in the Sitecore Domain.
 
+## Issues
+The tool is doing a heavy database query. similar to the Sitecore My items functionality. Depend on the number of items and sizing of the database, it can be too much.
+
 ## Version
 - 1.0 Initial version
 - 1.2 Bug fixes
