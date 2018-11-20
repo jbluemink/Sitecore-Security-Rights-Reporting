@@ -187,7 +187,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
                 // 9 update 1
                 return  Rights90.Core;
             }
-            else if (Sitecore.Configuration.About.Version.StartsWith("9.0.1.180604"))
+            else if (Sitecore.Configuration.About.Version.StartsWith("9.0.2.180604"))
             {
                 // 9 update 2
                 return JoinPathRight(Rights90.Core, Rights90.Core902Replace);
@@ -296,7 +296,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
                 // 9 update 1
                 return Rights90.Master;
             }
-            else if (Sitecore.Configuration.About.Version.StartsWith("9.0.1.180604"))
+            else if (Sitecore.Configuration.About.Version.StartsWith("9.0.2.180604"))
             {
                 // 9 update 2
                 return Rights90.Master;
