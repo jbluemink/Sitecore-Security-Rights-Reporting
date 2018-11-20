@@ -14,7 +14,7 @@ namespace Security.Rights.Reporting.Shell
                 List<List<string>> usertabel = null;
                 try
                 {
-                    usertabel = UserInfo.UserTabel(2000, out warning, out info);
+                    usertabel = sitecore_modules.Shell.Security_Rights_Reporting.UserRightsClassicScreen.UserTabel(2000, out warning, out info);
                 }
                 catch (Exception ex)
                 {
