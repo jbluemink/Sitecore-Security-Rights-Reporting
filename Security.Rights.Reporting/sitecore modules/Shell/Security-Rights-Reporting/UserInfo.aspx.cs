@@ -15,16 +15,17 @@ namespace Security.Rights.Reporting.Shell
             {
                 var account = Request.QueryString.Get("account");
                 var mode = Request.QueryString.Get("mode");
+                var classic = Request.QueryString.Get("classic");
                 var securitytoke = Request.QueryString.Get("token");
                 if (!string.IsNullOrEmpty(mode))
                 {
                     Uninstall.ApplicationSetup(userlist, Page, mode, securitytoke);
                 }
-                else if (string.IsNullOrEmpty(account))
+                else if (!string.IsNullOrEmpty(classic))
                 {
                     UserRightsClassicScreen.GetUserTabel(userlist);
                 }
-                else
+                else if (!string.IsNullOrEmpty(account))
                 {
                     string defaultrights = "Hide default Sitecore rights";
                     string url = string.Format("account={0}&defaultright=off",account);
@@ -38,6 +39,10 @@ namespace Security.Rights.Reporting.Shell
                     userrights.Text = string.Format("<h2><a href=\"{0}\">Back</a> | <a href=\"#master\">Master</a> | <a href=\"?{1}\">{2}</a></h2>", Request.Path, url, defaultrights);
                     userrights.Text += string.Format("With this tool you view all the Access right set on Sitecore items, and see which are custom or default Sitecore, and get a warning as default Sitecore rights are lacking.<br/>Legenda:<br/>Black Right is custom<br /><span style=\"color:#880000;\">Red Right</span> is missing<br /><span style=\"color:#FFA500;\">Orange Right</span> account not found, Note: $currentuser is a valid token for a __Standard Values item or a Branche template<br /><span style=\"color:#008800;\">Green Right</span> is expected in Your Sitecore version: {0}<br>", Sitecore.Configuration.About.Version);
                     GetAccountRight(account, showdefaultrights);
+                }
+                else
+                {
+                    UserListScreen.DisplayAccountRight(rightstable, userrights, userlistjsall, userlistjssitecore);
                 }
             }
             else

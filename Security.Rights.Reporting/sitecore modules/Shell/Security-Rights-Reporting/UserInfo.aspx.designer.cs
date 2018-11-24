@@ -22,6 +22,24 @@ namespace Security.Rights.Reporting.Shell {
         protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
         
         /// <summary>
+        /// userlistjsall control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal userlistjsall;
+        
+        /// <summary>
+        /// userlistjssitecore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal userlistjssitecore;
+        
+        /// <summary>
         /// userlist control.
         /// </summary>
         /// <remarks>
@@ -38,5 +56,14 @@ namespace Security.Rights.Reporting.Shell {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal userrights;
+        
+        /// <summary>
+        /// rightstable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rightstable;
     }
 }

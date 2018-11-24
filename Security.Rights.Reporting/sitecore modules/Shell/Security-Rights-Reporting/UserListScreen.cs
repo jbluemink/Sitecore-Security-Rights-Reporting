@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI.HtmlControls;
 using Sitecore.Data;
 using System.Web.UI.WebControls;
 using Sitecore.Data.Items;
@@ -12,9 +13,21 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
 {
     public static class UserListScreen
     {
-        public static void DisplayAccountRight(Literal userrights, Database db, string account, bool showdefaultrights)
+        public static void DisplayAccountRight(HtmlGenericControl userrightstable, Literal userrights, Literal jsallaccounts, Literal jssitecoreaccounts)
         {
-
+            userrightstable.Visible = true;
+            userrights.Text = string.Format("For Classic view with more checks: <a href=\"?{0}\">Classic</a><br/>", "classic=1");
+            var totaluser = Sitecore.Security.Accounts.UserManager.GetUserCount();
+            userrights.Text += string.Format("Total real Membership users is {0} (sitecore\\Anonymous does not count)", totaluser);
+            if (totaluser > 500)
+            {
+                userrights.Text += "<br/>To many users the user are filtered, show only the sitecore domain. (max 500 users) ";
+                jssitecoreaccounts.Visible = true;
+            }
+            else
+            {
+                jsallaccounts.Visible = true;
+            }
         }
     }
 }
