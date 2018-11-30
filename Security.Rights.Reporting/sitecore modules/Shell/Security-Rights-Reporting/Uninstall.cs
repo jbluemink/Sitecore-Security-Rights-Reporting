@@ -27,6 +27,7 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
                     DeleteFileFromWebroot(userlist,page,"~\\bin\\Security.Rights.Reporting.dll");
                     DeleteFileFromWebroot(userlist,page,"~\\sitecore modules\\Shell\\Security-Rights-Reporting\\Download.aspx");
                     DeleteFileFromWebroot(userlist,page,"~\\sitecore modules\\Shell\\Security-Rights-Reporting\\UserInfo.aspx");
+                    DeleteFileFromWebroot(userlist, page, "~\\sitecore modules\\Shell\\Security-Rights-Reporting\\jquery.min.js");
                     DeleteDirectoryFromWebroot(userlist,page,"~\\sitecore modules\\Shell\\Security-Rights-Reporting");
                     DeleteSitecoreCoreItem(userlist,"/sitecore/content/Applications/Content Editor/Ribbons/Chunks/Security Tools/Userinfo");
                     DeleteSitecoreCoreItem(userlist,"/sitecore/content/Documents and settings/All users/Start menu/Right/Security Tools/Security Reporting");

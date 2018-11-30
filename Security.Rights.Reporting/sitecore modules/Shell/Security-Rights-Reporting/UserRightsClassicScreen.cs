@@ -308,7 +308,7 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
                 }
             }
 
-            userlist.Text += "<p><a href=\"?account=all\">Show all Right</a><br><a href=\"/sitecore modules/Shell/Security-Rights-Reporting/Download.aspx\">Download</a><br/><a href=\"?\">Simple Acoount list</a></p>";
+            userlist.Text += "<p><a href=\"?account=all\">Show all Right</a><br><a href=\"/sitecore modules/Shell/Security-Rights-Reporting/Download.aspx\">Download</a><br/><a href=\"?\">Simple Account list</a></p>";
             userlist.Text += "<p><strong>Legenda:</strong><br>X Role is assigned to user<br>* isAdmin<br>*e Everyone role (can only assign to a item, All users are assigned to the Everyone role)<br><span style=\"color:#008800;\">Green Role / User</span> is expected in Your Sitecore version:" + Sitecore.Configuration.About.Version + "</p>";
         }
         #endregion
