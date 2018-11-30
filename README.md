@@ -1,6 +1,6 @@
 # Sitecore-Security-Rights-Reporting Module
 
-Simpel Sitecore Users with the Roles.
+Simpel list with Sitecore Users and the Roles.
 
 ![Example](https://raw.githubusercontent.com/jbluemink/Sitecore-Security-Rights-Reporting/master/Sitecore-Security-Rights-Simple-List.PNG)
 
