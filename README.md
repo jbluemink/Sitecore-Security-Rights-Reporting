@@ -39,7 +39,7 @@ The tool is doing a heavy database query. similar to the Sitecore My items funct
 - 2.7 Support for Sitecore 9 update 2, and JSS
 - 2.8 Support for Sitecore 9.1. new simple user, roles list with AJAX. showing max 500 users (Sitecore domain)
 
-Tested on Sitecore 6.5 - 9, Version 2.3 and higher only tested on Sitecore 8.x and 9.x but should work on older versions.
+Tested on Sitecore 6.5 - 9, Version 2.3 and higher only tested on Sitecore 8.x and 9.x but should work on older versions. Version 2.7 and higher only test on Sitecore 9+
 
 ## Upgading
 

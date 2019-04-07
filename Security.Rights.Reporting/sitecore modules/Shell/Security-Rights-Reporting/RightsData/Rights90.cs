@@ -44,6 +44,17 @@ new[] {"/sitecore/client/Applications/UpdateCenter",@"ar|Everyone|pe|!*|pd|!*|ar
             ,new[] {"/sitecore/content/Applications/Content Editor/Ribbons/Chunks/Content Tagging",@"ar|sitecore\Author|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|"}
         };
 
+        public static List<string[]> Core911Replace = new List<string[]>
+        {
+            new[] {"/sitecore/client/Applications/UpdateCenter",@"ar|Everyone|pe|!*|pd|!*|ar|sitecore\Sitecore Client Developing|pe|+item:read|pd|+item:read|"}
+            ,new[] {"/sitecore/client/Applications/FormsBuilder",@"ar|sitecore\Everyone|pe|!*|pd|!*|ar|sitecore\Forms Editor|pe|+item:read|pd|+item:read|"}
+            ,new[] {"/sitecore/client/Applications/Launchpad/PageSettings/Buttons/Tools/UpdateCenter",@"ar|sitecore\Sitecore Client Developing|pe|+item:read|"}
+            ,new[] {"/sitecore/content/Applications/Content Editor/Menues/Tag Content",@"ar|sitecore\Author|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|"}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Page Editor/Content Tagging",@"ar|sitecore\Author|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|"}
+            ,new[] {"/sitecore/content/Applications/Content Editor/Ribbons/Chunks/Content Tagging",@"ar|sitecore\Author|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|"}
+            ,new[] {"/sitecore/client/Applications/Launchpad/PageSettings/Buttons/Marketing/MarketingAutomation",@"ar|sitecore\Marketing Automation Editors|pe|+item:read|pd|+item:read|"}
+        };
+
         public static List<string[]> Master900Replace = new List<string[]>
         {
 new[] { "/sitecore/layout/Layouts/System/Email", @""}
