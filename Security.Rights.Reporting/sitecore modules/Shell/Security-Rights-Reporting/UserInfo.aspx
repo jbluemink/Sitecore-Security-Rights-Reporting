@@ -138,7 +138,7 @@ div.blueTable {
         function getRightsDate(url,page)
         {
             var retusers = 0;
-            $.ajax({dataType: 'json', url: url+page, success: function(result){
+            $.ajax({dataType: 'json', url: url+page+"/?sc_site=shell", success: function(result){
                 retusers = result.users.length;
                 $.each(result.users, function(index, element) {
                     $('#TableRightsBody').append('<div class=\"divTableRow\"><div class=\"divTableCell\">'+element.name+'</div><div class=\"divTableCell\">'+element.ProfileState+'</div><div class=\"divTableCell\">'+element.IsAdmin+'</div><div class=\"divTableCell\">'+element.Roles+'</div></div>')
