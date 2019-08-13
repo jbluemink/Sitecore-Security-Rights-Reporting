@@ -202,10 +202,19 @@ namespace Security.Rights.Reporting.Shell.RightsData
                 // 9.1 update-1
                 return JoinPathRight(Rights90.Core, Rights90.Core911Replace);
             }   
-            else if (Sitecore.Configuration.About.Version.StartsWith("9"))
+            else if (Sitecore.Configuration.About.Version.StartsWith("9.1"))
             {
                 message = "Sitecore version not supported show rights as 9.1 update-1";
                 return JoinPathRight(Rights90.Core, Rights90.Core911Replace);
+            }
+            else if (Sitecore.Configuration.About.Version.StartsWith("9.2.0.002893"))
+            {
+                return JoinPathRight(Rights90.Core, Rights90.Core920Replace);
+            }
+            else if (Sitecore.Configuration.About.Version.StartsWith("9.2"))
+            {
+                message = "Sitecore version not supported show rights as 9.2 initial";
+                return JoinPathRight(Rights90.Core, Rights90.Core920Replace);
             }
 
             message = "<span style=\"color:#000088;\">Sitecore version not supported for displaying default rights</span>";
@@ -321,10 +330,19 @@ namespace Security.Rights.Reporting.Shell.RightsData
                 // 9.1 update-1
                 return Rights90.Master;
             }
-            else if (Sitecore.Configuration.About.Version.StartsWith("9"))
+            else if (Sitecore.Configuration.About.Version.StartsWith("9.1"))
             {
-                message = "Sitecore version not supported show rights as 9.1 initial";
+                message = "Sitecore version not supported show rights as 9.1 update-1";
                 return Rights90.Master;
+            }
+            else if (Sitecore.Configuration.About.Version.StartsWith("9.2.0.002893"))
+            {
+                return JoinPathRight(Rights90.Master, Rights90.Master920Replace); 
+            }
+            else if (Sitecore.Configuration.About.Version.StartsWith("9.2"))
+            {
+                message = "Sitecore version not supported show rights as 9.2 initial";
+                return JoinPathRight(Rights90.Master, Rights90.Master920Replace);
             }
             message = "<span style=\"color:#000088;\">Sitecore version not supported for displaying default rights</span>";
             return new string[0][];

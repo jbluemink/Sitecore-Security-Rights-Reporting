@@ -55,6 +55,22 @@ new[] {"/sitecore/client/Applications/UpdateCenter",@"ar|Everyone|pe|!*|pd|!*|ar
             ,new[] {"/sitecore/client/Applications/Launchpad/PageSettings/Buttons/Marketing/MarketingAutomation",@"ar|sitecore\Marketing Automation Editors|pe|+item:read|pd|+item:read|"}
         };
 
+        public static List<string[]> Core920Replace = new List<string[]>
+        {
+            new[] {"/sitecore/client/Applications/UpdateCenter",@"ar|Everyone|pe|!*|pd|!*|ar|sitecore\Sitecore Client Developing|pe|+item:read|pd|+item:read|"}
+            ,new[] {"/sitecore/client/Applications/FormsBuilder",@"ar|sitecore\Everyone|pe|!*|pd|!*|ar|sitecore\Forms Editor|pe|+item:read|pd|+item:read|"}
+            ,new[] {"/sitecore/client/Applications/Launchpad/PageSettings/Buttons/Tools/UpdateCenter",@"ar|sitecore\Sitecore Client Developing|pe|+item:read|"}
+            ,new[] {"/sitecore/content/Applications/Content Editor/Menues/Tag Content",@"ar|sitecore\Author|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|"}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/WebEdit/Page Editor/Content Tagging",@"ar|sitecore\Author|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|"}
+            ,new[] {"/sitecore/content/Applications/Content Editor/Ribbons/Chunks/Content Tagging",@"ar|sitecore\Author|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|"}
+            ,new[] {"/sitecore/client/Applications/Launchpad/PageSettings/Buttons/Marketing/MarketingAutomation",@"ar|sitecore\Marketing Automation Editors|pe|+item:read|pd|+item:read|"}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/Chunks/Modes/Preview",@"ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|ar|sitecore\Sitecore Client Authoring|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Publishing|pe|+item:read|pd|+item:read|"}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/Chunks/Modes/Debug",@"ar|sitecore\Sitecore Client Developing|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|"}
+            ,new[] {"/sitecore/content/Applications/WebEdit/Ribbons/Chunks/Modes/Explore",@"ar|sitecore\Sitecore Client Designing|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Authoring|pe|+item:read|pd|+item:read|ar|sitecore\Sitecore Client Users|pe|!*|pd|!*|"}
+            ,new[] {"/sitecore/content/Applications/Content Editor/Menues/Editing/WebDAVEdit", @""}
+            ,new[] { "/sitecore/content/Documents and settings/All users/Start menu/Programs/Sitecore on the Net", @""}          
+        };
+
         public static List<string[]> Master900Replace = new List<string[]>
         {
 new[] { "/sitecore/layout/Layouts/System/Email", @""}
@@ -69,6 +85,12 @@ new[] { "/sitecore/layout/Layouts/System/Email", @""}
 ,new[] { "/sitecore/templates/System/Email/Manager Root/__Standard Values", @""}
 ,new[] { "/sitecore/templates/System/Email/Messages/Inner Content/Message Root/__Standard Values", @""}
         };
+
+    public static List<string[]> Master920Replace = new List<string[]>
+    {
+        new[] {"/sitecore/system/Publishing targets",@"ar|sitecore\Sitecore Client Publishing|pe|+item:read|+item:write|pd|+item:read|+item:write|"}
+        ,new[] {"/sitecore/templates/System/WebDAV/FDAMediaFolder/FDA/Referrers",@""}
+    };
 
         //core 9 update-1
         public static List<string[]> Core = new List<string[]>
