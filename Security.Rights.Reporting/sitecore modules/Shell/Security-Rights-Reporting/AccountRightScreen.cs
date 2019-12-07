@@ -47,6 +47,10 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
                     if (account == "devexport")
                     {
                         userrights.Text += string.Format(",new[] {{\"{0}\",@\"{1}\"}}\n<br>", item.Paths.FullPath, item.Fields["__Security"].Value);
+                        if (item.Paths.FullPath.StartsWith("[orphan]"))
+                        {
+                            userrights.Text += string.Format("orphan id={0} template={1}\n<br>", item.ID,item.TemplateID);
+                        }
                     }
                     else
                     {
