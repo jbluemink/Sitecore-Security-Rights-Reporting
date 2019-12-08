@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Security.Rights.Reporting.Shell.Model;
-using Sitecore.Data.Validators.FieldValidators;
 using Sitecore.Security.AccessControl;
 using Sitecore.Security.Accounts;
-using Sitecore.Web.UI.XamlSharp.Xaml.Extensions;
+
 
 namespace Security.Rights.Reporting.Shell.RightsData
 {
@@ -353,9 +351,8 @@ namespace Security.Rights.Reporting.Shell.RightsData
                 message = "Sitecore version not supported show rights as 9.2 initial";
                 return JoinPathRight(Rights90.Master, Rights90.Master920Replace);
             }
-            else if (Sitecore.Configuration.About.Version.StartsWith("9.3"))
+            else if (Sitecore.Configuration.About.Version.StartsWith("9.3.0.003498"))
             {
-                message = "Sitecore version not supported show rights as 9.3 initial";
                 return JoinPathRight(Rights90.Master, Rights90.Master930Replace);
             }
             else if (Sitecore.Configuration.About.Version.StartsWith("9.3"))
