@@ -19,6 +19,14 @@ namespace Security.Rights.Reporting.Shell
 
         public static string[] GetDefaultUsersByVersion()
         {
+            if (Sitecore.Configuration.About.Version.StartsWith("10"))
+            {
+                return DefaultsUsersSitecore75;
+            }
+            if (Sitecore.Configuration.About.Version.StartsWith("9"))
+            {
+                return DefaultsUsersSitecore75;
+            }
             if (Sitecore.Configuration.About.Version.StartsWith("8"))
             {
                 return DefaultsUsersSitecore75;

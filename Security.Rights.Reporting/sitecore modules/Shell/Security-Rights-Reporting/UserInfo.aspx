@@ -133,34 +133,45 @@ div.blueTable {
 .divTableHeading { display: table-header-group;}
 .divTableFoot { display: table-footer-group;}
 .divTableBody { display: table-row-group;}
+
+blink {
+    animation: blinker 0.6s linear infinite;
+    color: #1c87c9;
+}
+@keyframes blinker {  
+    50% { opacity: 0; }
+}
 </style>
 <script>
-        function getRightsDate(url,page)
-        {
-            var retusers = 0;
-            $.ajax({dataType: 'json', url: url+page+"/?sc_site=shell", success: function(result){
+    function getRightsDate(url, page) {
+        $('#loading').show();
+        var retusers = 0;
+        $.ajax({
+            dataType: 'json', url: url + page + "/?sc_site=shell", success: function (result) {
                 retusers = result.users.length;
-                $.each(result.users, function(index, element) {
-                    $('#TableRightsBody').append('<div class=\"divTableRow\"><div class=\"divTableCell\">'+element.name+'</div><div class=\"divTableCell\">'+element.ProfileState+'</div><div class=\"divTableCell\">'+element.IsAdmin+'</div><div class=\"divTableCell\">'+element.Roles+'</div></div>')
+                $.each(result.users, function (index, element) {
+                    $('#TableRightsBody').append('<div class=\"divTableRow\"><div class=\"divTableCell\">' + element.name + '</div><div class=\"divTableCell\">' + element.ProfileState + '</div><div class=\"divTableCell\">' + element.IsAdmin + '</div><div class=\"divTableCell\">' + element.Roles + '</div></div>')
                 });
                 if (retusers >= 10 && page < 49) {
-                    getRightsDate(url,page+1);	
+                    getRightsDate(url, page + 1);
+                } else {
+                    $('#loading').hide();
                 }
-	    
-            }});	
-        }
-    </script>
+            }
+        });
+    }
+</script>
     <asp:Literal runat="server" ID="userlistjsall" Visible="False">
     <script>
-        $(document).ready(function(){  
-            getRightsDate("/api/rightsreporting/users/",0);  
+        $(document).ready(function () {
+            getRightsDate("/api/rightsreporting/users/", 0);
         });
     </script>
     </asp:Literal>
     <asp:Literal runat="server" ID="userlistjssitecore" Visible="False">
         <script>
-            $(document).ready(function(){  
-                getRightsDate("/api/rightsreporting/sitecoreusers/",0);  
+            $(document).ready(function () {
+                getRightsDate("/api/rightsreporting/sitecoreusers/", 0);
             });
         </script>
     </asp:Literal>
@@ -173,6 +184,7 @@ div.blueTable {
     
 <asp:Literal runat="server" ID="userrights"></asp:Literal>
 
+<div id="loading" style="display: none"><blink>Loading.</blink></div>
 <div ID="rightstable" class="divTable blueTable" runat="server" Visible="False">
     <div class="divTableHeading">
         <div class="divTableRow">

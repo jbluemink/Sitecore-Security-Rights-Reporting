@@ -40,6 +40,10 @@ namespace Security.Rights.Reporting.Shell
             {
                 return DefaultsRolsSitecore930;
             }
+            if (Sitecore.Configuration.About.Version.StartsWith("10."))
+            {
+                return DefaultsRolsSitecore930;
+            }
             if (Sitecore.Configuration.About.Version.StartsWith("8"))
             {
                 return DefaultsRolsSitecore8;
@@ -352,8 +356,8 @@ namespace Security.Rights.Reporting.Shell
             , {"sitecore\\Twitter Message Reviewer","Removed in Sitecore 9, Gives the user access to edit Twitter messages."}
             , {"sitecore\\ECM Advanced Users","For Email Experience Manager Module 3.4 and lower.&#13;Gives the user full access to all the functionality in the Email Experience Manager. This role is a member of the List Manager Editors role.&#13;Members of this role can:&#13;-Delete a message.&#13;-Change the default settings.&#13;-Open or edit the engagement plan.&#13;-Change the recipient lists of a subscription message.&#13;-Save a message as a subscription message template.&#13;-Change the target device."}
             , {"sitecore\\ECM Users","For Email Experience Manager Module 3.4 and lower.e&#13;Gives the user access to all the basic functionality in the Email Experience Manager, such as create, send, and manage messages. This role is a member of the List Manager Editors role"}
-            , {"sitecore\\EXM Users","For Email Experience Manager 3.5 and higher. Gives the user access to all the basic functionality in the Email Experience Manager, such as create, send, and manage messages. This role is a member of the List Manager Editors role."}
-            , {"sitecore\\EXM Advanced Users","For Email Experience Manager 3.5 and higher. Gives the user full access to all the functionality in the Email Experience Manager. This role is a member of the List Manager Editors role.&#13;Members of this role can:&#13;-Delete a message.&#13;-Change the default settings.&#13;-Open or edit the engagement plan.&#13;-Change the recipient lists of a subscription message.&#13;-Save a message as a subscription message template.&#13;-Change the target device."}
+            , {"sitecore\\EXM Users","For Email Experience Manager 3.5 and higher. Gives the user access to all the basic functionality in the Email Experience Manager, such as create, send, and manage messages. This role is a member of the List Manager Editors role. Or This role gives users access to all the functionality of the EXM application, except for the following &#13-Changing default settings &#13-Deleting messages"}
+            , {"sitecore\\EXM Advanced Users","For Email Experience Manager 3.5 and higher. Only assign this role to users if you are sure you want to grant them full access to EXM., Gives the user full access to all the functionality in the Email Experience Manager. This role is a member of the List Manager Editors role.&#13;Members of this role can:&#13;-Delete a message.&#13;-Change the default settings.&#13;-Open or edit the engagement plan.&#13;-Change the recipient lists of a subscription message.&#13;-Save a message as a subscription message template.&#13;-Change the target device."}
             , {"sitecore\\Sitecore Client Forms Author", "Web Forms for Marketers Module&#13;Gives the user access to the minimum features of the Web Forms for Marketers module. This role allows the user to:&#13;-Insert a new form&#13;-Edit an existing form&#13;-View the Summary report"}
             , {"sitecore\\Sitecore Marketer Form Author", "Web Forms for Marketers Module&#13;This role inherits access rights from the following roles, and can be used as a shortcut to assign a user all the access rights from those roles:&#13;-Sitecore Client Form Author&#13;-Analytics Maintaining&#13;-Analytics Reporting "}
             , {"sitecore\\JSS Import Service Users","Denying item:write and item:create access to the sitecore\\JSS Import Service Users role or the specific import user allows a Sitecore developer or admin to limit items that the front-end developer can create and update."}
