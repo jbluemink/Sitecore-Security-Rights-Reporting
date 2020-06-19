@@ -16,6 +16,7 @@ namespace Security.Rights.Reporting.Shell
                 var account = Request.QueryString.Get("account");
                 var mode = Request.QueryString.Get("mode");
                 var classic = Request.QueryString.Get("classic");
+                var export = Request.QueryString.Get("rolesexport");
                 var securitytoke = Request.QueryString.Get("token");
                 if (!string.IsNullOrEmpty(mode))
                 {
@@ -24,6 +25,10 @@ namespace Security.Rights.Reporting.Shell
                 else if (!string.IsNullOrEmpty(classic))
                 {
                     UserRightsClassicScreen.GetUserTabel(userlist);
+                }
+                else if (!string.IsNullOrEmpty(export))
+                {
+                    RolesExport.ExportWizard(Request, rolesexport,export);
                 }
                 else if (!string.IsNullOrEmpty(account))
                 {

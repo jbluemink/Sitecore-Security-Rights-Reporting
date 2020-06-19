@@ -7,6 +7,7 @@ using Sitecore.Data.Items;
 using Security.Rights.Reporting.Shell;
 using Security.Rights.Reporting.Shell.RightsData;
 using Sitecore.Security.Accounts;
+using Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Reporting.RightsData;
 
 namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Reporting
 {
@@ -23,17 +24,16 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
             {
                 userrights.Text += string.Format("<h2 id=\"{1}\">Item Rights set on account {0} on {1} Database</h2>", System.Web.HttpUtility.HtmlEncode(account), db.Name);
             }
-            //We use a query instead of index search because, security field data is not in query, will be slower by large resultset.
-            const string query = "fast://*[@__Security != '' ]";
 
-            var itemList = new List<Item>(db.SelectItems(query));
+            //We use a query instead of index search because, security field data is not in query, will be slower by large resultset.
+            var itemList = CurrentRights.GetAllRights(db);
 
             var count = 0;
 
             var checkAccount = new CheckAccount();
-
             string outmessage;
-            var defaultRights = RightsData.GetDefaultRights(db.Name, account, out outmessage);
+
+            var defaultRights = Reporting.Shell.RightsData.RightsData.GetDefaultRights(db.Name, account, out outmessage);
             if (!string.IsNullOrEmpty(outmessage))
             {
                 userrights.Text += "<p>" + outmessage + "</p>";

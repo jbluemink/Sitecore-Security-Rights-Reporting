@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserInfo.aspx.cs" Inherits="Security.Rights.Reporting.Shell.UserInfo" %>
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>Security Rights Reporting</title>
@@ -176,14 +175,12 @@ blink {
         </script>
     </asp:Literal>
  </head>
-            <body bgcolor="#FFFFFF">
+<body bgcolor="#FFFFFF">
+<h1>Security Rights Reporting</h1>
 
-            <h1>Security Rights Reporting</h1>
-
-            <asp:Literal runat="server" ID="userlist"></asp:Literal>
-    
+<asp:Literal runat="server" ID="userlist"></asp:Literal>
 <asp:Literal runat="server" ID="userrights"></asp:Literal>
-
+<asp:Literal runat="server" ID="rolesexport"></asp:Literal>
 <div id="loading" style="display: none"><blink>Loading.</blink></div>
 <div ID="rightstable" class="divTable blueTable" runat="server" Visible="False">
     <div class="divTableHeading">

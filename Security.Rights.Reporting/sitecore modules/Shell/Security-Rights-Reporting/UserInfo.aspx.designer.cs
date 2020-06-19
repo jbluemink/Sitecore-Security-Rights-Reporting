@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Security.Rights.Reporting.Shell {
-    
-    
-    public partial class UserInfo {
-        
+namespace Security.Rights.Reporting.Shell
+{
+
+
+    public partial class UserInfo
+    {
+
         /// <summary>
         /// Head1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Security.Rights.Reporting.Shell {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
-        
+
         /// <summary>
         /// userlistjsall control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Security.Rights.Reporting.Shell {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal userlistjsall;
-        
+
         /// <summary>
         /// userlistjssitecore control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Security.Rights.Reporting.Shell {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal userlistjssitecore;
-        
+
         /// <summary>
         /// userlist control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Security.Rights.Reporting.Shell {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal userlist;
-        
+
         /// <summary>
         /// userrights control.
         /// </summary>
@@ -56,7 +58,16 @@ namespace Security.Rights.Reporting.Shell {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal userrights;
-        
+
+        /// <summary>
+        /// rolesexport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal rolesexport;
+
         /// <summary>
         /// rightstable control.
         /// </summary>
