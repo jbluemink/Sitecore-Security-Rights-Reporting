@@ -15,6 +15,12 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
         static DateTime modified = new DateTime();
         static object lockGetAllRights = new object();
 
+        public static List<Item> GetAllRightsMaster()
+        {
+            var db = Sitecore.Configuration.Factory.GetDatabase("master");
+            return GetAllRights(db);
+        }
+            
         //get all rights, with a micro 5 minutes cache... because this query is very havy and may kill your database if you run on a poor db
         public static List<Item> GetAllRights(Database db)
         {
