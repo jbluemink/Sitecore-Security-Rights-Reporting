@@ -1,5 +1,6 @@
 ﻿using Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Reporting.RightsData;
 using Sitecore.Data.Items;
+using Sitecore.Express;
 using Sitecore.Security.AccessControl;
 using Sitecore.SecurityModel;
 using Sitecore.Visualization;
@@ -104,16 +105,21 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
 
         private static void Import1(Literal rolesexport)
         {
-            rolesexport.Text += "<form method=\"post\" action=\"?rolesexport=import2\" enctype=\"multipart/form-data\"><input type=\"file\" name=\"fileToUpload\" id=\"fileToUpload\" ><input type=\"submit\" value=\"Upload Image\" name=\"submit\" ></form>";
+            rolesexport.Text += "<form method=\"post\" action=\"?rolesexport=import2\" enctype=\"multipart/form-data\"><input type=\"file\" name=\"fileToUpload\" id=\"fileToUpload\" ><input type=\"submit\" value=\"Upload\" name=\"submit\" ></form>";
         }
         private static void Import2(HttpRequest request, Literal rolesexport)
-        {
-            rolesexport.Text += "Import<br/>";
-            var file = request.Form.Get("fileToUpload");
-            rolesexport.Text += file;
+        {    
+            var file = request.Files.Get("fileToUpload");           
+            if (file == null || file.ContentLength == 0) {
+                rolesexport.Text += "Select an import csv file.<br/>";
+                Import1(rolesexport);
+                return;
+            }
+            rolesexport.Text += "Import size=" + file.ContentLength +"<br/>";
             var db = Sitecore.Configuration.Factory.GetDatabase("master");
-
-            using (StringReader reader = new StringReader(file))
+            var updatecount = 0;
+            var newcount = 0;
+            using (StreamReader reader = new StreamReader(file.InputStream))
             {
                 string line;
                 int count = 0;
@@ -135,9 +141,20 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
                             {
                                 foreach (var rule in rules)
                                 {
-                                    //maar wat als die al bestaat?
+                                    if (!accessRules.Contains(rule))
+                                    {
+                                        accessRules.Remove(rule);
+                                        updatecount++;
+                                    } else
+                                    {
+                                        newcount++;
+                                    }
                                     accessRules.Add(rule);
                                 }
+                                item.Editing.BeginEdit();
+                                item.Security.SetAccessRules(accessRules);
+                                item.Editing.EndEdit();
+                                rolesexport.Text += "<br>" + splitted[0] + "  =  " + item.Fields["__Security"].Value;
                             }
                         }
                     } else
@@ -146,6 +163,7 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
                     }
                 }
             }
+            rolesexport.Text += "<p>Rights are imported, new rights " + newcount + " updated rights " + updatecount + "<br>Remember nothing is deleted, only the items that are in the import file are affected </p>";
         }
 
         public static bool CheckSetupRights()
