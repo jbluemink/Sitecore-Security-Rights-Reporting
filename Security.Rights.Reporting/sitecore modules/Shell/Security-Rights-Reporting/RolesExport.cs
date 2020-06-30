@@ -1,15 +1,15 @@
 ﻿using Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Reporting.RightsData;
 using Sitecore.Data.Items;
-using Sitecore.Express;
 using Sitecore.Security.AccessControl;
 using Sitecore.SecurityModel;
-using Sitecore.Visualization;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.AccessControl;
 using System.Web;
 using System.Web.Razor.Editor;
 using System.Web.UI.WebControls;
+using Sitecore.Security.Accounts;
+using System.Web.Security;
 
 namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Reporting
 {
@@ -119,6 +119,7 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
             var db = Sitecore.Configuration.Factory.GetDatabase("master");
             var updatecount = 0;
             var newcount = 0;
+            List<string> rolsPostponedProcess = new List<string>();
             using (StreamReader reader = new StreamReader(file.InputStream))
             {
                 string line;
@@ -127,8 +128,30 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
                 {
                     count++;
                     var splitted = line.Split(',');
-                    if (splitted.Length == 2)
+                    if (splitted.Length == 3 && splitted[0] == "role")
                     {
+                        if(!Sitecore.Security.Accounts.Role.Exists(splitted[1])) {
+                            try
+                            {
+                                Roles.CreateRole(splitted[1]);
+                                rolesexport.Text += "<br>rol created" + splitted[1];
+                                if (!string.IsNullOrEmpty(splitted[0]))
+                                {
+                                    rolsPostponedProcess.Add(line);
+                                }
+                            } catch
+                            {
+                                rolesexport.Text += "<br>Error cannot create rol " + splitted[1];
+                            }
+                        }
+                    }
+                    else   if (splitted.Length == 2)
+                    {
+                        if (rolsPostponedProcess.Any())
+                        {
+                            CreateRolInRols(rolsPostponedProcess);
+                            rolsPostponedProcess = new List<string>();
+                        }
                         Item item = db.GetItem(splitted[0]);
                         if (item == null)
                         {
@@ -164,6 +187,29 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
                 }
             }
             rolesexport.Text += "<p>Rights are imported, new rights " + newcount + " updated rights " + updatecount + "<br>Remember nothing is deleted, only the items that are in the import file are affected </p>";
+        }
+
+        private static void CreateRolInRols(List<string> rols)
+        {
+            foreach (var line in rols)
+            {
+                var splitted = line.Split(',');
+                if (splitted.Length == 3 && splitted[0] == "role")
+                {
+                    var rol = Sitecore.Security.Accounts.Role.FromName(splitted[1]);
+                    foreach (var subrolstring in splitted[2].Split('|'))
+                    {
+                        var subrol = Sitecore.Security.Accounts.Role.FromName(subrolstring);
+                        if (rol != null && subrol != null)
+                        {
+                            if (RolesInRolesManager.RolesInRolesSupported && !RolesInRolesManager.IsRoleInRole(subrol, rol, false))
+                            {
+                                RolesInRolesManager.AddRoleToRole(subrol, rol);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         public static bool CheckSetupRights()
