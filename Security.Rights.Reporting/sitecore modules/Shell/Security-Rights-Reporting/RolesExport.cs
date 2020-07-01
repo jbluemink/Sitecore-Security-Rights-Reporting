@@ -17,6 +17,8 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
     {
         public static void ExportWizard(HttpRequest request, Literal rolesexport, string step)
         {
+            rolesexport.Text += string.Format("<p><a href=\"?\">Back</a> | <a href=\"?classic=1\">Back to Classic</a></p>");
+
             if (step == "step1")
             {
                 Step1(rolesexport);
@@ -33,40 +35,7 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
             {
                 Import2(request, rolesexport);
             }
-        }
-
-        private static void Step2(HttpRequest request, Literal rolesexport)
-        {
-            rolesexport.Text += "Export<br/>";
-            var allright = CurrentRights.GetAllRightsMaster();
-            var rols = request.Form.Get("rol");
-            if (rols != null)
-            {
-                foreach (var rol in rols.Split(','))
-                {
-                    rolesexport.Text += "<strong>"+ rol + "</strong>  :<br> ";
-                    var account = Sitecore.Security.Accounts.Role.FromName(rol);
-                    if (account == null) break;
-                    foreach (var itemWithRights in allright)
-                    {
-                        var accessRules = itemWithRights.Security.GetAccessRules();
-                        if (accessRules != null)
-                        {
-                            foreach (var rule in accessRules)
-                            {
-                                if (rule.Account == account)
-                                {
-                                    AccessRuleCollection ruleCollection = new AccessRuleCollection();
-                                    ruleCollection.Add(rule);
-                                    rolesexport.Text += itemWithRights.Paths.FullPath + " |" + rule.SecurityPermission.ToString() + "|" +rule.AccessRight.Name+ "|  serialized =" + ruleCollection.ToString() +"<br>";
-                                }
-                            }
-                        }
-                    }
-                    rolesexport.Text += "<br>\n";
-                }
-            }
-        }
+         }
 
         private static void Step1(Literal rolesexport)
         {
@@ -98,9 +67,43 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
             {
                 //note: trust the role name, it should not contain wierd, breaking characters.
                 rolesexport.Text += "<input type=\"checkbox\" id=\""
-                    + rol.Name + "\" name=\"rol\" value=\"" + rol.Name + "\" >" + rol.Name + "<br/>";
+                    + rol.Name + "\" name=\"rol\" value=\"" + HttpUtility.HtmlAttributeEncode(rol.Name) + "\" >" + rol.Name + "<br/>";
             }
-            rolesexport.Text += "<input type=\"submit\" name=\"Submit\"><form>";
+            rolesexport.Text += "<input type=\"submit\" name=\"Submit\" value=\"Preview\"></form>";
+        }
+
+        private static void Step2(HttpRequest request, Literal rolesexport)
+        {
+            rolesexport.Text += "Export preview<br><br>";
+            var allright = CurrentRights.GetAllRightsMaster();
+            var rols = request.Form.Get("rol");
+            if (rols != null)
+            {
+                foreach (var rol in rols.Split(','))
+                {
+                    rolesexport.Text += "<strong>" + rol + "</strong>  :<br> ";
+                    var account = Sitecore.Security.Accounts.Role.FromName(rol);
+                    if (account == null) break;
+                    foreach (var itemWithRights in allright)
+                    {
+                        var accessRules = itemWithRights.Security.GetAccessRules();
+                        if (accessRules != null)
+                        {
+                            foreach (var rule in accessRules)
+                            {
+                                if (rule.Account == account)
+                                {
+                                    AccessRuleCollection ruleCollection = new AccessRuleCollection();
+                                    ruleCollection.Add(rule);
+                                    rolesexport.Text += itemWithRights.Paths.FullPath + " |" + rule.SecurityPermission.ToString() + "|" + rule.AccessRight.Name + "|  serialized =" + ruleCollection.ToString() + "<br>";
+                                }
+                            }
+                        }
+                    }
+                    rolesexport.Text += "<br>\n";
+                }
+                rolesexport.Text += "<form method=\"post\" action=\"/sitecore modules/Shell/Security-Rights-Reporting/Download.aspx?rolesexport=1\" enctype=\"multipart/form-data\"><input type=\"hidden\" id=\"rol\" name=\"rol\" value=\"" + "" + HttpUtility.HtmlAttributeEncode(rols) + "\"><input type=\"submit\" value=\"Download\" name=\"submit\" ></form>";
+            }
         }
 
         private static void Import1(Literal rolesexport)
@@ -115,7 +118,7 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
                 Import1(rolesexport);
                 return;
             }
-            rolesexport.Text += "Import size=" + file.ContentLength +"<br/>";
+            rolesexport.Text += "Import size=" + file.ContentLength +" characters<br/>";
             var db = Sitecore.Configuration.Factory.GetDatabase("master");
             var updatecount = 0;
             var newcount = 0;
@@ -134,14 +137,14 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
                             try
                             {
                                 Roles.CreateRole(splitted[1]);
-                                rolesexport.Text += "<br>rol created" + splitted[1];
+                                rolesexport.Text += "<br>rol created" + HttpUtility.HtmlEncode(splitted[1]);
                                 if (!string.IsNullOrEmpty(splitted[0]))
                                 {
                                     rolsPostponedProcess.Add(line);
                                 }
                             } catch
                             {
-                                rolesexport.Text += "<br>Error cannot create rol " + splitted[1];
+                                rolesexport.Text += "<br>Error cannot create rol " + HttpUtility.HtmlEncode(splitted[1]);
                             }
                         }
                     }
@@ -155,7 +158,7 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
                         Item item = db.GetItem(splitted[0]);
                         if (item == null)
                         {
-                            rolesexport.Text += "<br>Error unknow item path " + splitted[0];
+                            rolesexport.Text += "<br>Error unknow item path " + HttpUtility.HtmlEncode(splitted[0]);
                         } else
                         {
                             var accessRules = item.Security.GetAccessRules();
@@ -164,7 +167,7 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
                             {
                                 foreach (var rule in rules)
                                 {
-                                    if (!accessRules.Contains(rule))
+                                    if (accessRules.Contains(rule))
                                     {
                                         accessRules.Remove(rule);
                                         updatecount++;
@@ -177,7 +180,7 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
                                 item.Editing.BeginEdit();
                                 item.Security.SetAccessRules(accessRules);
                                 item.Editing.EndEdit();
-                                rolesexport.Text += "<br>" + splitted[0] + "  =  " + item.Fields["__Security"].Value;
+                                rolesexport.Text += "<br>" + HttpUtility.HtmlEncode(splitted[0]) + "  =  " + HttpUtility.HtmlEncode(item.Fields["__Security"].Value);
                             }
                         }
                     } else
