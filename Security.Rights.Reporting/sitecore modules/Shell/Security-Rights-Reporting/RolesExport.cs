@@ -39,8 +39,9 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
 
         private static void Step1(Literal rolesexport)
         {
-            rolesexport.Text +=
-            "<h1>Export Rols with the Rights set on Items </h1>Select Rols<br/><form method=\"post\" action=\"?rolesexport=step2\">";
+            rolesexport.Text += "<h1>Export Roles with the Rights set on Items </h1>";
+            rolesexport.Text += "<p>With this export roles tool you can export one or more roles including all item rights that are set. This tool can help to move your rights through the DTAP-street. At the import rules are created if they not exist already. Items are matched by the item path, not the id. Only the security field is modified, and only the rights for the selected roles, rights are only added, rights not in the export will not modify or delete. Note only items in the master database. Note, if you only want to export the rules without rights, you can use a normal Sitecore Package.<p>";
+            rolesexport.Text += "<strong>Select Roles</strong><br/><form method=\"post\" action=\"?rolesexport=step2\">";
             var allnormalroles = Sitecore.Security.Accounts.RolesInRolesManager.GetAllRoles();
             if (allnormalroles == null || allnormalroles.Any() == false)
             {
@@ -108,8 +109,11 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
 
         private static void Import1(Literal rolesexport)
         {
+            rolesexport.Text += "<p>With this import roles tool you can import the roles including all item rights that are set. This tool can help to move your rights through the DTAP-street. At the import rules are created if they not exist already. Items are matched by the item path, not the id. Only the security field is modified, and only the rights for the selected roles, rights are only added, rights not in the export will not modify or delete. Note, if you only want to export the rules without rights, you can use a normal Sitecore Package.<p>";
+
             if (CheckOnManagingRights())
             {
+                rolesexport.Text += "<b>Select an export file</b> generated with the Security Rights Reporting Export Roles with the Rights tool";
                 rolesexport.Text += "<form method=\"post\" action=\"?rolesexport=import2\" enctype=\"multipart/form-data\"><input type=\"file\" name=\"fileToUpload\" id=\"fileToUpload\" ><input type=\"submit\" value=\"Upload\" name=\"submit\" ></form>";
             } else
             {
