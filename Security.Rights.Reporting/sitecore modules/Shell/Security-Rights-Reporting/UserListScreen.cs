@@ -17,7 +17,7 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
         {
             userrightstable.Visible = true;
             userrights.Text = string.Format("For Classic view with more checks: <a href=\"?{0}\">Classic</a> ", "classic=1");
-            userrights.Text += " or <a href=\"?rolesexport=step1\">Export Roles and Right</a> <a href=\"?rolesexport=import1\">Import Roles and Right</a><br>";
+            userrights.Text += " or <a href=\"?rolesexport=step1\">Export Roles and Right</a> or <a href=\"?rolesexport=import1\">Import Roles and Right</a><br>";
             var totaluser = Sitecore.Security.Accounts.UserManager.GetUserCount();
             userrights.Text += string.Format("Total real Membership users is {0} (sitecore\\Anonymous does not count)", totaluser);
             if (totaluser > 500)

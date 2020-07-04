@@ -119,7 +119,7 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
             var warningRights = defaultRights.Where(x => x.Hit == false).ToList();
             if (warningRights.Any())
             {
-                userrights.Text += "<br><span style=\"color:#880000;\">WARNING:</span> Expected rights not found:<br><table style=\"color:#880000;\">";
+                userrights.Text += "<br><span style=\"color:#880000;\">WARNING:</span> Expected rights not found, or no Access:<br><table style=\"color:#880000;\">";
                 foreach (var warningRight in warningRights)
                 {
                     userrights.Text += string.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td></tr>\n", warningRight.Path, warningRight.Account, warningRight.Name, warningRight.Message, warningRight.Right, warningRight.PropagationType);

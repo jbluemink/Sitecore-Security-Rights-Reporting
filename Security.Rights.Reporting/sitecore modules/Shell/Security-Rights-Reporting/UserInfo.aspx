@@ -176,8 +176,8 @@ blink {
     </asp:Literal>
  </head>
 <body bgcolor="#FFFFFF">
+<div style="float: right;"><a href="https://doc.sitecore.com/developers/93/platform-administration-and-architecture/en/the-security-roles.html" target="_blank">Description predefined roles</a></div>
 <h1>Security Rights Reporting</h1>
-
 <asp:Literal runat="server" ID="userlist"></asp:Literal>
 <asp:Literal runat="server" ID="userrights"></asp:Literal>
 <asp:Literal runat="server" ID="rolesexport"></asp:Literal>

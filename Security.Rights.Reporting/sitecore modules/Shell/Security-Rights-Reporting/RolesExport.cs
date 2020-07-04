@@ -95,7 +95,7 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
                                 {
                                     AccessRuleCollection ruleCollection = new AccessRuleCollection();
                                     ruleCollection.Add(rule);
-                                    rolesexport.Text += itemWithRights.Paths.FullPath + " | " + rule.SecurityPermission.ToString() + "|" + rule.AccessRight.Name + " " +RightsHelper.RightToHtml(rule) + "<br>";
+                                    rolesexport.Text += itemWithRights.Paths.FullPath + " " + RightsHelper.RightToHtml(rule) + " " + rule.AccessRight.Name + " " + rule.SecurityPermission.ToString() + "<br>";
                                 }
                             }
                         }
@@ -170,29 +170,36 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
                         Item item = db.GetItem(splitted[0]);
                         if (item == null)
                         {
-                            rolesexport.Text += "<br>Error unknow item path " + HttpUtility.HtmlEncode(splitted[0]);
+                            rolesexport.Text += "<br>Error unknow item path or no read rights" + HttpUtility.HtmlEncode(splitted[0]);
                         } else
                         {
                             var accessRules = item.Security.GetAccessRules();
                             var rules = AccessRuleCollection.FromString(splitted[1]);
                             if (rules != null)
                             {
-                                foreach (var rule in rules)
+                                if (item.Access.CanWrite())
                                 {
-                                    if (accessRules.Contains(rule))
+                                    foreach (var rule in rules)
                                     {
-                                        accessRules.Remove(rule);
-                                        updatecount++;
-                                    } else
-                                    {
-                                        newcount++;
+                                        if (accessRules.Contains(rule))
+                                        {
+                                            accessRules.Remove(rule);
+                                            updatecount++;
+                                        } else
+                                        {
+                                            newcount++;
+                                        }
+                                        accessRules.Add(rule);
                                     }
-                                    accessRules.Add(rule);
+                                    item.Editing.BeginEdit();
+                                    item.Security.SetAccessRules(accessRules);
+                                    item.Editing.EndEdit();
+                                    rolesexport.Text += "<br>" + HttpUtility.HtmlEncode(splitted[0]) + "  =  " + HttpUtility.HtmlEncode(item.Fields["__Security"].Value);
                                 }
-                                item.Editing.BeginEdit();
-                                item.Security.SetAccessRules(accessRules);
-                                item.Editing.EndEdit();
-                                rolesexport.Text += "<br>" + HttpUtility.HtmlEncode(splitted[0]) + "  =  " + HttpUtility.HtmlEncode(item.Fields["__Security"].Value);
+                                else
+                                {
+                                    rolesexport.Text += "<br><span style=\"color:#880000;\">Skipped: No write Access for " + HttpUtility.HtmlEncode(splitted[0]) + "  =  " + HttpUtility.HtmlEncode(item.Fields["__Security"].Value)+ "<span>";
+                                }
                             }
                         }
                     } else
