@@ -129,6 +129,7 @@
     <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\RightsData\Rights90.cs" />
     <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\RightsData\Rights80.cs" />
     <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\RightsData\RightsData.cs" />
+    <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\RightsHelper.cs" />
     <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\RolesExport.cs" />
     <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\Uninstall.cs" />
     <Compile Include="sitecore modules\Shell\Security-Rights-Reporting\UserInfo.aspx.cs">

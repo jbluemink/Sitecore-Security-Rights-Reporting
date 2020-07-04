@@ -95,7 +95,7 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
                                 {
                                     AccessRuleCollection ruleCollection = new AccessRuleCollection();
                                     ruleCollection.Add(rule);
-                                    rolesexport.Text += itemWithRights.Paths.FullPath + " |" + rule.SecurityPermission.ToString() + "|" + rule.AccessRight.Name + "|  serialized =" + ruleCollection.ToString() + "<br>";
+                                    rolesexport.Text += itemWithRights.Paths.FullPath + " | " + rule.SecurityPermission.ToString() + "|" + rule.AccessRight.Name + " " +RightsHelper.RightToHtml(rule) + "<br>";
                                 }
                             }
                         }
@@ -108,10 +108,22 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
 
         private static void Import1(Literal rolesexport)
         {
-            rolesexport.Text += "<form method=\"post\" action=\"?rolesexport=import2\" enctype=\"multipart/form-data\"><input type=\"file\" name=\"fileToUpload\" id=\"fileToUpload\" ><input type=\"submit\" value=\"Upload\" name=\"submit\" ></form>";
+            if (CheckOnManagingRights())
+            {
+                rolesexport.Text += "<form method=\"post\" action=\"?rolesexport=import2\" enctype=\"multipart/form-data\"><input type=\"file\" name=\"fileToUpload\" id=\"fileToUpload\" ><input type=\"submit\" value=\"Upload\" name=\"submit\" ></form>";
+            } else
+            {
+                rolesexport.Text += "You need Sitecore Client Securing right for Importing Riols and Users, the follow rol should work:  Developer, Admin, Client Account Managing or Client Securing right";
+            }
         }
         private static void Import2(HttpRequest request, Literal rolesexport)
-        {    
+        {
+            if (!CheckOnManagingRights())
+            {
+                rolesexport.Text += "You need Sitecore Client Securing right for Importing Riols and Users, the follow rol should work:  Developer, Admin, Client Account Managing or Client Securing right";
+                return;
+            }
+
             var file = request.Files.Get("fileToUpload");           
             if (file == null || file.ContentLength == 0) {
                 rolesexport.Text += "Select an import csv file.<br/>";
@@ -215,13 +227,21 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
             }
         }
 
-        public static bool CheckSetupRights()
+        private static bool CheckOnManagingRights()
         {
             if (Sitecore.Context.User.IsInRole("sitecore\\Developer"))
             {
                 return true;
             }
             if (Sitecore.Context.User.IsAdministrator)
+            {
+                return true;
+            }
+            if (Sitecore.Context.User.IsInRole("sitecore\\Sitecore Client Account Managing"))
+            {
+                return true;
+            }
+            if (Sitecore.Context.User.IsInRole("sitecore\\Sitecore Client Securing"))
             {
                 return true;
             }

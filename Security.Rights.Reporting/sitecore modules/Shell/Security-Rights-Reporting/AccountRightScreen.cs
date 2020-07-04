@@ -86,12 +86,12 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
 
                             if (rule.Account.Name == account)
                             {
-                                userrights.Text += string.Format("<tr{3}><td>{0}</td><td>{1}</td><td>{6}</td><td>{2}{4}</td><td>{5}</td></tr>\n", item.Paths.FullPath, rule.AccessRight.Comment, rule.SecurityPermission, style, message, rule.PropagationType, rule.AccessRight.Name);
+                                userrights.Text += string.Format("<tr{3}><td>{0}</td><td>{1}</td><td>{6}</td><td>{7}</td><td>{2}{4}</td><td>{5}</td></tr>\n", item.Paths.FullPath, rule.AccessRight.Comment, rule.SecurityPermission, style, message, rule.PropagationType, rule.AccessRight.Name, RightsHelper.RightToHtml(rule));
                                 count++;
                             }
                             else if (account == "all")
                             {
-                                userrights.Text += string.Format("<tr{4}><td>{0}</td><td>{8} : {1}</td><td>{7}</td><td>{2}{5}</td><td>{3}</td><td>{6}</td></tr>\n", item.Paths.FullPath, rule.Account.Name, rule.AccessRight.Comment, rule.SecurityPermission, style, message, rule.PropagationType, rule.AccessRight.Name, rule.Account.AccountType.ToString());
+                                userrights.Text += string.Format("<tr{4}><td>{0}</td><td>{8} : {1}</td><td>{7}</td><td>{9}</td><td>{2}{5}</td><td>{3}</td><td>{6}</td></tr>\n", item.Paths.FullPath, rule.Account.Name, rule.AccessRight.Comment, rule.SecurityPermission, style, message, rule.PropagationType, rule.AccessRight.Name, rule.Account.AccountType.ToString(), RightsHelper.RightToHtml(rule));
                                 count++;
                             }
                             else if (account == "alldevexport")
