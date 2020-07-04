@@ -12,7 +12,7 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
     {
         public static string RightToHtml(AccessRule rule)
         {
-            string retvalue = "<span style=\"text-nowrap\">";
+            string retvalue = "<span style=\"text-nowrap;white-space:nowrap;\">";
             if (rule.SecurityPermission == SecurityPermission.AllowAccess)
             {
                 retvalue += "<img src=\"/sitecore/shell/themes/standard/Images/Security/large_allow_enabled.gif\" Width =\"16\" Height=\"16\" Align=\"middle\"/>";
