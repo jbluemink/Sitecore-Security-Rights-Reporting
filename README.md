@@ -44,7 +44,7 @@ The tool is doing a heavy database query. similar to the Sitecore My items funct
 - 2.8 Support for Sitecore 9.1. new simple user, roles list with AJAX. showing max 500 users (Sitecore domain)
 - 2.9 Support for Sitecore 9.2 and Bugfixing
 - 2.10 Support for Sitecore 9.3, new roles
-- 2.11 New Export and Import tool, Style and bugfixing. the dirty Fast Query is now micro cached so be aware the data can be a few minutes old.![explanation import and export](http://www.stockpick.nl/english/export-and-import-sitecore-roles-and-rights/)
+- 2.11 New Export and Import tool, Style and bugfixing. the dirty Fast Query is now micro cached so be aware the data can be a few minutes old. ![explanation import and export](http://www.stockpick.nl/english/export-and-import-sitecore-roles-and-rights/)
 
 Tested on Sitecore 6.5 - 9, Version 2.3 and higher only tested on Sitecore 8.x and 9.x but should work on older versions. Version 2.7 and higher only test on Sitecore 9+
 
