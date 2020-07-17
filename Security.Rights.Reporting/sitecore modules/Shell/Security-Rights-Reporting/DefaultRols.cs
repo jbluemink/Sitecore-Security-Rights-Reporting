@@ -315,7 +315,8 @@ namespace Security.Rights.Reporting.Shell
 
         public static Dictionary<string, string> RolComment = new Dictionary<string, string>()
         {
-              {"sitecore\\Analytics Advanced Testing", "New in Sitecore 8. Gives the user access to see additional tabs and controls in the Marketing Control Panel. &#13;You typically give this role to optimization experts, who need expanded rights when performing tests, traffic allocation, and so on."}
+              {"sitecore\\ADM Admin", "Analytics Database Manager is a module which allows removing the data from the collection database. This roles give you access to the Module, if installed"}
+            , {"sitecore\\Analytics Advanced Testing", "New in Sitecore 8. Gives the user access to see additional tabs and controls in the Marketing Control Panel. &#13;You typically give this role to optimization experts, who need expanded rights when performing tests, traffic allocation, and so on."}
             , {"sitecore\\Analytics Content Profiling", "Gives the user access to the content profiling functionality in the Experience Editor and in the Content Editor."}
             , {"sitecore\\Analytics Maintaining","Gives the user access to the Marketing Control Panel, the Engagement Plan Designer, and the Supervisor. &#13;The role gives the user permissions to create goal or page event messages and campaigns for messages."}
             , {"sitecore\\Analytics Management Reporting","Gives the user access to view the management reports for optimization efforts. &#13;This role is typically given to users working with optimization, who wants to view management reports for the optimization efforts. The user can still perform tests, but this is not their main objective."}

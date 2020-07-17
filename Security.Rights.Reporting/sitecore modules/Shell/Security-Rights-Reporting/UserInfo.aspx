@@ -142,6 +142,12 @@ blink {
 }
 </style>
 <script>
+    <% 
+    var jsonSerialiser = new System.Web.Script.Serialization.JavaScriptSerializer();
+    var json = jsonSerialiser.Serialize(Security.Rights.Reporting.Shell.DefaultRols.RolComment);
+    %>
+    var rolComment = <%=json%>;
+
     function getRightsDate(url, page) {
         $('#loading').show();
         var retusers = 0;
@@ -149,7 +155,7 @@ blink {
             dataType: 'json', url: url + page + "/?sc_site=shell", success: function (result) {
                 retusers = result.users.length;
                 $.each(result.users, function (index, element) {
-                    $('#TableRightsBody').append('<div class=\"divTableRow\"><div class=\"divTableCell\">' + element.name + '</div><div class=\"divTableCell\">' + element.ProfileState + '</div><div class=\"divTableCell\">' + element.IsAdmin + '</div><div class=\"divTableCell\">' + element.Roles + '</div></div>')
+                    $('#TableRightsBody').append('<div class=\"divTableRow\"><div class=\"divTableCell\">' + element.name + '</div><div class=\"divTableCell\">' + element.ProfileState + '</div><div class=\"divTableCell\">' + element.IsAdmin + '</div><div class=\"divTableCell\">' + ParseRoles(element.Roles) + '</div></div>')
                 });
                 if (retusers >= 10 && page < 49) {
                     getRightsDate(url, page + 1);
@@ -159,6 +165,20 @@ blink {
             }
         });
     }
+    function ParseRoles(roles) {
+        var retvalue = "";
+        var role = roles.split(", ");
+        $.each(role, function (index, element) {
+            if (index != 0) { retvalue += ", "; }
+            var title = "";
+            if (rolComment[element]) {
+                title = rolComment[element];
+            }
+            retvalue += "<a href=\"?account=" + element + "&t=d\" title=\"" + title + "\">" + element + "</a>";
+        });
+        return retvalue;
+    }
+    
 </script>
     <asp:Literal runat="server" ID="userlistjsall" Visible="False">
     <script>

@@ -43,6 +43,11 @@ namespace Security.Rights.Reporting.Shell
                     }
                     userrights.Text = string.Format("<h2><a href=\"{0}\">Back</a> | <a href=\"?classic=1\">Back to Classic</a> | <a href=\"#master\">Master</a> | <a href=\"?{1}\">{2}</a></h2>", Request.Path, url, defaultrights);
                     userrights.Text += string.Format("With this tool you view all the Access right set on Sitecore items, and see which are custom or default Sitecore, and get a warning as default Sitecore rights are lacking. A security account is a role or a user, best practice assign only item rights to a role.<br/>Legenda:<br/>Black Right is custom<br /><span style=\"color:#880000;\">Red Right</span> is missing<br /><span style=\"color:#FFA500;\">Orange Right</span> account not found, Note: $currentuser is a valid token for a __Standard Values item or a Branche template<br /><span style=\"color:#008800;\">Green Right</span> is expected in Your Sitecore version: {0}<br>", Sitecore.Configuration.About.Version);
+                    string comment;
+                    if (DefaultRols.RolComment.TryGetValue(account, out comment))
+                    {
+                        userrights.Text += string.Format("Rol: {0} : {1}<br>", account, comment);
+                    }
                     GetAccountRight(account, showdefaultrights);
                 }
                 else
