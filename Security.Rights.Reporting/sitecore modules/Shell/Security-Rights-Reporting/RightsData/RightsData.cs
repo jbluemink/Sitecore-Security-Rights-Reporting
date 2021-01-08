@@ -227,10 +227,14 @@ namespace Security.Rights.Reporting.Shell.RightsData
             {
                 return JoinPathRight(Rights90.Core, Rights90.Core100Replace);
             }
+            else if (Sitecore.Configuration.About.Version.StartsWith("10.0.1.004842"))
+            {
+                return JoinPathRight(Rights90.Core, Rights90.Core1001Replace);
+            }
             else if (Sitecore.Configuration.About.Version.StartsWith("10."))
             {
-                message = "Sitecore version not supported show rights as 10.0 initial";
-                return JoinPathRight(Rights90.Core, Rights90.Core930Replace);
+                message = "Sitecore version not supported show rights as 10.0 update 1";
+                return JoinPathRight(Rights90.Core, Rights90.Core1001Replace);
             }
             message = "<span style=\"color:#000088;\">Sitecore version not supported for displaying default rights</span>";
             return new string[0][];
@@ -369,6 +373,10 @@ namespace Security.Rights.Reporting.Shell.RightsData
                 return JoinPathRight(Rights90.Master, Rights90.Master930Replace);
             }
             else if (Sitecore.Configuration.About.Version.StartsWith("10.0.0.004346"))
+            {
+                return JoinPathRight(Rights90.Master, Rights90.Master930Replace);
+            }
+            else if (Sitecore.Configuration.About.Version.StartsWith("10.0.1.004842"))
             {
                 return JoinPathRight(Rights90.Master, Rights90.Master930Replace);
             }
