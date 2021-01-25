@@ -3,6 +3,7 @@
 Simpel list with Sitecore Users and the Roles.
 
 ![Example](https://raw.githubusercontent.com/jbluemink/Sitecore-Security-Rights-Reporting/master/Sitecore-Security-Rights-Simple-List.PNG)
+Simpel list start with a 500 user limit for a fast statup for release 2.13+ there is also a no limit option also the possibility to download the list as CSV
 
 Export and Import roles with the Rights set on Items.
 
