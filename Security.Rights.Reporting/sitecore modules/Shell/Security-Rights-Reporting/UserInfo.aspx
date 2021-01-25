@@ -148,7 +148,7 @@ blink {
     %>
     var rolComment = <%=json%>;
 
-    function getRightsDate(url, page) {
+    function getRightsDate(url, page, pagelimit) {
         $('#loading').show();
         var retusers = 0;
         $.ajax({
@@ -157,8 +157,8 @@ blink {
                 $.each(result.users, function (index, element) {
                     $('#TableRightsBody').append('<div class=\"divTableRow\"><div class=\"divTableCell\">' + element.name + '</div><div class=\"divTableCell\">' + element.ProfileState + '</div><div class=\"divTableCell\">' + element.IsAdmin + '</div><div class=\"divTableCell\">' + ParseRoles(element.Roles) + '</div></div>')
                 });
-                if (retusers >= 10 && page < 49) {
-                    getRightsDate(url, page + 1);
+                if (retusers >= 10 && page < pagelimit) {
+                    getRightsDate(url, page + 1, pagelimit);
                 } else {
                     $('#loading').hide();
                 }
@@ -183,14 +183,21 @@ blink {
     <asp:Literal runat="server" ID="userlistjsall" Visible="False">
     <script>
         $(document).ready(function () {
-            getRightsDate("/api/rightsreporting/users/", 0);
+            getRightsDate("/api/rightsreporting/users/", 0,49);
         });
     </script>
     </asp:Literal>
     <asp:Literal runat="server" ID="userlistjssitecore" Visible="False">
         <script>
             $(document).ready(function () {
-                getRightsDate("/api/rightsreporting/sitecoreusers/", 0);
+                getRightsDate("/api/rightsreporting/sitecoreusers/", 0,49);
+            });
+        </script>
+    </asp:Literal>
+    <asp:Literal runat="server" ID="usersnolimit" Visible="False">
+        <script>
+            $(document).ready(function () {
+                getRightsDate("/api/rightsreporting/users/", 0, 999999);
             });
         </script>
     </asp:Literal>

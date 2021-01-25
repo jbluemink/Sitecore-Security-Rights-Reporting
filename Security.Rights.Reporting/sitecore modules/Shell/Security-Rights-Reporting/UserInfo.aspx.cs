@@ -14,6 +14,7 @@ namespace Security.Rights.Reporting.Shell
             if (CheckAccessRight())
             {
                 var account = Request.QueryString.Get("account");
+                var nolimit = Request.QueryString.Get("nolimit");
                 var mode = Request.QueryString.Get("mode");
                 var classic = Request.QueryString.Get("classic");
                 var export = Request.QueryString.Get("rolesexport");
@@ -52,7 +53,7 @@ namespace Security.Rights.Reporting.Shell
                 }
                 else
                 {
-                    UserListScreen.DisplayAccountRight(rightstable, userrights, userlistjsall, userlistjssitecore);
+                    UserListScreen.DisplayAccountRight(rightstable, userrights, userlistjsall, userlistjssitecore, usersnolimit, nolimit);
                 }
             }
             else
