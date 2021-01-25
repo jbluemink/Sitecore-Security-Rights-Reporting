@@ -25,6 +25,7 @@ Go to the Sitecore Desktop (/sitecore/shell/)
 And push the left-bottom start button in the right menu there is inside the Security Tools menu a new Security Reporting menu item
 
 This tool is for Sitecore Domain users, if there too many (extranet) users it is skipping other domain users, this tool works for max 200 users in the Sitecore Domain.
+it is more a rapportage tool than an import export tool, but anyway there is a rol export import with item rights. for user export see [Transferring user passwords between Sitecore instances](https://kb.sitecore.net/articles/242631)
 
 ## Issues
 The tool is doing a heavy database query. similar to the Sitecore My items functionality. Depend on the number of items and sizing of the database, it can be too much.

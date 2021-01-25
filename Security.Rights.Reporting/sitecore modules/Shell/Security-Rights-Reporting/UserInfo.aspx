@@ -152,7 +152,10 @@ blink {
         $('#loading').show();
         var retusers = 0;
         $.ajax({
-            dataType: 'json', url: url + page + "/?sc_site=shell", success: function (result) {
+            dataType: 'json', url: url + page + "/?sc_site=shell", error: function () {
+                console.log("error geting data retry"); 
+                getRightsDate(url, page, pagelimit);
+            }, success: function (result) {
                 retusers = result.users.length;
                 $.each(result.users, function (index, element) {
                     $('#TableRightsBody').append('<div class=\"divTableRow\"><div class=\"divTableCell\">' + element.name + '</div><div class=\"divTableCell\">' + element.ProfileState + '</div><div class=\"divTableCell\">' + element.IsAdmin + '</div><div class=\"divTableCell\">' + ParseRoles(element.Roles) + '</div></div>')
@@ -161,6 +164,7 @@ blink {
                     getRightsDate(url, page + 1, pagelimit);
                 } else {
                     $('#loading').hide();
+                    $('#loaded').show();
                 }
             }
         });
@@ -177,8 +181,7 @@ blink {
             retvalue += "<a href=\"?account=" + element + "&t=d\" title=\"" + title + "\">" + element + "</a>";
         });
         return retvalue;
-    }
-    
+    }    
 </script>
     <asp:Literal runat="server" ID="userlistjsall" Visible="False">
     <script>
@@ -209,6 +212,7 @@ blink {
 <asp:Literal runat="server" ID="userrights"></asp:Literal>
 <asp:Literal runat="server" ID="rolesexport"></asp:Literal>
 <div id="loading" style="display: none"><blink>Loading.</blink></div>
+<div id="loaded" style="display: none"><a href="#" id="save-link">Download</a></div>
 <div ID="rightstable" class="divTable blueTable" runat="server" Visible="False">
     <div class="divTableHeading">
         <div class="divTableRow">
@@ -223,6 +227,25 @@ blink {
 </div>
 
 <p align="right">Sitecore community code on <a href="https://github.com/jbluemink" target="_blank">GitHub</a> <a href="https://nl.linkedin.com/in/jan-bluemink-6b4467" target="_blank">Jan Bluemink</a> <a href="?mode=uninstall">Uninstall</a></p>
+    <script>
+        $('#save-link').click(function () {
+            var retContent = [];
+            retContent.push("Name,State,Is Admin,Roles");
+            var retString = '';
+            $('.divTableBody').each(function (idx, rootelem) {
+                $(rootelem).children('.divTableRow').each(function (idx, elem) {
+                    var elemText = [];
+                    $(elem).children('.divTableCell').each(function (childIdx, childElem) {
+                        elemText.push('"'+$(childElem).text()+'"');
+                    });
+                    retContent.push(elemText.join(','));
+                });
+            });
+            retString = retContent.join('\r\n');
+            var attachment = 'data:attachment/csv,' + encodeURI(retString)
+            window.open(attachment)
+        })
+    </script>
 </body>
 </html>
 
