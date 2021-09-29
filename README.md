@@ -31,6 +31,12 @@ it is more a rapportage tool than an import export tool, but anyway there is a r
 ## Issues
 The tool is doing a heavy database query. similar to the Sitecore My items functionality. Depend on the number of items and sizing of the database, it can be too much.
 
+##Sitecore 10.1+
+The tool uses fast query it is deprecated, also new it is now depend on the Query.MaxItems, default 100. That is far too low for this tool, 
+therefore the config from this tool disable the limit by setting Query.MaxItems to 0;
+For Sitecore version 10.1+ show all rights hide default Sitecore rights not available anymore.
+
+
 ## Version
 - 1.0 Initial version
 - 1.2 Bug fixes
@@ -49,10 +55,10 @@ The tool is doing a heavy database query. similar to the Sitecore My items funct
 - 2.11 New Export and Import tool, Style and bugfixing. the dirty Fast Query is now micro cached so be aware the data can be a few minutes old. [explanation import and export](http://www.stockpick.nl/english/export-and-import-sitecore-roles-and-rights/)
 - 2.12 Support for Sitecore 10 
 - 2.13 Support for Sitecore 10 update-1, no limit mode for simple list and a download button. bug fixes and text adjustments
-
+- 2.14 Support for Sitecore 10.1
 Tested on Sitecore 6.5 - 9, Version 2.3 and higher only tested on Sitecore 8.x and 9.x but should work on older versions. Version 2.7 and higher only test on Sitecore 9+
 
-## Upgading
+## Upgrading
 
 - Install a new package and overwrite.
 

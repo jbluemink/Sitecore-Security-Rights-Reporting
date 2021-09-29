@@ -40,9 +40,21 @@ namespace Security.Rights.Reporting.Shell
             {
                 return DefaultsRolsSitecore930;
             }
-            if (Sitecore.Configuration.About.Version.StartsWith("10."))
+            if (Sitecore.Configuration.About.Version.StartsWith("10.2"))
+            {
+                return DefaultsRolsSitecore101;
+            }
+            if (Sitecore.Configuration.About.Version.StartsWith("10.1"))
+            {
+                return DefaultsRolsSitecore101;
+            }
+            if (Sitecore.Configuration.About.Version.StartsWith("10.0"))
             {
                 return DefaultsRolsSitecore930;
+            }
+            if (Sitecore.Configuration.About.Version.StartsWith("10."))
+            {
+                return DefaultsRolsSitecore101;
             }
             if (Sitecore.Configuration.About.Version.StartsWith("8"))
             {
@@ -66,6 +78,47 @@ namespace Security.Rights.Reporting.Shell
             }
             return  new string[0];
         }
+        public static string[] DefaultsRolsSitecore101 =
+        {
+            "sitecore\\Analytics Advanced Testing"
+            , "sitecore\\Analytics Content Profiling"
+            , "sitecore\\Analytics Maintaining"
+            , "sitecore\\Analytics Management Reporting"
+            , "sitecore\\Analytics Personalization"
+            , "sitecore\\Analytics Reporting"
+            , "sitecore\\Analytics Testing"
+            , "sitecore\\Author"
+            , "sitecore\\Designer"
+            , "sitecore\\Developer"
+            , "sitecore\\EXM Users"
+            , "sitecore\\EXM Advanced Users"
+            , "sitecore\\Forms Data Administrator"
+            , "sitecore\\Forms Editor"
+            , "sitecore\\Forms Publisher"
+            , "sitecore\\List Manager Editors"
+            , "sitecore\\Marketing Automation Editors"
+            , "sitecore\\Sitecore Client Account Managing"
+            , "sitecore\\Sitecore Client Advanced Publishing"
+            , "sitecore\\Sitecore Client Authoring"
+            , "sitecore\\Sitecore Client Bucket Management"
+            , "sitecore\\Sitecore Client Configuring"
+            , "sitecore\\Sitecore Client Designing"
+            , "sitecore\\Sitecore Client Developing"
+            , "sitecore\\Sitecore Client Maintaining"
+            , "sitecore\\Sitecore Client Publishing"
+            , "sitecore\\Sitecore Client Securing"
+            , "sitecore\\Sitecore Client Translating"
+            , "sitecore\\Sitecore Client Users"
+            , "sitecore\\Sitecore Limited Content Editor"
+            , "sitecore\\Sitecore Limited Page Editor"
+            , "sitecore\\Sitecore Local Administrators"
+            , "sitecore\\Sitecore Minimal Page Editor"
+            , "sitecore\\Sitecore XConnect Data Admin"
+            , "sitecore\\Everyone"
+            , "extranet\\Everyone"
+            , "default\\Everyone"
+            , "Everyone"
+        };
         public static string[] DefaultsRolsSitecore930 =
         {
             "sitecore\\Analytics Advanced Testing"
@@ -364,6 +417,7 @@ namespace Security.Rights.Reporting.Shell
             , {"sitecore\\JSS Import Service Users","Denying item:write and item:create access to the sitecore\\JSS Import Service Users role or the specific import user allows a Sitecore developer or admin to limit items that the front-end developer can create and update."}
             , {"sitecore\\Publishing Service Administrator","Publishing Service module&#13;This role has full access to the Publishing Service features, including the full republish functionality on the Publishing Dashboard. The Sitecore Client Publishing and the Sitecore Client Advanced Publishing roles do not grant access to the full republish functionality."}
             , {"sitecore\\PowerShell Extensions Remoting","Sitecore PowerShell Community Module&#13;If powershell/services/remoting enabled=true in the config, this is the default rol for getting authorization for access to use SPE Remoting, Be aware that it is dependent on the config, since multiple or other roles can be defined. Typical the deploy user has this role if deployment is automate with PowerShell." }
+            , {"sitecore\\Sitecore XConnect Data Admin","give access to xConnect Web API and xConnect CLI plugin"}
             , {"Everyone", "All users are assigned the Everyone role.This role is a virtual role. It mirrors the Windows Everyone group. It does not exist in the role database but is only used for assigning and resolving security. You can use the Everyone role to assign access rights to every user or every user in a specific domain. The Everyone role is available as both a global role and a local role in every domain."}
             , {"sitecore\\Everyone", "All users are assigned the Everyone role. This role is a virtual role. It mirrors the Windows Everyone group. It does not exist in the role database but is only used for assigning and resolving security. You can use the Everyone role to assign access rights to every user or every user in a specific domain. The Everyone role is available as both a global role and a local role in every domain."}
             , {"extranet\\Everyone", "All users are assigned the Everyone role. This role is a virtual role. It mirrors the Windows Everyone group. It does not exist in the role database but is only used for assigning and resolving security. You can use the Everyone role to assign access rights to every user or every user in a specific domain. The Everyone role is available as both a global role and a local role in every domain."}

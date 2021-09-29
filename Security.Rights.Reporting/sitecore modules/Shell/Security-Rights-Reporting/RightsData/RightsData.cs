@@ -183,7 +183,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
             else if (Sitecore.Configuration.About.Version.StartsWith("9.0.1.171219"))
             {
                 // 9 update 1
-                return  Rights90.Core;
+                return Rights90.Core;
             }
             else if (Sitecore.Configuration.About.Version.StartsWith("9.0.2.180604"))
             {
@@ -199,7 +199,7 @@ namespace Security.Rights.Reporting.Shell.RightsData
             {
                 // 9.1 update-1
                 return JoinPathRight(Rights90.Core, Rights90.Core911Replace);
-            }   
+            }
             else if (Sitecore.Configuration.About.Version.StartsWith("9.1"))
             {
                 message = "Sitecore version not supported show rights as 9.1 update-1";
@@ -231,10 +231,15 @@ namespace Security.Rights.Reporting.Shell.RightsData
             {
                 return JoinPathRight(Rights90.Core, Rights90.Core1001Replace);
             }
-            else if (Sitecore.Configuration.About.Version.StartsWith("10."))
+            else if (Sitecore.Configuration.About.Version.StartsWith("10.0"))
             {
                 message = "Sitecore version not supported show rights as 10.0 update 1";
                 return JoinPathRight(Rights90.Core, Rights90.Core1001Replace);
+            }
+            else if (Sitecore.Configuration.About.Version.StartsWith("10."))
+            {
+                message = "Sitecore version 10.1+ show all rights hide default Sitecore rights and color status not available ";
+                return new string[0][];
             }
             message = "<span style=\"color:#000088;\">Sitecore version not supported for displaying default rights</span>";
             return new string[0][];
@@ -382,8 +387,8 @@ namespace Security.Rights.Reporting.Shell.RightsData
             }
             else if (Sitecore.Configuration.About.Version.StartsWith("10."))
             {
-                message = "Sitecore version not supported show rights as 10.0 initial";
-                return JoinPathRight(Rights90.Master, Rights90.Master930Replace);
+                message = "Sitecore version 10.1+ show all rights hide default Sitecore rights and color status not available ";
+                return new string[0][];
             }
             message = "<span style=\"color:#000088;\">Sitecore version not supported for displaying default rights</span>";
             return new string[0][];

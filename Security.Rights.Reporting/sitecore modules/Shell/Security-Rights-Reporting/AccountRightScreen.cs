@@ -8,6 +8,7 @@ using Security.Rights.Reporting.Shell;
 using Security.Rights.Reporting.Shell.RightsData;
 using Sitecore.Security.Accounts;
 using Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Reporting.RightsData;
+using Sitecore.Configuration;
 
 namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Reporting
 {
@@ -27,7 +28,10 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
 
             //We use a query instead of index search because, security field data is not in query, will be slower by large resultset.
             var itemList = CurrentRights.GetAllRights(db);
-
+            if (itemList.Count.ToString() == Settings.GetSetting("Query.MaxItems"))
+            {
+                userrights.Text += "<p style=\"color:#FF3333;\">Alert Query limit is: "+ itemList.Count+ " looks like we don't have all data because this limit see Query.MaxItems in config </p>";
+            }
             var count = 0;
 
             var checkAccount = new CheckAccount();
