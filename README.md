@@ -56,6 +56,7 @@ For Sitecore version 10.1+ show all rights hide default Sitecore rights not avai
 - 2.12 Support for Sitecore 10 
 - 2.13 Support for Sitecore 10 update-1, no limit mode for simple list and a download button. bug fixes and text adjustments
 - 2.14 Support for Sitecore 10.1
+- 2.15 fix bug with fast query in Sitecore 10.1
 Tested on Sitecore 6.5 - 9, Version 2.3 and higher only tested on Sitecore 8.x and 9.x but should work on older versions. Version 2.7 and higher only test on Sitecore 9+
 
 ## Upgrading

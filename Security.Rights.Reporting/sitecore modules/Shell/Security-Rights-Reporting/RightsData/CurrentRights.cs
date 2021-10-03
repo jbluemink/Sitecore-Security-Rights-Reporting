@@ -35,7 +35,7 @@ namespace Security.Rights.Reporting.sitecore_modules.Shell.Security_Rights_Repor
                     return allrightsmaster;
                 }
                 //We use a query instead of index search because, security field data is not in query, will be slower by large resultset.
-                const string query = "fast://*[@__Security != '' ]";
+                const string query = "fast://*[@__Security != \"\"]";
 
                 var itemList = new List<Item>(db.SelectItems(query));
 
